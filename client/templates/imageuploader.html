@@ -1,0 +1,30 @@
+
+<template name="imageUploader">
+  <div class="">
+      <div class="">
+        <form id="uploading">
+        <label for="selectFile">Select</label>
+        <input type="file" class="uploadFile" id="file">
+        <p class="help-block">Upload image here.</p>
+        <input type="submit" />
+        </form>
+      </div>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+            <span class="sr-only">{{progress}}% Complete</span>
+          </div>
+        </div>
+  </div>
+
+  {{isUploading}}
+
+  <div class="">
+  <div class="">
+  
+    <strong>Beat Preview:</strong>
+   
+    <img src="{{url.mp3}}"/> 
+
+  </div>    
+</div>
+</template>

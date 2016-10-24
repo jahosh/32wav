@@ -1,0 +1,20 @@
+{
+  "name": "32wav",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "classnames": "^2.2.5",
+    "jsmediatags": "^3.3.0",
+    "meteor-node-stubs": "~0.2.0",
+    "moment": "^2.15.1",
+    "react": "^15.3.2",
+    "react-addons-pure-render-mixin": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-dropzone": "^3.7.0",
+    "waveform-playlist": "^2.4.0",
+    "worker": "^0.2.1"
+  }
+}
