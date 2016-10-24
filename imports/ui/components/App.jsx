@@ -27,10 +27,6 @@ class App extends Component {
       hideCompleted: false,
     };
   }
-  componentDidMount() {
-
-    
-  }
   handleSubmit(event) {
     event.preventDefault();
 
@@ -43,19 +39,16 @@ class App extends Component {
 
     const title = ReactDOM.findDOMNode(this.refs.songTitle).value.trim();
     
-
-   
-    
     Meteor.call('songs.insert', title, file);
     
     ReactDOM.findDOMNode(this.refs.songTitle).value = '';
     ReactDOM.findDOMNode(this.refs.songlink).value = '';
   }
-
   toggleHideCompleted() {
+
     this.setState({
       hideCompleted: !this.state.hideCompleted,
-    })
+    });
   }
   renderSongs() {
     let filteredSongs = this.props.songs;

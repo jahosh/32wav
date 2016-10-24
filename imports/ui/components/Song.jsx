@@ -14,11 +14,14 @@ export default class Song extends Component {
 
     this.state = {
       playing: false,
+      loading: true,
       pos: 0
     };
 
     this.handleTogglePlay = this.handleTogglePlay.bind(this);
     this.handlePosChange = this.handlePosChange.bind(this);
+    this.handleLoading = this.handleLoading.bind(this)
+    this.handleReady = this.handleReady.bind(this);
   }
   handleTogglePlay() {
     this.setState({
@@ -55,6 +58,16 @@ export default class Song extends Component {
       
     });
   }
+  handleLoading() {
+    console.log('loading...');
+  }
+  handleReady() {
+    console.log('ready');
+    this.setState({
+      loading: false,
+      ready: true,
+    });
+  }
   deleteSong() {
     Meteor.call('songs.remove', this.props.song._id, (err) => {
       if (err) {
@@ -87,12 +100,17 @@ export default class Song extends Component {
           <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="25px" /> 
         }
 
+        { this.state.loading ? <div className="loader">Loading...</div> : '' }
+        
         <Wavesurfer 
           audioFile={this.props.source} 
           pos={this.state.pos}
+          onLoading={this.handleLoading}
+          onReady={this.handleReady}
           onPosChange={this.handlePosChange}
           playing={this.state.playing}
         />
+
         <a href="#!" onClick={this.likeSong.bind(this)} className="secondary-content"><i className="material-icons">grade</i></a>
 
         <button className="delete" onClick={this.deleteSong.bind(this)}>
