@@ -46,22 +46,27 @@ export default class Song extends Component {
     });
   }
   likeSong() {
-      let selectedBeat = this.props.song._id;
-      
+    let selectedBeat = this.props.song._id;
+  
     Meteor.call('songs.like', selectedBeat, function(err) {
       if (err){
         Bert.alert('Uh-oh, try again', 'danger', 'growl-top-right');      
       }
-
       //has song been liked already? if so show that user has unliked song
       Bert.alert('Beat Liked', 'success', 'growl-top-right') 
-      
     });
   }
-  handleLoading() {
+  handleLoading(int, int2) {
+    console.log(int2);
+    let value = int.originalArgs[0]
+    console.log(value);
+
     console.log('loading...');
   }
   handleReady() {
+   
+
+
     console.log('ready');
     this.setState({
       loading: false,

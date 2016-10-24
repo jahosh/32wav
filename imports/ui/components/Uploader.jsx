@@ -7,8 +7,6 @@ import Dropzone from 'react-dropzone';
 export default class Uploader extends Component {
   
   onDrop(files) {
-  
-
    const upload = new Slingshot.Upload("uploadToAmazonS3");
    
   //grab user inputted title & file
