@@ -1,3 +1,3 @@
 node_modules/
 .meteor/local
-slingshot_config.js
+*slingshot_config.js
