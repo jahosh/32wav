@@ -87,7 +87,7 @@ class App extends Component {
       <Navbar />
         <div className="col l12 mainNav">
           <div className="headerText valign center">
-            <h1> 32Wav.com</h1>
+            <h1> 32wav</h1>
             <small>Hottest Beats Online</small>
           </div>
 
