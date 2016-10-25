@@ -16,7 +16,7 @@ export default class Navbar extends Component {
           <li><div className="userView">
             <img className="background" />
             <a href="#!user"><img className="circle" src="./assets/josh.JPG" /></a>
-            <a href="#!name"><span className="black-text name">Jahosh</span></a>
+            <a href="#!name"><span className="black-text name">Jahoshg</span></a>
             <a href="#!email"><span className="black-text email">jahosh@32wav.com</span></a>
           </div></li>
           <li><i className="material-icons">assignment_ind</i><AccountsUIWrapper /></li>
