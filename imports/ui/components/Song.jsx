@@ -17,7 +17,6 @@ export default class Song extends Component {
       loading: true,
       pos: 0
     };
-
     this.handleTogglePlay = this.handleTogglePlay.bind(this);
     this.handlePosChange = this.handlePosChange.bind(this);
     this.handleLoading = this.handleLoading.bind(this)
@@ -64,10 +63,6 @@ export default class Song extends Component {
     console.log('loading...');
   }
   handleReady() {
-   
-
-
-    console.log('ready');
     this.setState({
       loading: false,
       ready: true,
@@ -85,10 +80,22 @@ export default class Song extends Component {
     Meteor.call('songs.setPrivate', this.props.song._id, !this.props.song.private);
   }
   render() {
+    /* not used right now ~ later
       const songClassName = classnames({
         checked: this.props.song.checked + ' song',
         private: this.props.song.private + ' song',
       });
+      */
+
+      const options = {
+        height: 50,
+        cursorColor: '#0000',
+        progressColor: '#FF6347',
+        barWidth: 2,
+        maxCanvasWidth: 200,
+        cursorWidth: 3
+      }
+
     return (
      <div>
       <li className="collection-item avatar song">
@@ -101,14 +108,15 @@ export default class Song extends Component {
 
         
         { this.state.playing ? 
-          <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="25px" /> :
-          <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="25px" /> 
+          <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> :
+          <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> 
         }
 
         { this.state.loading ? <div className="loader">Loading...</div> : '' }
         
         <Wavesurfer 
-          audioFile={this.props.source} 
+          audioFile={this.props.source}
+          options={options}
           pos={this.state.pos}
           onLoading={this.handleLoading}
           onReady={this.handleReady}

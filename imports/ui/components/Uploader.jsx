@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Dropzone from 'react-dropzone';
 
 
-
 export default class Uploader extends Component {
   
   onDrop(files) {

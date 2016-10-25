@@ -142,7 +142,7 @@ class App extends Component {
 
         </div>
         <div className="col s12 m8 l9 mainBody">
-          <h3 className="valign center recentlyUploaded"> Recently Uploaded Beats </h3>
+          <h3 className="valign center recentlyUploaded"> Last 3 uploaded beats - </h3>
           <ul className="collection">
             {this.renderSongs()}
           </ul>
@@ -162,7 +162,7 @@ export default createContainer( () => {
   Meteor.subscribe('songs');
   Meteor.subscribe('mp3Details');
   return {
-    songs: Songs.find({}, { sort: { createdAt: -1 } }).fetch(),
+    songs: Songs.find({}, { limit: 3, sort: { createdAt: -1 } }).fetch(),
     incompleteCount: Songs.find({ checked: { $ne: true } }).count(),
     currentUser: Meteor.user(),
     userUploads: Mp3s.find({ uploadedBy: Meteor.userId() }).fetch()
