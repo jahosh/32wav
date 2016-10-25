@@ -5,13 +5,9 @@ import React, { Component, PropTypes } from 'react';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 export default class Navbar extends Component {
-
-
-
-
   render() {
     return (
-      <div>
+      <div className="navBar">
         <ul id="slide-out" className="side-nav fixed">
           <li><div className="userView">
             <img className="background" />
