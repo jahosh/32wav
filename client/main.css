@@ -198,6 +198,8 @@ li.private {
 
 .song {
   padding: 10px;
+  display: table;
+  margin:0 auto;
 }
 
 .playPause {
@@ -245,4 +247,8 @@ li.private {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+#app {
+  padding-left: 300px;
 }

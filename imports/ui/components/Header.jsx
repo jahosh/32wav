@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -6,7 +5,7 @@ import ReactDOM from 'react-dom';
 export default class Header extends Component {
   render() {
     return (
-      <div className="col l12 mainNav">
+      <div className="col s12 m12 l12 mainNav">
         <div className="headerText valign center">
           <h1> 32wav</h1>
           <small>Hottest Beats Online</small>

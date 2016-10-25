@@ -97,8 +97,8 @@ export default class Song extends Component {
       }
 
     return (
-     <div>
-      <li className="collection-item avatar song">
+     <div className="col l12">
+      <li className=" col l12 collection-item avatar song">
         <i className="material-icons circle">folder</i>
         <span className="title"><b>{this.props.song.username}</b></span> <br />
         {this.props.song.title}

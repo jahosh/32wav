@@ -14,6 +14,7 @@ import Header from './Header.jsx';
 import Song from './Song.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import Navbar from './Navbar.jsx';
+import FileUpload from './FileUpload.jsx';
 import Uploader from './Uploader.jsx';
 
 //template helpers
@@ -28,7 +29,7 @@ class App extends Component {
       hideCompleted: false,
     };
   }
-  handleSubmit(event) {
+  handleSubmitUpload(event) {
     event.preventDefault();
 
     const files = ReactDOM.findDOMNode(this.refs.songlink).files[0];
@@ -79,37 +80,13 @@ class App extends Component {
       <div className="row">
         <Navbar />
         <Header />
-      <div className="col s12 m4 l3 sideNav">
-
-            { this.props.currentUser ? 
-              <div>
-                <h4> Upload: </h4>
-                <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-                
-
-                <input 
-                  type="text"
-                  id="songTitle"
-                  ref="songTitle"
-                  placeholder="enter beat name"
-                />
-                <i className="small material-icons">input</i>
-                <input 
-                  type="file"
-                  ref="songlink"
-                />
-              </form>
-               <Blaze template="imageUploader" />
-               { /* <audio controls src={audioLink.mp3}></audio> */}
-               <Uploader />
-               <strong><span className="valign center" id="previewInfo"></span></strong>
-                 <br />
-                <audio className="previewPlayer" controls id="preview"></audio>
-              </div> : ''
-          }
-
-        </div>
-        <div className="col s12 m8 l9 mainBody">
+        {/* 
+        <FileUpload
+          currentUser={this.props.currentUser}
+          onHandleSubmitUpload={this.handleSubmitUpload}
+        />
+        */}
+        <div className="col s12 m12 l12 mainBody">
           <h3 className="valign center recentlyUploaded"> Last 3 uploaded beats - </h3>
           <ul className="collection">
             {this.renderSongs()}
