@@ -5,22 +5,26 @@ import React, { Component, PropTypes } from 'react';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 export default class Navbar extends Component {
+  componentDidMount() {
+ 
+  }
   render() {
+    console.log(this.props);
     return (
       <div className="navBar">
         <ul id="slide-out" className="side-nav fixed">
           <li><div className="userView">
             <img className="background" />
             <a href="#!user"><img className="circle" src="./assets/josh.JPG" /></a>
-            <a href="#!name"><span className="black-text name">Jahoshg</span></a>
+            <a href="#!name"><strong><span className="black-text name">Jahosh</span></strong></a>
             <a href="#!email"><span className="black-text email">jahosh@32wav.com</span></a>
           </div></li>
           <li><i className="material-icons">assignment_ind</i><AccountsUIWrapper /></li>
           <li><div className="divider"></div></li>
-          <li><a href="#!"><i className="material-icons">perm_identity</i>Home</a></li>
+          <li><a href="/"><i className="material-icons">perm_identity</i>Home</a></li>
           <li><a href="#!"><i className="material-icons">cloud</i>My Uploads</a></li>
           <li><a href="#faq"><i className="material-icons">question_answer</i>FAQ</a></li>
-          <li><a href="#contact"><i className="material-icons">email</i>Contact</a></li>
+          <li><a href="/contact"><i className="material-icons">email</i>Contact</a></li>
          
         </ul>
         <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>

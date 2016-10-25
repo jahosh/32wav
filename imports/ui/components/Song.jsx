@@ -60,13 +60,15 @@ export default class Song extends Component {
     let value = int.originalArgs[0]
     console.log(value);
 
-    console.log('loading...');
+  
   }
-  handleReady() {
+  handleReady(wavesurfer) {
     this.setState({
       loading: false,
       ready: true,
     });
+    //fix negative playback position here?
+
   }
   deleteSong() {
     Meteor.call('songs.remove', this.props.song._id, (err) => {
