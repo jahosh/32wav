@@ -10,6 +10,7 @@ import { Songs } from '../../api/songs.js';
 import { Mp3s } from '../../api/mp3s.js';
 
 //react components
+import Header from './Header.jsx';
 import Song from './Song.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import Navbar from './Navbar.jsx';
@@ -74,43 +75,10 @@ class App extends Component {
   }
 
   render() {
-     const audioLink = this.props.userUploads[3];
     return (
       <div className="row">
-      <Navbar />
-        <div className="col l12 mainNav">
-          <div className="headerText valign center">
-            <h1> 32wav</h1>
-            <small>Hottest Beats Online</small>
-          </div>
-
-
-          <a
-            className="dropdown-button btn genreDropDown" 
-            href="#" 
-            data-activates="dropdown1"
-            data-beloworgin="true"> Genres
-          </a>
-
-            <label htmlFor="checked" className="hide-completed">
-            <input
-              id="checked"
-              type="checkbox"
-              readOnly
-              checked={this.state.hideCompleted}
-              onClick={this.toggleHideCompleted.bind(this)}
-            />
-            Hide Songs You've Heard Already
-            </label>
-
-
-        
-          <ul id="dropdown1" className="dropdown-content">
-            <li><a href="#!">Trap</a></li>
-            <li><a href="#!">R&B</a></li>
-            <li><a href="#!">Hip-Hop</a></li>
-          </ul>
-        </div>
+        <Navbar />
+        <Header />
       <div className="col s12 m4 l3 sideNav">
 
             { this.props.currentUser ? 
