@@ -8,10 +8,12 @@ import Wavesurfer from 'react-wavesurfer';
 
 import { Songs } from '../../api/songs.js';
 
+//react components
+import Loader from './Loader.jsx';
+
 export default class Song extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       playing: false,
       loading: true,
@@ -33,7 +35,7 @@ export default class Song extends Component {
     });
   }
   play() {
-    console.log('clicked');
+
   }
   toggleChecked() {
     //toggle a song checked
@@ -56,11 +58,30 @@ export default class Song extends Component {
     });
   }
   handleLoading(int, int2) {
-    console.log(int2);
-    let value = int.originalArgs[0]
-    console.log(value);
-
-  
+var opts = {
+  lines: 9 // The number of lines to draw
+, length: 28 // The length of each line
+, width: 14 // The line thickness
+, radius: 42 // The radius of the inner circle
+, scale: .5 // Scales overall size of the spinner
+, corners: 1 // Corner roundness (0..1)
+, color: '#000' // #rgb or #rrggbb or array of colors
+, opacity: 0.35 // Opacity of the lines
+, rotate: 0 // The rotation offset
+, direction: 1 // 1: clockwise, -1: counterclockwise
+, speed: 1 // Rounds per second
+, trail: 45 // Afterglow percentage
+, fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+, zIndex: 2e9 // The z-index (defaults to 2000000000)
+, className: 'spinner' // The CSS class to assign to the spinner
+, top: '50%' // Top position relative to parent
+, left: '50%' // Left position relative to parent
+, shadow: false // Whether to render a shadow
+, hwaccel: false // Whether to use hardware acceleration
+, position: 'absolute' // Element positioning
+}
+    const target = document.getElementById('spinner');
+    const spinner = new Spinner(opts).spin(target);
   }
   handleReady(wavesurfer) {
     this.setState({
@@ -97,7 +118,6 @@ export default class Song extends Component {
         maxCanvasWidth: 200,
         cursorWidth: 3
       }
-
     return (
      <div className="col l12">
       <li className=" col l12 collection-item avatar song">
@@ -114,7 +134,8 @@ export default class Song extends Component {
           <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> 
         }
 
-        { this.state.loading ? <div className="loader">Loading...</div> : '' }
+        { this.state.loading ? <div><Loader /> </div> : '' }
+
         
         <Wavesurfer 
           audioFile={this.props.source}

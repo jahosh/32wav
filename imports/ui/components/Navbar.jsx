@@ -11,7 +11,7 @@ export default class Navbar extends Component {
   render() {
     console.log(this.props);
     return (
-      <div className="navBar">
+      <div>
         <ul id="slide-out" className="side-nav fixed">
           <li><div className="userView">
             <img className="background" />
@@ -27,7 +27,6 @@ export default class Navbar extends Component {
           <li><a href="/contact"><i className="material-icons">email</i>Contact</a></li>
          
         </ul>
-        <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
       </div>
 
 
