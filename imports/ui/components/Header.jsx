@@ -5,6 +5,15 @@ import ReactDOM from 'react-dom';
 export default class Header extends Component {
   render() {
     return (
+
+    <nav className="indigo">
+      <div className="nav-wrapper">
+        <a href="#" className="brand-logo center">32wav</a>
+        <ul id="nav-mobile" className="left hide-on-med-and-down">
+        </ul>
+      </div>
+    </nav>
+      /*
       <div className="col s12 m12 l12 mainNav">
         <div className="headerText valign center">
           <h1> 32wav</h1>
@@ -23,6 +32,7 @@ export default class Header extends Component {
           <li><a href="#!">Hip-Hop</a></li>
         </ul>
       </div>
+      */
     )
   }
 }

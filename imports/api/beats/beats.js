@@ -4,12 +4,12 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { moment } from 'meteor/momentjs:moment';
 
-export const Songs = new Mongo.Collection('songs');
+export const Beats = new Mongo.Collection('beats');
 
 if (Meteor.isServer) {
 
-  Meteor.publish('songs', function songsPublication() {
-    return Songs.find({
+  Meteor.publish('beats', function beatsPublication() {
+    return Beats.find({
       $or: [
         { private: { $ne: true } },
         { owner: this.userId },
@@ -19,7 +19,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'songs.insert'(title, fileSource) {
+  'beats.insert'(title, fileSource) {
     let timeStamp = moment().format('MMMM Do YYYY, h:mm:ss a');
     const userName = Meteor.user().username != null ? Meteor.user().username : Meteor.user().profile.name
     check(title, String);
@@ -36,63 +36,64 @@ Meteor.methods({
   
     }
 
- 
-
-    Songs.insert({ 
+    Beats.insert({ 
       title,
       fileSource,
       createdAt: timeStamp,
       owner: Meteor.userId(),
       username: userName,
       likedBy: [],
+      plays: 0
       //stream: mp3Link, 
     });
   },
-  'songs.remove'(songId) {
+  'beats.remove'(songId) {
     check(songId, String);
-    const song = Songs.findOne(songId);
+    const song = Beats.findOne(songId);
 
     if (song.private && song.owner !== this.userId || song.owner !== this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
-    Songs.remove(songId);
+    Beats.remove(songId);
   },
-  'songs.setChecked'(songId, setChecked) {
+  'beats.setChecked'(songId, setChecked) {
     check(songId, String);
     check(setChecked, Boolean);
-    const song = Songs.findOne(songId);
+    const song = Beats.findOne(songId);
 
     // if the song does not belong to user, cannot cross off..
     if (song.private && song.owner !== this.userId || song.owner !== this.userId) {
       throw new Meteor.Error('not-authrized');
     }
 
-    Songs.update(songId, { $set: { checked: setChecked } });
+    Beats.update(songId, { $set: { checked: setChecked } });
   },
-  'songs.setPrivate'(songId, setToPrivate) {
+  'beats.setPrivate'(songId, setToPrivate) {
     check(songId, String);
     check(setToPrivate, Boolean);
 
-    const song = Songs.findOne(songId);
+    const song = Beats.findOne(songId);
 
     if (song.owner !== this.userId) {
       throw new Meteor.Error('not your song to make private');
     }
 
-    Songs.update(songId, { $set: { private: setToPrivate } });
-
+    Beats.update(songId, { $set: { private: setToPrivate } });
    
   },
-  'songs.like'(songId) {
+  'beats.like'(songId) {
     check(songId, String);
-  
+ 
     //add user to likedBy array
-    Songs.update(songId, { $push: { likedBy : this.userId } });
+    Beats.update(songId, { $push: { likedBy : this.userId } });
   },
-  'songs.getLikesCount'(songId) {
+  'beats.getLikesCount'(songId) {
+    check(songId, String);  
+  },
+  'beats.incrementPlayCount'(songId) {
     check(songId, String);
 
-    
+    Beats.update(songId, { $inc: { plays: 1 } });
   }
 });

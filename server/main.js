@@ -1,6 +1,6 @@
 //Server Methods
-import '../imports/api/songs.js';
-import '../imports/api/mp3s.js';
+import '../imports/api/beats/beats.js';
+import '../imports/api/beats/mp3s.js';
 
 import { Accounts } from 'meteor/accounts-base';
 

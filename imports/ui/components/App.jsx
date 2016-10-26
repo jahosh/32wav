@@ -6,8 +6,8 @@ import Blaze from 'meteor/gadicc:blaze-react-component';
 import Dropzone from 'react-dropzone';
 
 // mongo collection
-import { Songs } from '../../api/songs.js';
-import { Mp3s } from '../../api/mp3s.js';
+import { Beats } from '../../api/beats/beats.js';
+import { Mp3s } from '../../api/beats/mp3s.js';
 
 //react components
 import Header from './Header.jsx';
@@ -53,7 +53,8 @@ class App extends Component {
     });
   }
   renderSongs() {
-    let filteredSongs = this.props.songs;
+    let filteredSongs = this.props.beats;
+    console.log(filteredSongs);
     if (this.state.hideCompleted) {
       filteredSongs = filteredSongs.filter( song => !song.checked);
     }
@@ -61,8 +62,7 @@ class App extends Component {
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
       const showPrivateButton = song.owner === currentUserId;
       const currentUser = this.props.currentUser;
-      const source = song.fileSource;
-     
+      const source = song.fileSource;    
       return (
         <Song 
           key={song._id} 
@@ -74,42 +74,40 @@ class App extends Component {
       );
     });
   }
-
   render() {
     return (
       <div className="row">
-        <Navbar />
-        <Header />
-        {/* 
-        <FileUpload
-          currentUser={this.props.currentUser}
-          onHandleSubmitUpload={this.handleSubmitUpload}
+        <Navbar
+          user={this.props.currentUser} 
         />
-        */}
+        <Header />
+
         <div className="col s12 m12 l12 mainBody">
           <h3 className="valign center recentlyUploaded"> Last 3 uploaded beats - </h3>
           <ul className="collection">
             {this.renderSongs()}
           </ul>
         </div>
+        <FileUpload
+          currentUser={this.props.currentUser}
+          onHandleSubmitUpload={this.handleSubmitUpload}
+        />
       </div>
     );
   }
 }
 
 App.propTypes = {
-  songs: PropTypes.array.isRequired,
+  beats: PropTypes.array.isRequired,
   incompleteCount: PropTypes.number.isRequired,
   currentUser: PropTypes.object,
 }
 
 export default createContainer( () => {
-  Meteor.subscribe('songs');
-  Meteor.subscribe('mp3Details');
+  Meteor.subscribe('beats');
   return {
-    songs: Songs.find({}, { limit: 3, sort: { createdAt: -1 } }).fetch(),
-    incompleteCount: Songs.find({ checked: { $ne: true } }).count(),
+    beats: Beats.find({}, { limit: 3, sort: { createdAt: -1 } }).fetch(),
+    incompleteCount: Beats.find({ checked: { $ne: true } }).count(),
     currentUser: Meteor.user(),
-    userUploads: Mp3s.find({ uploadedBy: Meteor.userId() }).fetch()
   };
 }, App);

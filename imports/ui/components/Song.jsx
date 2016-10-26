@@ -6,7 +6,7 @@ import Blaze from 'meteor/gadicc:blaze-react-component';
 import { Session } from 'meteor/session';
 import Wavesurfer from 'react-wavesurfer';
 
-import { Songs } from '../../api/songs.js';
+import { Beats } from '../../api/beats/beats.js';
 
 //react components
 import Loader from './Loader.jsx';
@@ -24,7 +24,15 @@ export default class Song extends Component {
     this.handleLoading = this.handleLoading.bind(this)
     this.handleReady = this.handleReady.bind(this);
   }
+  componentDidMount() {
+
+  }
   handleTogglePlay() {
+   if (!this.state.playing) {
+      //console.log(this.props);
+   Meteor.call('beats.incrementPlayCount', this.props.song._id);
+   }
+    
     this.setState({
       playing: !this.state.playing
     });
@@ -36,10 +44,11 @@ export default class Song extends Component {
   }
   play() {
 
+
   }
   toggleChecked() {
     //toggle a song checked
-    Meteor.call('songs.setChecked', this.props.song._id, !this.props.song.checked, function(err) {
+    Meteor.call('beats.setChecked', this.props.song._id, !this.props.song.checked, function(err) {
       if (err) {
         
         Bert.alert('Permission denied', 'danger', 'growl-top-right');
@@ -49,7 +58,7 @@ export default class Song extends Component {
   likeSong() {
     let selectedBeat = this.props.song._id;
   
-    Meteor.call('songs.like', selectedBeat, function(err) {
+    Meteor.call('beats.like', selectedBeat, function(err) {
       if (err){
         Bert.alert('Uh-oh, try again', 'danger', 'growl-top-right');      
       }
@@ -92,7 +101,7 @@ var opts = {
 
   }
   deleteSong() {
-    Meteor.call('songs.remove', this.props.song._id, (err) => {
+    Meteor.call('beats.remove', this.props.song._id, (err) => {
       if (err) {
         Bert.timer = 5;
         Bert.alert('Cannot delete song', 'danger', 'fixed-top');
@@ -100,7 +109,7 @@ var opts = {
     });
   }
   togglePrivate() {
-    Meteor.call('songs.setPrivate', this.props.song._id, !this.props.song.private);
+    Meteor.call('beats.setPrivate', this.props.song._id, !this.props.song.private);
   }
   render() {
     /* not used right now ~ later
@@ -116,7 +125,8 @@ var opts = {
         progressColor: '#FF6347',
         barWidth: 2,
         maxCanvasWidth: 200,
-        cursorWidth: 3
+        cursorWidth: 3,
+        hideScrollbar: true
       }
     return (
      <div className="col l12">
@@ -147,6 +157,7 @@ var opts = {
           playing={this.state.playing}
         />
 
+        <div><p>Total Plays: </p> <span id="plays">{this.props.song.plays}</span></div>
         <a href="#!" onClick={this.likeSong.bind(this)} className="secondary-content"><i className="material-icons">grade</i></a>
 
         <button className="delete" onClick={this.deleteSong.bind(this)}>

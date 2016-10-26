@@ -20,6 +20,7 @@ body {
 .mainNav {
   background-color: white;
   border: 1px solid black;
+  height: 125px;
 }
 .sideNav {
   border: 2px solid black;
@@ -38,6 +39,7 @@ body {
   margin-top: 10px;
   background-color: white;
   border: 2px solid black;
+  
 
 }
 
@@ -89,5 +91,6 @@ body {
 }
 
 #app {
-  padding-left: 300px;
+  padding-left: 400px;
+  padding-right: 300px;
 }

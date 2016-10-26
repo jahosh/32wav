@@ -6,7 +6,7 @@ import { Template } from 'meteor/templating';
 
 
 // mongo collection
-import { Mp3s } from './api/mp3s.js';
+import { Mp3s } from './api/beats/mp3s.js';
 
 
 

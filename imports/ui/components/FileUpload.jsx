@@ -31,13 +31,13 @@ export default class Header extends Component {
     } 
     
     console.log('success');
-    Meteor.call('songs.insert', title, source);
+    Meteor.call('beats.insert', title, source);
     });
   }
   render() {
     console.log(this.props);
     return (
-      <div className="col s12 m4 l3 sideNav">
+      <div className="col s12 m12 l12  sideNav">
         {/* If the user is logged in, show upload form, if not show as of right now nothing.. */}
 
         { this.props.currentUser ? 
