@@ -25,7 +25,7 @@ export default class Song extends Component {
     this.handleReady = this.handleReady.bind(this);
   }
   componentDidMount() {
-    console.log('rendered');
+
   }
   handleTogglePlay() {
    if (!this.state.playing) {
@@ -131,7 +131,7 @@ var opts = {
     return (
      <div className="col s12 l12 song">
      <div className="divider"></div>
-      <li className=" col l12 collection-item avatar song">
+      <li className=" col l12 collection-item avatar song" key={this.props.song._id}>
         <i className="material-icons circle">folder</i>
         <span className="title"><b>{this.props.song.username}</b></span> <br />
         {this.props.song.title}
@@ -161,7 +161,12 @@ var opts = {
         />
  
 
-        <div><p>Total Plays: </p> <span id="plays">{this.props.song.plays}</span></div>
+        <div>
+          <p>Total Plays: </p> <span id="plays">{this.props.song.plays}</span> 
+          <br />
+          <p> Likes: </p> <span id="likes">{this.props.song.likedBy.length}</span>
+        </div>
+        
         <a href="#!" onClick={this.likeSong.bind(this)} className="secondary-content"><i className="material-icons">grade</i></a>
 
         <button className="delete" onClick={this.deleteSong.bind(this)}>

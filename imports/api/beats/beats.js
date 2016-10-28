@@ -84,7 +84,7 @@ Meteor.methods({
   },
   'beats.like'(songId) {
     check(songId, String);
- 
+
     //add user to likedBy array
     Beats.update(songId, { $push: { likedBy : this.userId } });
   },
