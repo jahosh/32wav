@@ -6,11 +6,30 @@ import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 export default class Navbar extends Component {
   componentDidMount() {
-       
+
   }
   render() {
     return (
-      <div>
+      <nav>
+        <div className="nav-wrapper indigo">
+          <a href="#" className="brand-logo center">Logo</a>
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li>
+          </ul>
+          <form>
+            <div className="input-field">
+              <input id="search" type="search" required />
+              <label htmlFor="search"><i className="material-icons">search</i></label>
+              <i className="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+  </nav>
+
+      /*
+      <div className="col s12">
         <ul id="slide-out" className="side-nav fixed">
           <li><div className="userView">
             <img className="background" />
@@ -27,6 +46,7 @@ export default class Navbar extends Component {
           <li><a href="/contact"><i className="material-icons">email</i>Contact</a></li>       
         </ul>
       </div>
+      */
     )
   }
 }

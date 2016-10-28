@@ -25,17 +25,16 @@ export default class Song extends Component {
     this.handleReady = this.handleReady.bind(this);
   }
   componentDidMount() {
-
+    console.log('rendered');
   }
   handleTogglePlay() {
    if (!this.state.playing) {
-      //console.log(this.props);
    Meteor.call('beats.incrementPlayCount', this.props.song._id);
    }
-    
     this.setState({
       playing: !this.state.playing
     });
+    console.log(this.state);
   }
   handlePosChange(e) {
     this.setState({
@@ -63,7 +62,8 @@ export default class Song extends Component {
         Bert.alert('Uh-oh, try again', 'danger', 'growl-top-right');      
       }
       //has song been liked already? if so show that user has unliked song
-      Bert.alert('Beat Liked', 'success', 'growl-top-right') 
+      Materialize.toast('Beat Liked!', 4000) 
+      //Bert.alert('Beat Liked', 'success', 'growl-top-right') 
     });
   }
   handleLoading(int, int2) {
@@ -89,8 +89,8 @@ var opts = {
 , hwaccel: false // Whether to use hardware acceleration
 , position: 'absolute' // Element positioning
 }
-    const target = document.getElementById('spinner');
-    const spinner = new Spinner(opts).spin(target);
+    //const target = document.getElementById('spinner');
+    //const spinner = new Spinner(opts).spin(target);
   }
   handleReady(wavesurfer) {
     this.setState({
@@ -129,7 +129,8 @@ var opts = {
         hideScrollbar: true
       }
     return (
-     <div className="col l12">
+     <div className="col s12 l12 song">
+     <div className="divider"></div>
       <li className=" col l12 collection-item avatar song">
         <i className="material-icons circle">folder</i>
         <span className="title"><b>{this.props.song.username}</b></span> <br />
@@ -144,7 +145,9 @@ var opts = {
           <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> 
         }
 
-        { this.state.loading ? <div><Loader /> </div> : '' }
+        { this.state.loading ? <Loader /> : '' }
+
+        
 
         
         <Wavesurfer 
@@ -156,6 +159,7 @@ var opts = {
           onPosChange={this.handlePosChange}
           playing={this.state.playing}
         />
+ 
 
         <div><p>Total Plays: </p> <span id="plays">{this.props.song.plays}</span></div>
         <a href="#!" onClick={this.likeSong.bind(this)} className="secondary-content"><i className="material-icons">grade</i></a>

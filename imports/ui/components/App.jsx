@@ -16,6 +16,7 @@ import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import Navbar from './Navbar.jsx';
 import FileUpload from './FileUpload.jsx';
 import Uploader from './Uploader.jsx';
+import BeatsList from './BeatsList.jsx';
 
 //template helpers
 import Upload from '../../photoupload.js';
@@ -28,6 +29,9 @@ class App extends Component {
     this.state = {
       hideCompleted: false,
     };
+  }
+  componentDidMount() {
+   console.log('rendered');
   }
   handleSubmitUpload(event) {
     event.preventDefault();
@@ -47,14 +51,12 @@ class App extends Component {
     ReactDOM.findDOMNode(this.refs.songlink).value = '';
   }
   toggleHideCompleted() {
-
     this.setState({
       hideCompleted: !this.state.hideCompleted,
     });
   }
   renderSongs() {
     let filteredSongs = this.props.beats;
-    console.log(filteredSongs);
     if (this.state.hideCompleted) {
       filteredSongs = filteredSongs.filter( song => !song.checked);
     }
@@ -80,18 +82,16 @@ class App extends Component {
         <Navbar
           user={this.props.currentUser} 
         />
-        <Header />
+        <BeatsList
+          handleRenderSongs={this.renderSongs.bind(this)} 
+        />
 
-        <div className="col s12 m12 l12 mainBody">
-          <h3 className="valign center recentlyUploaded"> Last 3 uploaded beats - </h3>
-          <ul className="collection">
-            {this.renderSongs()}
-          </ul>
-        </div>
+        { this.props.currentUser ? 
         <FileUpload
           currentUser={this.props.currentUser}
           onHandleSubmitUpload={this.handleSubmitUpload}
-        />
+        /> : '' 
+        }
       </div>
     );
   }

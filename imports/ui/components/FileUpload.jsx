@@ -35,7 +35,6 @@ export default class Header extends Component {
     });
   }
   render() {
-    console.log(this.props);
     return (
       <div className="col s12 m12 l12  sideNav">
         {/* If the user is logged in, show upload form, if not show as of right now nothing.. */}
@@ -51,10 +50,6 @@ export default class Header extends Component {
                 placeholder="enter beat name"
               />
               <i className="small material-icons">input</i>
-              <input 
-                type="file"
-                ref="songlink"
-              />
             </form>
             <Blaze template="imageUploader" />
 
