@@ -111,8 +111,9 @@ var opts = {
   }
   togglePrivate() {
     Meteor.call('beats.setPrivate', this.props.song._id, !this.props.song.private, (err) => {
-
+      if (err) {
       Materialize.toast('Unauthorized', 4000) 
+      }
     });
   }
   render() {
@@ -133,13 +134,11 @@ var opts = {
         hideScrollbar: true
       }
     return (
-     <div className="">
-       <div className="divider"></div>
+     <div className="beats"> 
        <li className="collection-item avatar beats" key={this.props.song._id}>
          { this.state.loading ? <Blaze template="spinner" /> : '' }
-         <i className="material-icons circle">folder</i>
-         <p className="userName">{this.props.song.username}</p><br />
-         <p className="songTitle">{this.props.song.title}</p><br />
+         <p className="userName">Producer: {this.props.song.username}</p><br />
+         <p className="songTitle center">{this.props.song.title}</p><br />
          <p>{this.props.song.fileName}</p> 
 
         {this.state.playing ? 

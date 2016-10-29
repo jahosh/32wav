@@ -6,8 +6,10 @@ import BeatCategories from './BeatCategories';
 //responsible for rending a list of beats
 const BeatsList = (props) => {
   return (
-    <div className="col s12 m9 beatList">
+    <div className="col s12 m9 l12 offset-l2 beatList">
       <p className="flow-text center">Charts</p>
+  
+    
       <BeatCategories />
       <ul className="collection">
         { props.handleRenderSongs() }

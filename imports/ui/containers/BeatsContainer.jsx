@@ -37,7 +37,7 @@ export default class BeatsContainer extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="col s12 m8 l9">
        <BeatsList
           handleRenderSongs={this.renderSongs.bind(this)} 
         />

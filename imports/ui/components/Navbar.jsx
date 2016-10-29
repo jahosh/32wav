@@ -12,7 +12,7 @@ export default class Navbar extends Component {
   }
   render() {
     return (
-      <nav className=" light-blue darken-4">
+      <nav className="light-blue darken-4 topNav">
         <div className="nav-wrapper">
           <ul className="right">
             <li><Blaze template="loginButtons" align="right" /></li>
@@ -22,7 +22,7 @@ export default class Navbar extends Component {
           <ul id="nav-mobile" className="left hide-on-med-and-down">
             <li><a href="#">Home</a></li>
             <li><a href="#">Upload</a></li>
-            <li><a href="#">Charts</a></li>
+            <li><a href="#">My Account</a></li>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">Contact</a></li>
           </ul>

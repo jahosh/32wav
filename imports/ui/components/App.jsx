@@ -58,24 +58,25 @@ class App extends Component {
   render() {
     return (
       <div className="row">
-
       {this.props.loading ? <Blaze template="spinner" /> : 
         <div>
           <Navbar
             user={this.props.currentUser} 
           />
 
-          <BeatsContainer
-            beats={this.props.beats}
-            currentUser={this.props.currentUser}
-          />
-
-          { this.props.currentUser ? 
+           { this.props.currentUser ? 
             <FileUpload
               currentUser={this.props.currentUser}
               onHandleSubmitUpload={this.handleSubmitUpload}
             /> : '' 
           }
+
+          <BeatsContainer
+            beats={this.props.beats}
+            currentUser={this.props.currentUser}
+          />
+
+         
         </div>
       }
       </div>
