@@ -38,7 +38,6 @@ export default class BeatsContainer extends Component {
   render() {
     return (
       <div>
-      <BeatCategories />
        <BeatsList
           handleRenderSongs={this.renderSongs.bind(this)} 
         />

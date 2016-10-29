@@ -19,6 +19,7 @@ import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import Navbar from './Navbar.jsx';
 import FileUpload from './FileUpload.jsx';
 import Uploader from './Uploader.jsx';
+import Loader from './Loader.jsx';
 
 
 //template helpers
@@ -30,7 +31,7 @@ class App extends Component {
 
   }
   componentDidMount() {
-   console.log('rendered');
+
   }
   handleSubmitUpload(event) {
     event.preventDefault();
@@ -58,24 +59,23 @@ class App extends Component {
     return (
       <div className="row">
 
-      {this.props.loading ? 'loading..' : 
-      <div>
-        <Navbar
-          user={this.props.currentUser} 
-        />
+      {this.props.loading ? <Blaze template="spinner" /> : 
+        <div>
+          <Navbar
+            user={this.props.currentUser} 
+          />
 
-        <BeatsContainer
-          beats={this.props.beats}
-          user={this.props.currentUser}
-        />
+          <BeatsContainer
+            beats={this.props.beats}
+            currentUser={this.props.currentUser}
+          />
 
-        { this.props.currentUser ? 
-        <FileUpload
-          currentUser={this.props.currentUser}
-          onHandleSubmitUpload={this.handleSubmitUpload}
-        /> : '' 
-        }
-
+          { this.props.currentUser ? 
+            <FileUpload
+              currentUser={this.props.currentUser}
+              onHandleSubmitUpload={this.handleSubmitUpload}
+            /> : '' 
+          }
         </div>
       }
       </div>

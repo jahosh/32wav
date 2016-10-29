@@ -17,7 +17,7 @@ export default class Navbar extends Component {
           <ul className="right">
             <li><Blaze template="loginButtons" align="right" /></li>
           </ul>
-          <a href="#" className="brand-logo center">Logo</a>
+          <a href="#" className="brand-logo center">32wav</a>
           <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
           <ul id="nav-mobile" className="left hide-on-med-and-down">
             <li><a href="#">Home</a></li>

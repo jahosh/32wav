@@ -23,6 +23,7 @@ export default class Song extends Component {
     this.handlePosChange = this.handlePosChange.bind(this);
     this.handleLoading = this.handleLoading.bind(this)
     this.handleReady = this.handleReady.bind(this);
+    console.log(props);
   }
   componentDidMount() {
 
@@ -109,7 +110,10 @@ var opts = {
     });
   }
   togglePrivate() {
-    Meteor.call('beats.setPrivate', this.props.song._id, !this.props.song.private);
+    Meteor.call('beats.setPrivate', this.props.song._id, !this.props.song.private, (err) => {
+
+      Materialize.toast('Unauthorized', 4000) 
+    });
   }
   render() {
     /* not used right now ~ later
@@ -129,27 +133,20 @@ var opts = {
         hideScrollbar: true
       }
     return (
-     <div className="col s12 l12 song">
-     <div className="divider"></div>
-      <li className=" col l12 collection-item avatar song" key={this.props.song._id}>
-        <i className="material-icons circle">folder</i>
-        <span className="title"><b>{this.props.song.username}</b></span> <br />
-        {this.props.song.title}
-        <p> { /* <audio preload="none" controls src={this.props.source} id="mp3Plaer"></audio> */}<br />
-            {this.props.song.fileName}
-        </p>
+     <div className="">
+       <div className="divider"></div>
+       <li className="collection-item avatar beats" key={this.props.song._id}>
+         { this.state.loading ? <Blaze template="spinner" /> : '' }
+         <i className="material-icons circle">folder</i>
+         <p className="userName">{this.props.song.username}</p><br />
+         <p className="songTitle">{this.props.song.title}</p><br />
+         <p>{this.props.song.fileName}</p> 
 
-        
-        { this.state.playing ? 
+        {this.state.playing ? 
           <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> :
           <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> 
-        }
+        }      
 
-        { this.state.loading ? <Loader /> : '' }
-
-        
-
-        
         <Wavesurfer 
           audioFile={this.props.source}
           options={options}
@@ -160,34 +157,28 @@ var opts = {
           playing={this.state.playing}
         />
  
-
-        <div>
+        <div className="stats">
           <p>Total Plays: </p> <span id="plays">{this.props.song.plays}</span> 
           <br />
           <p> Likes: </p> <span id="likes">{this.props.song.likedBy.length}</span>
         </div>
-        
-        <a href="#!" onClick={this.likeSong.bind(this)} className="secondary-content"><i className="material-icons">grade</i></a>
 
+        <div className="beatActions">
+        <a href="#!" onClick={this.likeSong.bind(this)} className="secondary-content"><i className="material-icons">grade</i></a>
+        
         <button className="delete" onClick={this.deleteSong.bind(this)}>
           &times;
         </button>
         
-        <input 
-          type="checkbox"
-          readOnly
-          checked={this.props.song.checked}
-          onClick={this.toggleChecked.bind(this)}
-        />
 
-        {this.props.showPrivateButton ? (
+       
           <a className="btn-flat btn-small disabled songPrivacy" onClick={this.togglePrivate.bind(this)}>
             {this.props.song.private ? 'Private' : 'Public'}
           </a>
-        ): '' }
-      
-    
+        
+      </div>
       </li>
+        
     </div>
     );
   }

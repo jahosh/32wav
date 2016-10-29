@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 
-
+// allows a user to filter based on categories
 export default class BeatCategories extends Component {
   componentDidMount() {
      $('.dropdown-button').dropdown({
@@ -19,16 +19,15 @@ export default class BeatCategories extends Component {
   render() {
     return (
       <div className="center">
-    <a className='dropdown-button btn indigo lighten-1' href='#' data-activates='dropdown1'>Drop Me!</a>
+        <a className='dropdown-button btn indigo lighten-1 categories' href='#' data-activates='dropdown1'>Categories</a>
+        <ul id='dropdown1' className='dropdown-content'>
+          <li><a href="#!">Rap</a></li>
+          <li><a className="text-black" href="#!">Trap</a></li>
+          <li className="divider"></li>
+          <li><a href="#!">R&B</a></li>
+        </ul>
 
-
- <ul id='dropdown1' className='dropdown-content'>
-    <li><a className="indigo lighten-1" href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
-    <li className="divider"></li>
-    <li><a href="#!">three</a></li>
-  </ul>
-  </div>
+      </div>
     );
   }
 }
