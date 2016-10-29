@@ -42,7 +42,7 @@ body {
   margin-top: 10px;
   background-color: white;
   border: 2px solid black;
-  
+
 
 }
 
@@ -92,10 +92,26 @@ body {
 
 }
 
-.song {
+.beatList {
+  margin-top: 10px;
+  background-color: white;
+  border: 3px solid black;
   
 }
 
 .indigo {
 
+}
+
+#app {
+
+}
+.links {
+  font-size: 15px;
+}
+
+@media only screen and (max-width : 992px ) {
+  #app {
+    padding-left: 0;
+  }
 }

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Blaze from 'meteor/gadicc:blaze-react-component';
 
 
 //react components
@@ -6,48 +7,36 @@ import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 export default class Navbar extends Component {
   componentDidMount() {
-
+  // Initialize collapse button
+  $(".button-collapse").sideNav();      
   }
   render() {
     return (
-      <nav>
-        <div className="nav-wrapper indigo">
-          <a href="#" className="brand-logo center">Logo</a>
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">JavaScript</a></li>
+      <nav className=" light-blue darken-4">
+        <div className="nav-wrapper">
+          <ul className="right">
+            <li><Blaze template="loginButtons" align="right" /></li>
           </ul>
-          <form>
-            <div className="input-field">
-              <input id="search" type="search" required />
-              <label htmlFor="search"><i className="material-icons">search</i></label>
-              <i className="material-icons">close</i>
-            </div>
-          </form>
+          <a href="#" className="brand-logo center">Logo</a>
+          <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
+          <ul id="nav-mobile" className="left hide-on-med-and-down">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Upload</a></li>
+            <li><a href="#">Charts</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+          <ul className="side-nav links" id="mobile-demo">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Upload</a></li>
+            <li><a href="#">Charts</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact</a></li>
+            <AccountsUIWrapper />
+          </ul>
         </div>
-  </nav>
-
-      /*
-      <div className="col s12">
-        <ul id="slide-out" className="side-nav fixed">
-          <li><div className="userView">
-            <img className="background" />
-            <a href="#!user"><img className="circle" src="./assets/josh.JPG" /></a>
-            <a href="#!name"><strong><span className="black-text name">Jahosh</span></strong></a>
-            <a href="#!email"><span className="black-text email">jahosh@32wav.com</span></a>
-            <span className="black-text" id="userName"></span>
-          </div></li>
-          <li><i className="material-icons">assignment_ind</i><AccountsUIWrapper /></li>
-          <li><div className="divider"></div></li>
-          <li><a href="/"><i className="material-icons">perm_identity</i>Home</a></li>
-          <li><a href="#!"><i className="material-icons">cloud</i>My Uploads</a></li>
-          <li><a href="#faq"><i className="material-icons">question_answer</i>FAQ</a></li>
-          <li><a href="/contact"><i className="material-icons">email</i>Contact</a></li>       
-        </ul>
-      </div>
-      */
-    )
+      </nav>
+    );
   }
 }
 

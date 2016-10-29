@@ -120,7 +120,7 @@ var opts = {
       */
 
       const options = {
-        height: 50,
+        height: 80,
         cursorColor: '#0000',
         progressColor: '#FF6347',
         barWidth: 2,

@@ -19,7 +19,7 @@ import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import Navbar from './Navbar.jsx';
 import FileUpload from './FileUpload.jsx';
 import Uploader from './Uploader.jsx';
-//import BeatsList from './BeatsList.jsx';
+
 
 //template helpers
 import Upload from '../../photoupload.js';
@@ -28,9 +28,6 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      hideCompleted: false,
-    };
   }
   componentDidMount() {
    console.log('rendered');
