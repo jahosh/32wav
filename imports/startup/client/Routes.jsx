@@ -12,6 +12,7 @@ import ProfileContainer from '../../ui/containers/ProfileContainer.jsx';
 
 //pages
 import { NotFound } from '../../ui/pages/NotFound.jsx';
+import { FAQ } from '../../ui/pages/FAQ.jsx';
 /*
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
@@ -30,6 +31,7 @@ export const renderRoutes = () => (
       <IndexRoute component={App}  />
       <Route path="/upload" component={UploadContainer}  />
       <Route path="/myaccount" component={MyAccountContainer} />
+      <Route path="/faq" component={FAQ} />
       <Route path="/contact" component={ContactContainer} />
       <Route path="/:username" component={ProfileContainer} />
     </Route>

@@ -179,3 +179,7 @@ input[type="search"] {
   background: white;
 
 }
+
+#logo h1 {
+  font-size: 30px;
+}

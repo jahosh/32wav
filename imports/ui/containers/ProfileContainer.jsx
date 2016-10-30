@@ -28,7 +28,7 @@ class ProfileContainer extends Component {
 }
 
 ProfileContainer.PropTypes = {
- 
+ userBeats: PropTypes.array.isRequired,
 }
 
 export default createContainer( (props) => {

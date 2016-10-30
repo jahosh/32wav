@@ -41,8 +41,10 @@ class App extends Component {
   render() {
     return (
       <div className="col s12 m8 l9 offset-l2">
-        <div className="card-panel center">
+        <div className="card-panel center" id="logo">
+          <h1 className="center-align">32wav.com</h1>
           <img src="./phlogo.png" height="150px" />
+          <p className="flow-text center-align">Highest Quality Tracks</p>
         </div>
         <div className="divider"></div>
         <div className="divider"></div>

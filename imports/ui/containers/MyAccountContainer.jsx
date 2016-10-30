@@ -7,7 +7,7 @@ export default class UploadContainer extends Component {
     return (
         <div>
         <h2 className="center-align">My Account</h2>
-        <p className="flow-text">Coming Soon...</p>
+        <p className="flow-text center-align">Coming Soon...</p>
       </div>
     );
   }

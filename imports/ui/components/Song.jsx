@@ -175,6 +175,10 @@ var opts = {
           <a className="btn-flat btn-small disabled songPrivacy" onClick={this.togglePrivate.bind(this)}>
             {this.props.song.private ? 'Private' : 'Public'}
           </a>
+          <i className="material-icons">payment</i>
+          <a className="btn-flat btn-small disabled inquire">
+            Purchase
+          </a>
         
       </div>
       </li>

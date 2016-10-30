@@ -9,7 +9,7 @@ export default class ContactContainer extends Component {
     return (
       <div>
         <h1 className="center-align">Contact</h1>
-        <p className="flow-text">Coming Soon...</p> 
+        <p className="flow-text center-align">Coming Soon...</p> 
       </div>
     );
   }
