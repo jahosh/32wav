@@ -3,6 +3,8 @@ import '../imports/api/beats/beats.js';
 import '../imports/api/beats/mp3s.js';
 
 import { Accounts } from 'meteor/accounts-base';
+import '../imports/startup/server/mail-url.js';
+import { Email } from 'meteor/email';
 
 
 
@@ -16,6 +18,12 @@ Accounts.onCreateUser(function(options, user) {
     user.profile = { name: 'test' }
   }
   //user.profile = options.profile ? options.profile : {};
-
+  Email.send({
+  to: 'josh91hickman@gmail.com',
+  from: 'mistahhick@gmail.com',
+  subject: "Example Email",
+  html: "</strong> Welcome Jahosh to 32.wav</strong> normal?</strong><i>Italic</i>",
+});
   return user
 });
+

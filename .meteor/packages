@@ -31,5 +31,5 @@ edgee:slingshot
 momentjs:moment
 fourseven:scss
 materialize:materialize@=0.97.6
-useraccounts:materialize
 sacha:spin
+email

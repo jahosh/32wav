@@ -15,7 +15,7 @@ class ProfileContainer extends Component {
     return (
       <div>
         <h1 className="center-align">
-          {this.props.params.username}
+          {this.props.params.username}'s Profile
         </h1>
 
           <BeatsContainer
