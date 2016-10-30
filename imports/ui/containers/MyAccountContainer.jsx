@@ -6,7 +6,7 @@ export default class UploadContainer extends Component {
   render() {
     return (
         <div>
-        <h1>My Account</h1>
+        <h2 className="center-align">My Account</h2>
         <p className="flow-text">Coming Soon...</p>
       </div>
     );

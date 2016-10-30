@@ -1,20 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 
-
 //react components
 import FileUpload from '../components/FileUpload.jsx';
 
 class UploadContainer extends Component {
-    handleSubmitUpload(event) {
+  handleSubmitUpload(event) {
     event.preventDefault();
 
     const files = ReactDOM.findDOMNode(this.refs.songlink).files[0];
-
-     if (files !== undefined) {
-      //alert('please select a file');
+      if (files !== undefined) {
       const file  = ReactDOM.findDOMNode(this.refs.songlink).files[0].name;
-    }
+      }
 
     const title = ReactDOM.findDOMNode(this.refs.songTitle).value.trim();
     
@@ -26,6 +23,7 @@ class UploadContainer extends Component {
   render() {
     return (
       <div>
+      <h2 className="center-align">Upload</h2>
      { this.props.currentUser ? 
             <FileUpload
               currentUser={this.props.currentUser}

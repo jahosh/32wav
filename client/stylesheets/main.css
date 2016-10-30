@@ -119,6 +119,7 @@ ul.dropdown-content.select-dropdown li span {
 
 .categories {
   margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 .title {
@@ -162,3 +163,17 @@ input[type="search"] {
   height: 64px !important; /* or height of nav */
 }
 
+#welcome-header {
+  background:url(./inf3.jpg)#222 no-repeat  0%;
+  height: 300px;
+
+}
+
+.background-header h1 {
+  padding: 20px;
+  bottom: 10;
+  position: absolute;
+  margin: 20px;
+  background: white;
+
+}
