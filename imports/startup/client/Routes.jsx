@@ -2,17 +2,16 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
-//home page
+//containers
 import App from '../../ui/components/App.jsx';
-import  AppContainer  from '../../ui/containers/AppContainer.jsx';
-import  MyAccountContainer from '../../ui/containers/MyAccountContainer.jsx';
+import AppContainer  from '../../ui/containers/AppContainer.jsx';
+import MyAccountContainer from '../../ui/containers/MyAccountContainer.jsx';
+import ContactContainer from '../../ui/containers/ContactContainer.jsx';
+import UploadContainer from '../../ui/containers/UploadContainer.jsx';
+import ProfileContainer from '../../ui/containers/ProfileContainer.jsx';
 
-import ContactPage from '../../ui/components/ContactForm.jsx';
-import UploadPage from '../../ui/containers/UploadContainer.jsx';
-
-
-import Song from '../../ui/components/Song.jsx';
-
+//pages
+import { NotFound } from '../../ui/pages/NotFound.jsx';
 /*
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
@@ -29,10 +28,12 @@ export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Route path="/" component={AppContainer}>
       <IndexRoute component={App}  />
-      <Route path="/upload" component={UploadPage}  />
+      <Route path="/upload" component={UploadContainer}  />
       <Route path="/myaccount" component={MyAccountContainer} />
-      <Route path="/contact" component={ContactPage} />
+      <Route path="/contact" component={ContactContainer} />
+      <Route path="/:username" component={ProfileContainer} />
     </Route>
+    <Route path="*" component={NotFound} />
   </Router>
 );
 

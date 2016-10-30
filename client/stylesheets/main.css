@@ -170,6 +170,8 @@ input[type="search"] {
 }
 
 .background-header h1 {
+  font-size: 30px;
+  font-weight: bold;
   padding: 20px;
   bottom: 10;
   position: absolute;

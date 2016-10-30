@@ -40,7 +40,18 @@ class App extends Component {
   }
   render() {
     return (
-        <div>
+      <div className="col s12 m8 l9 offset-l2">
+        <div className="card-panel center">
+          <img src="./phlogo.png" height="150px" />
+        </div>
+        <div className="divider"></div>
+        <div className="divider"></div>
+        <div className="headerImg">
+        <header className="background-header text-center" id="welcome-header">
+          <h1 className="center">Welcome to 32wav</h1>
+        </header>
+        <p className="flow-text center"><i className="em em-fire"></i>Popular</p>
+      </div>
           <BeatsContainer
             beats={this.props.beats}
             currentUser={this.props.currentUser}

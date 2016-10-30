@@ -17,7 +17,7 @@ class AppContainer extends Component {
   }
   render() {
     return (
-      <div className="row">
+      <div>
         {this.props.loading ? <Blaze template="spinner" /> : 
           <div>
             <Navbar />

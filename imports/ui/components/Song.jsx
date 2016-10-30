@@ -5,6 +5,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 import { Session } from 'meteor/session';
 import Wavesurfer from 'react-wavesurfer';
+import { Link } from 'react-router';
 
 import { Beats } from '../../api/beats/beats.js';
 
@@ -137,7 +138,7 @@ var opts = {
        <li className="collection-item avatar beats" key={this.props.song._id}>
          { this.state.loading ? <Blaze template="spinner" /> : '' }
          <p className="userName center">Produced By: <br /></p>
-         <a href={this.props.song.username}><p className="flow-text center">{this.props.song.username}</p></a>
+         <Link to={this.props.song.username}><p className="flow-text center">{this.props.song.username}</p></Link>
          <p className="songTitle center">{this.props.song.title}</p><br />
          <p>{this.props.song.fileName}</p>
 
