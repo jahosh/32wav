@@ -140,7 +140,7 @@ var opts = {
          <p className="userName center">Produced By: <br /></p>
          <p className="flow-text center">{this.props.song.username}</p>
          <p className="songTitle center">{this.props.song.title}</p><br />
-         <p>{this.props.song.fileName}</p> 
+         <p>{this.props.song.fileName}</p>
 
         {this.state.playing ? 
           <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="100px" /> :

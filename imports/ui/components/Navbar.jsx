@@ -15,8 +15,15 @@ export default class Navbar extends Component {
     return (
       <nav className="light-blue darken-4 topNav">
         <div className="nav-wrapper">
+          <Blaze template="loginButtons" />
           <ul className="right">
-            <li><Blaze template="loginButtons" align="right" /></li>
+            <form>
+              <div className="input-field">
+                <input id="search" type="search" required />
+                <label htmlFor="search"><i className="material-icons">search</i></label>
+                <i className="material-icons">close</i>
+              </div>
+            </form>
           </ul>
           <a href="#" className="brand-logo center">32wav</a>
           <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>

@@ -18,7 +18,7 @@ export default class BeatCategories extends Component {
   }
   render() {
     return (
-      <div className="center">
+      <div>
         <a className='dropdown-button btn indigo lighten-1 categories' href='#' data-activates='dropdown1'>Categories</a>
         <ul id='dropdown1' className='dropdown-content'>
           <li><a href="#!">Rap</a></li>
@@ -26,7 +26,6 @@ export default class BeatCategories extends Component {
           <li className="divider"></li>
           <li><a href="#!">R&B</a></li>
         </ul>
-
       </div>
     );
   }

@@ -20,6 +20,11 @@ body {
   font-size: 14px;
 }
 
+html {
+    overflow: -moz-scrollbars-vertical; 
+    overflow-y: scroll;
+}
+
 .mainNav {
   
   border: 1px solid black;
@@ -147,5 +152,13 @@ ul.dropdown-content.select-dropdown li span {
 
 .topNav {
   margin-bottom: 20px;
+}
+
+nav .nav-wrapper form, nav .nav-wrapper form .input-field{
+height: 100%;
+}
+
+input[type="search"] {
+  height: 64px !important; /* or height of nav */
 }
 

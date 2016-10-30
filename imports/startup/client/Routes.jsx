@@ -13,6 +13,7 @@ import UploadPage from '../../ui/containers/UploadContainer.jsx';
 
 import Song from '../../ui/components/Song.jsx';
 
+/*
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
     replace({
@@ -21,13 +22,14 @@ const requireAuth = (nextState, replace) => {
     });
   }
 };
+*/
 
 
 export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Route path="/" component={AppContainer}>
-      <IndexRoute component={App}  onEnter={requireAuth} />
-      <Route path="/upload" component={UploadPage} onEnter={requireAuth} />
+      <IndexRoute component={App}  />
+      <Route path="/upload" component={UploadPage}  />
       <Route path="/myaccount" component={MyAccountContainer} />
       <Route path="/contact" component={ContactPage} />
     </Route>
