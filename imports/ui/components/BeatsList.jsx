@@ -8,8 +8,9 @@ const BeatsList = (props) => {
   return (
     <div className="col s12 m9 l12 offset-l2 beatList">
       <p className="flow-text center">Charts</p>
-  
-    
+      <div className="divider"></div>
+      
+      <div className="divider"></div>
       <BeatCategories />
       <ul className="collection">
         { props.handleRenderSongs() }

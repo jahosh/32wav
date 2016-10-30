@@ -1,16 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 
 
-//react components
-import Navbar from './Navbar.jsx';
 
-export default class ContactForm extends Component {
+export default class UploadContainer extends Component {
   render() {
     return (
-      <div>
-        <h1>Contact</h1>
+        <div>
+        <h1>My Account</h1>
         <p className="flow-text">Coming Soon...</p>
       </div>
-    )
+    );
   }
 }

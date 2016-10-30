@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Blaze from 'meteor/gadicc:blaze-react-component';
+import {Router, Route, Link, IndexLink } from 'react-router';
 
 
 //react components
@@ -20,11 +21,11 @@ export default class Navbar extends Component {
           <a href="#" className="brand-logo center">32wav</a>
           <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
           <ul id="nav-mobile" className="left hide-on-med-and-down">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Upload</a></li>
-            <li><a href="#">My Account</a></li>
+            <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+            <li><Link to="/upload" activeClassName="active">Upload</Link></li>
+            <li><Link to="/myaccount" activeClassName="active">My Account</Link></li>
             <li><a href="#">FAQ</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><Link to="/contact" activeClassName="active">Contact</Link></li>
           </ul>
           <ul className="side-nav links" id="mobile-demo">
             <li><a href="#">Home</a></li>

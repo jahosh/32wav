@@ -12,12 +12,18 @@ import { Mp3s } from '../../api/beats/mp3s.js';
 //react containers
 import BeatsContainer from '../containers/BeatsContainer.jsx';
 
+//react components
+import Header from '../components/Header.jsx';
+import Song from '../components/Song.jsx';
+import AccountsUIWrapper from '../components/AccountsUIWrapper.jsx';
+import Navbar from '../components/Navbar.jsx';
+import FileUpload from '../components/FileUpload.jsx';
+import Uploader from '../components/Uploader.jsx';
+import Loader from '../components/Loader.jsx';
+import App from '../components/App.jsx';
 
 
-//template helpers
-import Upload from '../../photoupload.js';
-
-class App extends Component {
+class AppContainer extends Component {
   constructor(props) {
     super(props);
   }
@@ -40,17 +46,29 @@ class App extends Component {
   }
   render() {
     return (
+      <div className="row">
+      {this.props.loading ? <Blaze template="spinner" /> : 
+        <div>
+          <Navbar />
+          {this.props.children}
+        </div>
+
+      /*
         <div>
           <BeatsContainer
             beats={this.props.beats}
             currentUser={this.props.currentUser}
           />   
         </div>
+        */
+        
+      }
+      </div>
     );
   }
 }
 
-App.propTypes = {
+AppContainer.propTypes = {
   beats: PropTypes.array.isRequired,
   incompleteCount: PropTypes.number.isRequired,
   currentUser: PropTypes.object,
@@ -67,4 +85,15 @@ export default createContainer( () => {
     currentUser: currentUser,
     loading: loading,
   };
-}, App);
+}, AppContainer);
+
+
+/*
+export const App = ( {children} ) => (
+  <div>
+    <Navbar />
+    {children}
+  </div>
+)
+
+*/

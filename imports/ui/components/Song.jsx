@@ -137,13 +137,14 @@ var opts = {
      <div className="beats"> 
        <li className="collection-item avatar beats" key={this.props.song._id}>
          { this.state.loading ? <Blaze template="spinner" /> : '' }
-         <p className="userName">Producer: {this.props.song.username}</p><br />
+         <p className="userName center">Produced By: <br /></p>
+         <p className="flow-text center">{this.props.song.username}</p>
          <p className="songTitle center">{this.props.song.title}</p><br />
          <p>{this.props.song.fileName}</p> 
 
         {this.state.playing ? 
-          <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> :
-          <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> 
+          <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="100px" /> :
+          <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="100px" /> 
         }      
 
         <Wavesurfer 

@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 
 import '../imports/startup/client/accounts-config.js';
 import '/imports/startup/client'
-import App from '../imports/ui/components/App.jsx';
+import AppContainer from '../imports/ui/containers/AppContainer.jsx';
 import './main.html';
 
 /*

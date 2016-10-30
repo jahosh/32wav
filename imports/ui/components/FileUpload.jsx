@@ -36,7 +36,7 @@ export default class Header extends Component {
   }
   render() {
     return (
-      <div className="col s12 m4 l3  sideNav">
+      <div className="col s12 sideNav">
         {/* If the user is logged in, show upload form, if not show as of right now nothing.. */}
 
         { this.props.currentUser ? 
