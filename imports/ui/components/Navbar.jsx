@@ -35,11 +35,11 @@ export default class Navbar extends Component {
             <li><Link to="/contact" activeClassName="active">Contact</Link></li>
           </ul>
           <ul className="side-nav links" id="mobile-demo">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Upload</a></li>
-            <li><a href="#">Charts</a></li>
+            <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+            <li><Link to="/upload" activeClassName="active">Upload</Link></li>
+            <li><Link to="/myaccount" activeClassName="active">My Account</Link></li>
             <li><a href="#">FAQ</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><Link to="/contact" activeClassName="active">Contact</Link></li>
             <AccountsUIWrapper />
           </ul>
         </div>
