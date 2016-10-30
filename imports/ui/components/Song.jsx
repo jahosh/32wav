@@ -26,7 +26,7 @@ export default class Song extends Component {
     console.log(props);
   }
   componentDidMount() {
-
+  
   }
   handleTogglePlay() {
    if (!this.state.playing) {
@@ -35,7 +35,6 @@ export default class Song extends Component {
     this.setState({
       playing: !this.state.playing
     });
-    console.log(this.state);
   }
   handlePosChange(e) {
     this.setState({
@@ -138,7 +137,7 @@ var opts = {
        <li className="collection-item avatar beats" key={this.props.song._id}>
          { this.state.loading ? <Blaze template="spinner" /> : '' }
          <p className="userName center">Produced By: <br /></p>
-         <p className="flow-text center">{this.props.song.username}</p>
+         <a href={this.props.song.username}><p className="flow-text center">{this.props.song.username}</p></a>
          <p className="songTitle center">{this.props.song.title}</p><br />
          <p>{this.props.song.fileName}</p>
 

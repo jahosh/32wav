@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
+import { createContainer } from 'meteor/react-meteor-data';
 
 //Components
 import BeatsList from '../components/BeatsList.jsx';
 import Song from '../components/Song.jsx';
 import BeatCategories from '../components/BeatCategories';
 
-export default class BeatsContainer extends Component {
+class BeatsContainer extends Component {
   constructor(props) {
     super(props);
     console.log(this.props);
-
     this.state = {
       hideCompleted: false,
     };
@@ -22,7 +22,7 @@ export default class BeatsContainer extends Component {
     return filteredSongs.map( (song) => {
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
       const showPrivateButton = song.owner === currentUserId;
-      const currentUser = this.props.currentUser;
+      const currentUser = Meteor.user();
       const source = song.fileSource;    
       return (
         <Song 
@@ -30,7 +30,6 @@ export default class BeatsContainer extends Component {
           song={song}
           source={song.fileSource}
           showPrivateButton={showPrivateButton}
-          owner={currentUser}
         />
       );
     });
@@ -48,4 +47,12 @@ export default class BeatsContainer extends Component {
 
 BeatsContainer.PropTypes = {
   beats: PropTypes.array.isRequired,
+  currentUser: PropTypes.object.isRequired,
 }
+
+export default createContainer( () => {
+  const currentUser = Meteor.user();
+  return {
+    currentUser: currentUser,
+  };
+}, BeatsContainer);
