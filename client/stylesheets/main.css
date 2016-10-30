@@ -187,3 +187,13 @@ input[type="search"] {
 #payment-tag {
   cursor: pointer;
 }
+
+.buttons {
+  width: 100px;
+  height: 250px;
+}
+
+#loginForm {
+  border: 1px solid black;
+  padding: 15px;
+}

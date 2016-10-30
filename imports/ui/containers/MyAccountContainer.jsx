@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Blaze from 'meteor/gadicc:blaze-react-component';
 
 
 

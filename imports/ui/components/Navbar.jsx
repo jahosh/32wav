@@ -15,7 +15,7 @@ export default class Navbar extends Component {
     return (
       <nav className="blue-grey darken-1 topNav">
         <div className="nav-wrapper">
-          <Blaze template="loginButtons" />
+          
           <ul className="right">
             <form>
               <div className="input-field">
@@ -25,7 +25,6 @@ export default class Navbar extends Component {
               </div>
             </form>
           </ul>
-          <a href="#" className="brand-logo center"></a>
           <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
           <ul id="nav-mobile" className="left hide-on-med-and-down">
             <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
@@ -33,6 +32,7 @@ export default class Navbar extends Component {
             <li><Link to="/myaccount" activeClassName="active">My Account</Link></li>
             <li><Link to="/faq" activeClassName="active">FAQ</Link></li>
             <li><Link to="/contact" activeClassName="active">Contact</Link></li>
+            <li><Link to="/signin" activeClassName="active">Login / Register</Link></li>
           </ul>
           <ul className="side-nav links" id="mobile-demo">
             <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
@@ -40,7 +40,7 @@ export default class Navbar extends Component {
             <li><Link to="/myaccount" activeClassName="active">My Account</Link></li>
             <li><Link to="/faq" activeClassName="active">FAQ</Link></li>
             <li><Link to="/contact" activeClassName="active">Contact</Link></li>
-            <AccountsUIWrapper />
+            <li><Link to="/signin" activeClassName="active">Login/Register</Link></li>
           </ul>
         </div>
       </nav>

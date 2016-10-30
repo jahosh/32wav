@@ -24,7 +24,6 @@ export default class Song extends Component {
     this.handlePosChange = this.handlePosChange.bind(this);
     this.handleLoading = this.handleLoading.bind(this)
     this.handleReady = this.handleReady.bind(this);
-    console.log(props);
   }
   componentDidMount() {
   
