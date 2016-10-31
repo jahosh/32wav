@@ -41,10 +41,6 @@ export default class Song extends Component {
       pos: e.originalArgs[0]
     });
   }
-  play() {
-
-
-  }
   toggleChecked() {
     //toggle a song checked
     Meteor.call('beats.setChecked', this.props.song._id, !this.props.song.checked, function(err) {
@@ -67,38 +63,13 @@ export default class Song extends Component {
     });
   }
   handleLoading(int, int2) {
-var opts = {
-  lines: 9 // The number of lines to draw
-, length: 28 // The length of each line
-, width: 14 // The line thickness
-, radius: 42 // The radius of the inner circle
-, scale: .5 // Scales overall size of the spinner
-, corners: 1 // Corner roundness (0..1)
-, color: '#000' // #rgb or #rrggbb or array of colors
-, opacity: 0.35 // Opacity of the lines
-, rotate: 0 // The rotation offset
-, direction: 1 // 1: clockwise, -1: counterclockwise
-, speed: 1 // Rounds per second
-, trail: 45 // Afterglow percentage
-, fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
-, zIndex: 2e9 // The z-index (defaults to 2000000000)
-, className: 'spinner' // The CSS class to assign to the spinner
-, top: '50%' // Top position relative to parent
-, left: '50%' // Left position relative to parent
-, shadow: false // Whether to render a shadow
-, hwaccel: false // Whether to use hardware acceleration
-, position: 'absolute' // Element positioning
-}
-    //const target = document.getElementById('spinner');
-    //const spinner = new Spinner(opts).spin(target);
+
   }
   handleReady(wavesurfer) {
     this.setState({
       loading: false,
       ready: true,
     });
-    //fix negative playback position here?
-
   }
   deleteSong() {
     Meteor.call('beats.remove', this.props.song._id, (err) => {
@@ -133,8 +104,8 @@ var opts = {
         hideScrollbar: true
       }
     return (
-     <div className="beats"> 
-       <li className="collection-item avatar beats" key={this.props.song._id}>
+     <div> 
+       <li className="collection-item avatar" key={this.props.song._id}>
          { this.state.loading ? <Blaze template="spinner" /> : '' }
          <p className="userName center">Produced By: <br /></p>
          <Link to={this.props.song.username}><p className="flow-text center">{this.props.song.username}</p></Link>
@@ -169,8 +140,6 @@ var opts = {
           &times;
         </button>
         
-
-       
           <a className="btn-flat btn-small disabled songPrivacy" onClick={this.togglePrivate.bind(this)}>
             {this.props.song.private ? 'Private' : 'Public'}
           </a>

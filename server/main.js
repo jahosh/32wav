@@ -18,12 +18,21 @@ Accounts.onCreateUser(function(options, user) {
     user.profile = { name: 'test' }
   }
   //user.profile = options.profile ? options.profile : {};
+
+  /*
+   * Send E-mail to Newly Created User
+   * 
+   */
+
+  /* Disabled for now...
   Email.send({
   to: 'josh91hickman@gmail.com',
   from: 'mistahhick@gmail.com',
   subject: "Example Email",
   html: "</strong> Welcome Jahosh to 32.wav</strong> normal?</strong><i>Italic</i>",
-});
+  });
+  */
+
   return user
 });
 

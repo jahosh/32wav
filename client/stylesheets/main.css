@@ -197,3 +197,20 @@ input[type="search"] {
   border: 1px solid black;
   padding: 15px;
 }
+
+.collection-item.avatar .collapsible-header {
+ height: auto;
+ line-height: inherit;
+ padding: 0;
+ background-color: transparent;
+ border-bottom: none;
+}
+
+.collection-item.avatar .circle {
+  border-radius: 0;
+
+}
+
+ul {
+  padding: 0;
+}
