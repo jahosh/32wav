@@ -12,7 +12,8 @@ import { Mp3s } from '../../api/beats/mp3s.js';
 //react containers
 import BeatsContainer from '../containers/BeatsContainer.jsx';
 
-
+//react components
+import Header from './Header.jsx';
 
 //template helpers
 import Upload from '../../photoupload.js';
@@ -41,24 +42,19 @@ class App extends Component {
   render() {
     return (
       <div className="col s12 m8 l9 offset-l2">
-        <div className="card-panel center" id="logo">
+        <Header />
         
-          <img src="./phlogo.png" height="150px" />
-          <p className="flow-text center-align">Highest Quality Tracks</p>
-        </div>
-        <div className="divider"></div>
-        <div className="divider"></div>
-        <div className="headerImg">
-        <header className="background-header text-center" id="welcome-header">
-          <h1 className="center">Welcome to 32wav</h1>
-        </header>
-        <p className="flow-text center"><i className="em em-fire"></i>Popular</p>
-      </div>
+
+
+        {/*
           <BeatsContainer
             beats={this.props.beats}
             currentUser={this.props.currentUser}
-          />   
-        </div>
+          />  
+          
+       
+        */}
+         </div>
     );
   }
 }
