@@ -32,7 +32,6 @@ Accounts.onCreateUser(function(options, user) {
   html: "</strong> Welcome Jahosh to 32.wav</strong> normal?</strong><i>Italic</i>",
   });
   */
-
   return user
 });
 
