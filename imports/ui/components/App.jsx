@@ -60,6 +60,7 @@ class App extends Component {
           <div id="divider"></div>
           <div className="col s12 m12 l10 offset-l1 center" id="signup-heading">
           <h3 className="center-align">Sign Up</h3>
+          <a className="waves-effect waves-light btn"><i className="material-icons left">cloud</i>Register Here!</a>
         </div>
         </div>        
       </div>
