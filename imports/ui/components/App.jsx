@@ -51,17 +51,18 @@ class App extends Component {
           <div className="col s12 m6 l6 center-align">
             <p className="promo-caption">Producers</p>
             <p className="flow-text">
-            Can sell beats online efficently and smoothly.
+              Can sell beats online efficently and smoothly.
             </p>
           </div>
           <div className="col s12 m6 l6 center-align">
             <p className="promo-caption">Artists</p>
-            <p className="flow-text">Can purchase beats from producers without the hassle.</p>
+            <p className="flow-text">
+              Can purchase beats from producers without the hassle.
+            </p>
           </div>
           <div id="divider"></div>
           <div className="col s12 m12 l10 offset-l1 center" id="signup-heading">
           <h3 className="center-align">Sign Up</h3>
-
 
           <Link to="/signin"><a className="waves-effect waves-light btn blue-grey darken-1"><i className="material-icons left">cloud</i>Register Here!</a></Link>
 

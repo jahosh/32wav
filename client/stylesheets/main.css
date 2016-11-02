@@ -169,7 +169,7 @@ input[type="search"] {
 }
 
 #upload-header {
-  background:url(./up.jpg);
+  background:url(./up.jpg) #222 no-repeat 0%;
   height: 300px;
 }
 
