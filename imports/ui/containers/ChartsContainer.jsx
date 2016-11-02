@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
+import Blaze from 'meteor/gadicc:blaze-react-component';
 
 // mongo collection
 import { Beats } from '../../api/beats/beats.js';
@@ -11,11 +12,16 @@ import Charts from '../components/Charts.jsx';
 class ChartsContainer extends Component {
   render() {
     return (
+      
+      <div>
+      {this.props.loading ? <Blaze template="spinner" /> :
       <div>
         <Charts
           beats={this.props.beats}
           currentUser={this.props.currentUser} 
         />
+      </div>
+      }
       </div>
     );
   }

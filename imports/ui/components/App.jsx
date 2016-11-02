@@ -41,20 +41,28 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="col s12 m8 l9 offset-l2">
+      <div className="row">
         <Header />
-        
-
-
-        {/*
-          <BeatsContainer
-            beats={this.props.beats}
-            currentUser={this.props.currentUser}
-          />  
-          
-       
-        */}
-         </div>
+        <div className="col s12 m12 l10 offset-l1 card panel center" id="main-heading">
+          <h2 className="center-align">The Beat Marketplace Where</h2>
+        </div>
+        <div className="home-content">
+          <div className="col s12 m6 l6 center-align">
+            <p className="promo-caption">Producers</p>
+            <p className="flow-text">
+            Can sell beats online efficently and smoothly.
+            </p>
+          </div>
+          <div className="col s12 m6 l6 center-align">
+            <p className="promo-caption">Artists</p>
+            <p className="flow-text">Can purchase beats from producers without the hassle.</p>
+          </div>
+          <div id="divider"></div>
+          <div className="col s12 m12 l10 offset-l1 center" id="signup-heading">
+          <h3 className="center-align">Sign Up</h3>
+        </div>
+        </div>        
+      </div>
     );
   }
 }

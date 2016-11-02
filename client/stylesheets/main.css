@@ -214,3 +214,35 @@ input[type="search"] {
 ul {
   padding: 0;
 }
+
+.promo-caption {
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.home-content {
+  margin-top: 50px;
+}
+
+#main-heading {
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+
+#signup-heading {
+  margin-top: 200px;
+}
+
+.mrg-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.mrg-top-30 {
+  margin-top: 30px;
+}
+
+#logo {
+  box-shadow: none;
+}
