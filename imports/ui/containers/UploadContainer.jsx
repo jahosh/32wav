@@ -22,15 +22,23 @@ class UploadContainer extends Component {
   }
   render() {
     return (
-      <div>
-      <h2 className="center-align">Upload</h2>
-     { this.props.currentUser ? 
+      <div className="row">
+        <div className="">
+          { this.props.currentUser ? 
+            <div>
+            <header className="background-header text-center" id="upload-header">
+              <h1 className="center">Upload</h1>
+            </header>
+            <div className="col s12 m8 l8 offset-l2 uploadOuter">
             <FileUpload
               currentUser={this.props.currentUser}
               onHandleSubmitUpload={this.handleSubmitUpload}
-            /> : '' 
+            /> 
+            </div>
+            </div>: ''           
           }
         </div>
+      </div>
     );
   }
 }

@@ -9,7 +9,6 @@ import BeatCategories from '../components/BeatCategories';
 class BeatsContainer extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
     this.state = {
       hideCompleted: false,
     };

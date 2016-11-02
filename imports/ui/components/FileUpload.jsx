@@ -36,12 +36,8 @@ export default class Header extends Component {
   }
   render() {
     return (
-      <div className="col s12 m8 l12 offset-l1 sideNav">
-        {/* If the user is logged in, show upload form, if not show as of right now nothing.. */}
-          <h4> Upload: </h4>
-        { this.props.currentUser ? 
+      <div className="">
           <div>
-          
             <form className="new-task" onSubmit={this.props.onHandleSubmitUpload.bind(this)} >
               <input 
                 type="text"
@@ -51,8 +47,7 @@ export default class Header extends Component {
               />
               <i className="small material-icons">input</i>
             </form>
-        
-
+      
             { /* React Uploader */}
             <Uploader
               onHandleDrop={this.onDrop.bind(this)} />
@@ -61,8 +56,7 @@ export default class Header extends Component {
             <strong><span className="valign center" id="previewInfo"></span></strong>
             <br />
             <audio className="previewPlayer" controls id="preview"></audio>
-          </div> : <div><h1>Please login first</h1></div>
-        }
+          </div>
       </div>
     );
   }

@@ -9,7 +9,7 @@ import BeatsContainer from './BeatsContainer.jsx';
 
 class ProfileContainer extends Component {
   componentDidMount() {
-    console.log(this.props);
+ 
   }
   render() {
     return (

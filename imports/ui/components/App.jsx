@@ -4,6 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 import Dropzone from 'react-dropzone';
+import { Link } from 'react-router';
 
 // mongo collection
 import { Beats } from '../../api/beats/beats.js';
@@ -60,7 +61,11 @@ class App extends Component {
           <div id="divider"></div>
           <div className="col s12 m12 l10 offset-l1 center" id="signup-heading">
           <h3 className="center-align">Sign Up</h3>
-          <a className="waves-effect waves-light btn"><i className="material-icons left">cloud</i>Register Here!</a>
+
+
+          <Link to="/signin"><a className="waves-effect waves-light btn blue-grey darken-1"><i className="material-icons left">cloud</i>Register Here!</a></Link>
+
+
         </div>
         </div>        
       </div>
