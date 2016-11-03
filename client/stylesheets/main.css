@@ -252,4 +252,7 @@ ul {
 }
 
 .uploadOuter {
+  margin-top: 50px;
+  border: 1px solid black;
 }
+

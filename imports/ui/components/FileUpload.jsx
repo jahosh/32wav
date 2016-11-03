@@ -56,6 +56,10 @@ export default class FileUpload extends Component {
    
     //grab user inputted title & file
     let title = document.getElementById("songTitle").value;
+    if (title === '') {
+      alert('please enter a title');
+      return;
+    }
     let file = files;
 
     /*
@@ -90,9 +94,10 @@ export default class FileUpload extends Component {
     }
 
     return (
-      <div className="">
-          <div>
+      <div className="row">
+
             <form className="new-task" onSubmit={this.props.onHandleSubmitUpload.bind(this)} >
+           
               <input 
                 type="text"
                 id="songTitle"
@@ -101,22 +106,31 @@ export default class FileUpload extends Component {
               />
               <i className="small material-icons">input</i>
             </form>
+ 
+           
       
-         
+            {/* 
             <Uploader
               onHandleDrop={this.onDrop.bind(this)} />
-              
+              */}
+            <div> 
             <DropzoneComponent
               config={this.config}
               eventHandlers={eventHandlers}
               djsConfig={this.djsConfig}
             />
+            </div>
 
             { /* Song Preview */}
             <strong><span className="valign center" id="previewInfo"></span></strong>
             <br />
             <audio className="previewPlayer" controls id="preview"></audio>
-          </div>
+          
+            <br />
+            <button className="btn waves-effect waves-light blue-grey darken-1" type="submit" name="action">Submit
+              <i className="material-icons right">send</i>
+            </button>
+           
       </div>
     );
   }

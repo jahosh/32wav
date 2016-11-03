@@ -84,6 +84,8 @@ export default class Song extends Component {
       if (err) {
       Materialize.toast('Unauthorized', 4000) 
       }
+
+      Materialize.toast('Privacy Toggled', 4000) 
     });
   }
   render() {
@@ -107,7 +109,6 @@ export default class Song extends Component {
      <div> 
        <li className="collection-item avatar" key={this.props.song._id}>
          { this.state.loading ? <Blaze template="spinner" /> : '' }
-         <p className="userName center">Produced By: <br /></p>
          <Link to={this.props.song.username}><p className="flow-text center">{this.props.song.username}</p></Link>
          <p className="songTitle center">{this.props.song.title}</p><br />
          <p>{this.props.song.fileName}</p>
