@@ -6,7 +6,9 @@ export default class Charts extends Component {
   render() {
     return (
       <div>
-        <p className="flow-text center"><i className="em em-fire"></i>Popular</p>
+      <h1 className="margin-left-15">Charts</h1>
+      <span className="small margin-left-15">Browse uploaded beats</span>
+     
         <div className="divider mrg-bottom-10"></div>
         <BeatsContainer
           beats={this.props.beats}

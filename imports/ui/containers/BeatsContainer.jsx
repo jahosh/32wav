@@ -29,13 +29,14 @@ class BeatsContainer extends Component {
           song={song}
           source={song.fileSource}
           showPrivateButton={showPrivateButton}
+          currentUser={currentUser}
         />
       );
     });
   }
   render() {
     return (
-      <div className="col s12 m8 l9">
+      <div className="col s12 m12 l10 offset-l1">
        <BeatsList
           handleRenderSongs={this.renderSongs.bind(this)} 
         />

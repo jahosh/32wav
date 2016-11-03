@@ -256,3 +256,22 @@ ul {
   border: 1px solid black;
 }
 
+
+#beatPic {
+  height: 100px;
+  width: 100px;
+  padding: 15px 15px 10px 150px;
+  border: 1px solid red;
+}
+
+.margin-left-15 {
+  margin-left: 15px;
+}
+
+.beat {
+
+}
+
+body {
+  font-size: 11px;
+}

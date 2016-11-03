@@ -26,7 +26,7 @@ export default class Song extends Component {
     this.handleReady = this.handleReady.bind(this);
   }
   componentDidMount() {
-  
+
   }
   handleTogglePlay() {
    if (!this.state.playing) {
@@ -107,15 +107,15 @@ export default class Song extends Component {
       }
     return (
      <div> 
-       <li className="collection-item avatar" key={this.props.song._id}>
+       <li className="collection-item avatar beat" key={this.props.song._id}>
          { this.state.loading ? <Blaze template="spinner" /> : '' }
-         <Link to={this.props.song.username}><p className="flow-text center">{this.props.song.username}</p></Link>
-         <p className="songTitle center">{this.props.song.title}</p><br />
+         <span className="title"><Link to={this.props.song.username}><p className="flow-text">{this.props.song.username}</p></Link></span>
+         <p className="songTitle">{this.props.song.title}</p><br />
          <p>{this.props.song.fileName}</p>
 
         {this.state.playing ? 
-          <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="100px" /> :
-          <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="100px" /> 
+          <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> :
+          <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> 
         }      
 
         <Wavesurfer 
@@ -135,12 +135,15 @@ export default class Song extends Component {
         </div>
 
         <div className="beatActions">
-        <a href="#!" onClick={this.likeSong.bind(this)} className="secondary-content"><i className="material-icons">grade</i></a>
+        <a href="#!" onClick={this.likeSong.bind(this)} className="secondary-content"><i className="em em-pray"></i></a>
         
+  
+          <div>
         <button className="delete" onClick={this.deleteSong.bind(this)}>
           &times;
         </button>
-        
+        </div>
+
           <a className="btn-flat btn-small disabled songPrivacy" onClick={this.togglePrivate.bind(this)}>
             {this.props.song.private ? 'Private' : 'Public'}
           </a>

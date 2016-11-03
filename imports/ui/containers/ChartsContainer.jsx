@@ -15,7 +15,7 @@ class ChartsContainer extends Component {
       
       <div>
       {this.props.loading ? <Blaze template="spinner" /> :
-      <div>
+      <div className="row">
         <Charts
           beats={this.props.beats}
           currentUser={this.props.currentUser} 

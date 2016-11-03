@@ -19,7 +19,7 @@ export default class BeatCategories extends Component {
   render() {
     return (
       <div>
-       <div className="divider"></div>
+       
         <a className='dropdown-button btn blue-grey darken-1 categories' href='#' data-activates='dropdown1'>Categories</a>
         <ul id='dropdown1' className='dropdown-content'>
           <li><a href="#!">Rap</a></li>
