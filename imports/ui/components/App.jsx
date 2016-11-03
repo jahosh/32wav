@@ -64,7 +64,7 @@ class App extends Component {
           <div className="col s12 m12 l10 offset-l1 center" id="signup-heading">
           <h3 className="center-align">Sign Up</h3>
 
-          <Link to="/signin"><a className="waves-effect waves-light btn blue-grey darken-1"><i className="material-icons left">cloud</i>Register Here!</a></Link>
+          <Link className="waves-effect waves-light btn blue-grey darken-1" to="/signin"><i className="material-icons left">cloud</i>Register Here!</Link>
 
 
         </div>

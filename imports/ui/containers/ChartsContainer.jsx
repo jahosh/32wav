@@ -37,7 +37,7 @@ ChartsContainer.propTypes = {
 export default createContainer( () => {
   const subscription = Meteor.subscribe('beats');
   const loading = !subscription.ready();
-  const beats = Beats.find({}, { limit: 3, sort: { createdAt: -1 } }).fetch();
+  const beats = Beats.find({}, { sort: { createdAt: -1 } }).fetch();
   const currentUser = Meteor.user();
   return {
     beats: beats,

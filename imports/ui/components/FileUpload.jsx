@@ -16,7 +16,7 @@ export default class FileUpload extends Component {
     this.config = {
       iconFiletypes: ['.mp3', '.jpg'],
       showFiletypeIcon: true,
-      postUrl: 'no-url'
+      postUrl: 'no-url',
     };
 
     this.djsConfig = {
@@ -49,7 +49,7 @@ export default class FileUpload extends Component {
   onDrop(files) {
 
     console.log(files);
-    return;
+   
 
     // must get preview from files
     const upload = new Slingshot.Upload("uploadToAmazonS3");
@@ -58,14 +58,17 @@ export default class FileUpload extends Component {
     let title = document.getElementById("songTitle").value;
     let file = files;
 
-  
+    /*
     // give preview to audio player
     let previewSrc = file.preview;
     const audioPlayer = document.getElementById('preview');
     audioPlayer.src = previewSrc;
 
+
     //append song info into previewSpan
     document.getElementById("previewInfo").innerHTML = file.name;
+
+        */
 
     upload.send(file, function(err, source) {
     if (err) {
@@ -83,7 +86,7 @@ export default class FileUpload extends Component {
     const eventHandlers = {
       addedfile: this.onDrop.bind(this),
       drop: (event) => console.log(event),
-      thumbnail: (file) => console.log(file)
+      thumbnail: (file, url) => console.log(file, url)
     }
 
     return (
