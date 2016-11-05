@@ -24,19 +24,19 @@ class UploadContainer extends Component {
   render() {
     return (
       <div className="row">
+        <header className="background-header text-center" id="upload-header">
+          <h1 className="center">Upload</h1>
+        </header>
         <div className="">
           { this.props.currentUser ? 
             <div>
-            <header className="background-header text-center" id="upload-header">
-              <h1 className="center">Upload</h1>
-            </header>
             <div className="col s12 m8 l8 offset-l2 uploadOuter">
             <FileUpload
               currentUser={this.props.currentUser}
               onHandleSubmitUpload={this.handleSubmitUpload}
             /> 
             </div>
-            </div>: ''           
+            </div> : <div> <p className="flow-text center"> Please log in to upload</p></div>           
           }
         </div>
       </div>

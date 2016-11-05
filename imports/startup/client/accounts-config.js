@@ -1,4 +1,6 @@
 import { Accounts } from 'meteor/accounts-base';
+import { default as swal } from 'sweetalert2';
+import '../../../node_modules/sweetalert2/dist/sweetalert2.min.css';
 
 /*
 Accounts.ui.config({
@@ -14,7 +16,7 @@ var mySubmitFunc = function(error, state){
   if (!error) {
     if (state === "signIn") {
       // Successfully logged in
-      alert('success!');
+      swal('Good job!', 'Successfully logged in','success')
     }
     if (state === "signUp") {
       // Successfully registered
