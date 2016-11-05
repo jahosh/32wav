@@ -146,13 +146,6 @@ ul.dropdown-content.select-dropdown li span {
   margin-bottom: 10px;
 }
 
-.beats {
-
-}
-
-.topNav {
-  margin-bottom: 20px;
-}
 
 nav .nav-wrapper form, nav .nav-wrapper form .input-field{
 height: 100%;
@@ -163,14 +156,19 @@ input[type="search"] {
 }
 
 #welcome-header {
-  background:url(./inf3.jpg)#222 no-repeat  0%;
-  height: 300px;
+  background:url(./inf3.jpg)#222 no-repeat   35%;
+  height: 225px;
 
 }
 
 #upload-header {
   background:url(./up.jpg) #222 no-repeat 0%;
-  height: 300px;
+  height: 225px;
+}
+
+#charts-header {
+  background:url(./keys.jpg) #222 no-repeat 0%;
+  height: 225px;
 }
 
 .background-header h1 {
@@ -226,13 +224,11 @@ ul {
   margin-bottom: 0;
 }
 
-.home-content {
-  margin-top: 50px;
-}
 
 #main-heading {
   font-size: 30px;
   margin-bottom: 50px;
+  box-shadow: none;
 }
 
 #signup-heading {
