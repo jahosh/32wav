@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-import Blaze from 'meteor/gadicc:blaze-react-component';
 import Dropzone from 'react-dropzone';
 import { Link } from 'react-router';
 

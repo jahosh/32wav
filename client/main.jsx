@@ -7,6 +7,7 @@ import '/imports/startup/client'
 import AppContainer from '../imports/ui/containers/AppContainer.jsx';
 import './main.html';
 
+
 /*
 Meteor.startup(() => {
   render(<App />, document.getElementById('app'));

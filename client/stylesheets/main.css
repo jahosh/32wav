@@ -156,18 +156,21 @@ input[type="search"] {
 }
 
 #welcome-header {
-  background:url(./inf3.jpg)#222 no-repeat   35%;
+  background-size: cover !important;
+  background:url(./records.jpg)#222 no-repeat   35%;
   height: 225px;
 
 }
 
 #upload-header {
-  background:url(./up.jpg) #222 no-repeat 0%;
+  background-size: cover !important;
+  background:url(./cdj.jpg) #222 no-repeat 50% 0%;
   height: 225px;
 }
 
 #charts-header {
-  background:url(./keys.jpg) #222 no-repeat 0%;
+  background-size: cover !important;
+  background:url(./mixer.jpg) #222 no-repeat 0%;
   height: 225px;
 }
 
@@ -260,14 +263,34 @@ ul {
   border: 1px solid red;
 }
 
+.beat {
+  margin-bottom: 20px;
+  border: 1px solid black;
+  opacity: 75%;
+}
+
 .margin-left-15 {
   margin-left: 15px;
 }
 
-.beat {
-
-}
 
 body {
   font-size: 11px;
+}
+
+li.collection-item avatar {
+bottom-border: 1px solid black;
+}
+
+#uploadSubmit {
+
+width: 0 auto;
+height: 100%;
+text-align: center;
+
+}
+
+.uploadUI {
+
+
 }
