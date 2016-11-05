@@ -5,6 +5,8 @@ import { Meteor } from 'meteor/meteor';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 import Dropzone from 'react-dropzone';
 import { Link } from 'react-router';
+import { default as swal } from 'sweetalert2';
+import '../../../node_modules/sweetalert2/dist/sweetalert2.min.css';
 
 // mongo collection
 import { Beats } from '../../api/beats/beats.js';
@@ -22,6 +24,9 @@ import Upload from '../../photoupload.js';
 class App extends Component {
   constructor(props) {
     super(props);
+  }
+  componentDidMount() {
+
   }
   handleSubmitUpload(event) {
     event.preventDefault();
