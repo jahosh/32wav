@@ -20,7 +20,7 @@ class ChartsContainer extends Component {
         <header className="background-header text-center" id="charts-header">
           <h1 className="center">Charts</h1>
         </header>
-        <span className="small margin-left-15"><p className="flow-text center">Browse uploaded beats</p></span>
+        <span className="small margin-left-15"><p className="flow-text center">Browse uploaded tracks</p></span>
         <div className="divider mrg-bottom-10"></div>
       </div>
         <Charts

@@ -131,6 +131,14 @@ ul.dropdown-content.select-dropdown li span {
   margin-top: 15px;
 }
 
+.tos {
+ margin-top: 50px;
+}
+
+.uploadBtn {
+  margin-top: 30px;
+}
+
 .songTitle {
   font-size: 2em;
 }
@@ -293,3 +301,63 @@ text-align: center;
 
 
 }
+
+/* Materialize Forms */
+ /* label focus color */
+.input-field input[type=text]:focus + label {
+  color: #546E7A;
+}
+
+.input-field input[type=text] + label {
+  color: #546E7A;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #546E7A;
+  box-shadow: 0 1px 0 0 #546E7A;
+}
+
+.input-field input[type=number]:focus + label {
+  color: #546E7A;
+}
+
+.input-field input[type=number] + label {
+  color: #546E7A;
+}
+
+.input-field input[type=number]:focus {
+  border-bottom: 1px solid #546E7A;
+  box-shadow: 0 1px 0 0 #546E7A;
+}
+
+
+
+.material-icons.prefix:active {
+  color: #546E7A;
+}
+
+.input-field .prefix.active {
+  color: #546E7A;
+}
+
+[type="radio"]:checked + label:after, [type="radio"]
+.with-gap:checked + label:after {
+    width: 16px;
+    height: 16px;
+    -webkit-appearance: none;
+    background-color: #546E7A !important;
+    border: 2px solid #546E7A !important;
+}
+
+
+/* Custom Dropzone css */
+
+div.filepicker {
+  border: none !important;
+  margin-bottom: 30px !important;
+  background-color: #546E7A !important;
+  opacity: 75%;
+  color: white !important;
+  font-size: 14px !important;
+}
+   

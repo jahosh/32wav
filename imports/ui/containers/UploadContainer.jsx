@@ -2,25 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 
+
 //react components
 import FileUpload from '../components/FileUpload.jsx';
 
 class UploadContainer extends Component {
-  handleSubmitUpload(event) {
-    event.preventDefault();
-
-    const files = ReactDOM.findDOMNode(this.refs.songlink).files[0];
-      if (files !== undefined) {
-      const file  = ReactDOM.findDOMNode(this.refs.songlink).files[0].name;
-      }
-
-    const title = ReactDOM.findDOMNode(this.refs.songTitle).value.trim();
-    
-    Meteor.call('songs.insert', title, file);
-    
-    ReactDOM.findDOMNode(this.refs.songTitle).value = '';
-    ReactDOM.findDOMNode(this.refs.songlink).value = '';
-  }
   render() {
     return (
       <div className="row">
@@ -28,16 +14,15 @@ class UploadContainer extends Component {
         <div className="">
           { this.props.currentUser ? 
             <div>
-              <div className="col s12 m12 l10 offset-l1">
+              <div className="col s12 m12  l10 offset-l1">
                 <header className="background-header text-center" id="upload-header">
                   <h1 className="center">Upload</h1>
                 </header>
               </div>
-            <div className="col s12 m8 l8 offset-l2 uploadOuter">
+            <div className="col s12 m10 offset-m1 l8 offset-l2 uploadOuter">
             
             <FileUpload
               currentUser={this.props.currentUser}
-              onHandleSubmitUpload={this.handleSubmitUpload}
             /> 
             </div>
             </div> : <div> <p className="flow-text center"> Please log in to upload</p></div>           
@@ -48,7 +33,7 @@ class UploadContainer extends Component {
   }
 }
 
-export default createContainer( () => {
+export default createContainer( (props) => {
   const currentUser = Meteor.user();
   return {
     currentUser: currentUser,

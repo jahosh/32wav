@@ -24,6 +24,7 @@ export default class Song extends Component {
     this.handlePosChange = this.handlePosChange.bind(this);
     this.handleLoading = this.handleLoading.bind(this)
     this.handleReady = this.handleReady.bind(this);
+
   }
   componentDidMount() {
 
@@ -99,7 +100,7 @@ export default class Song extends Component {
       const options = {
         height: 80,
         cursorColor: '#0000',
-        progressColor: '#FF6347',
+        progressColor: '#546E7A',
         barWidth: 2,
         maxCanvasWidth: 200,
         cursorWidth: 3,
@@ -133,6 +134,7 @@ export default class Song extends Component {
           <br />
           <p> Likes: </p> <span id="likes">{this.props.song.likedBy.length}</span>
         </div>
+        <span data-livestamp={this.props.song.createdAt}></span>
 
         <div className="beatActions">
         <a href="#!" onClick={this.likeSong.bind(this)} className="secondary-content"><i className="em em-pray"></i></a>

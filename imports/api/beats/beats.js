@@ -20,7 +20,8 @@ if (Meteor.isServer) {
 
 Meteor.methods({
   'beats.insert'(title, fileSource) {
-    let timeStamp = moment().format('MMMM Do YYYY, h:mm:ss a');
+    let timeStamp = moment().format('X');
+
     const userName = Meteor.user().username != null ? Meteor.user().username : Meteor.user().profile.name
     check(title, String);
     check(fileSource, String);
