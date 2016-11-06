@@ -354,10 +354,43 @@ text-align: center;
 
 div.filepicker {
   border: none !important;
+  margin-top: 50px;
   margin-bottom: 30px !important;
   background-color: #546E7A !important;
-  opacity: 75%;
-  color: white !important;
+  color: black !important;
   font-size: 14px !important;
 }
+
+.progress {
+  background-color: #546E7A !important;
+}
+
+.dropzone {
+  color: black;
+}
+
+.dz-preview .dz-file-preview .card {
+  border-radius: 90%;
+  opacity: 0.3 !important;
+  padding: 50px !important;
+}
+
+.dz-filename {
+  font-size: 14px;
+  font-style: italic;
+  padding: 10px;
+  
+}
+
+.dz-size {
+  font-weight: bold;
+}
    
+
+.file-field input[type=file] {
+  background-color: #546E7A !important;
+}
+
+.btn, .btn-large {
+  background-color: #546E7A
+}
