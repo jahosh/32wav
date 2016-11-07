@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 import DropzoneComponent from 'react-dropzone-component';
+import { Router } from 'react-router';
+import { default as swal } from 'sweetalert2';
+import '../../../node_modules/sweetalert2/dist/sweetalert2.min.css';
 
 
 import '../../../node_modules/dropzone/dist/min/dropzone.min.css';
@@ -14,7 +17,7 @@ import Uploader from './Uploader.jsx';
 
 const template = ReactDOMServer.renderToStaticMarkup(
   <div className="dz-preview dz-file-preview card">
-    <div className="dz-filename ">
+    <div className="dz-filename">
       <span data-dz-name></span>
     </div>
     <i className="material-icons">present_to_all</i>
@@ -43,7 +46,7 @@ export default class FileUpload extends Component {
       addRemoveLinks: true,
       autoProcessQueue: false,
       previewTemplate: template,
-      acceptedFiles: "audio/mp3, audio/wav, audio/m4a",
+      acceptedFiles: "audio/mp3, audio/mpeg, audio/wav, audio/m4a",
     };
     this.state = {
       progress: 0,
@@ -70,6 +73,23 @@ displayUploadElements() {
 }
 displayUploadStatus() {
   $(".progress-result-success").fadeIn();
+}
+displayFileUploaded() {
+  swal({
+  title: '<p class="flow-text">File Uploaded</p>',
+  type: 'info',
+  timer: 5000,
+  html:
+    'You can use <b>bold text</b>, ' +
+    '<a href="//github.com">links</a> ' +
+    'and other HTML tags',
+  showCloseButton: true,
+  showCancelButton: true,
+  confirmButtonText:
+    '<i class="fa fa-thumbs-up"></i> Great!',
+  cancelButtonText:
+    '<i class="fa fa-thumbs-down"></i>'
+})
 }
 onDrop(file) {
   const self = this;
@@ -102,24 +122,35 @@ onDrop(file) {
   }); 
 }
 saveTrack(source) {
-  let title = $('#songTitle').val()
-   if (title === '') {
+  let title = $('#beatTitle').val()
+  let price = $('#beatPrice').val();
+  let genre = $( "#beat-genre option:selected" ).text();
+  if (title === '') {
     alert('please enter a title');
-    return;
+  return;
   }
+  console.log(title);
+  console.log(price);
+  console.log(genre);
 
     Meteor.call('beats.insert', title, source, (err) => {
       if (err) {
         console.log(err);
       }
       console.log('uploaded');
-    });
 
+     this.displayFileUploaded();
+    });
+}
+handleSubmit(e) {
+  e.preventDefault();
 }
 render() {
   const self = this;
   const eventHandlers = {
     init: function(dropzone) {
+      dropzone.options.dictDefaultMessage = "Click here to upload";
+
       dropzone.on("addedfile", function(file) {
        self.onDrop(file);
       });
@@ -148,14 +179,14 @@ render() {
             <div className="determinate" style={uploadStyle}></div>
           </div>
         <div className="uploadUI">
-          <form className="new-task col s12" id="track-data">
+          <form className="new-task col s12" id="track-data" onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="input-field col s6">
                 <i className="material-icons prefix">queue_music</i>
                 <input 
                   type="text"
-                  id="songTitle"
-                  ref="songTitle"
+                  id="beatTitle"
+                  ref="beatTitle"
                 />
                 <label htmlFor="beatname">Title</label>
               </div>
@@ -182,7 +213,7 @@ render() {
                 </p>
               </div>
               <div className="input-field col s6">
-                <select>
+                <select id="beat-genre">
                   <option defaultValue="">Choose your option</option>
                   <option value="1">Hip-Hop/Rap</option>
                   <option value="2">Acoustic</option>
@@ -203,7 +234,7 @@ render() {
               <i className="material-icons right">send</i>
             </button>
             <div className="tos">
-              <p className="small center-align">By uploading you agree to our <a href="#">terms of service</a> & also agree to own the copyright to the song your uploading</p>
+              <p className="small center-align">By uploading you agree to our <a href="#">terms of service</a> & also agree to own the copyright to the instrumental / song your uploading</p>
             </div>
           </div>
           </form>

@@ -111,9 +111,10 @@ export default class Song extends Component {
        <li className="collection-item avatar beat" key={this.props.song._id}>
          { this.state.loading ? <Blaze template="spinner" /> : '' }
          <span className="title"><Link to={this.props.song.username}><p className="flow-text">{this.props.song.username}</p></Link></span>
-         <p className="songTitle">{this.props.song.title}</p><br />
+         <Link className="track-link" to={ this.props.song.username + '/' + this.props.song.title }><p className="songTitle">{this.props.song.title}</p></Link><br />
          <p>{this.props.song.fileName}</p>
 
+         
         {this.state.playing ? 
           <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> :
           <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> 
@@ -128,7 +129,8 @@ export default class Song extends Component {
           onPosChange={this.handlePosChange}
           playing={this.state.playing}
         />
- 
+        
+        
         <div className="stats">
           <p>Total Plays: </p> <span id="plays">{this.props.song.plays}</span> 
           <br />

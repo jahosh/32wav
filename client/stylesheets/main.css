@@ -166,20 +166,20 @@ input[type="search"] {
 #welcome-header {
   background-size: cover !important;
   background:url(./records.jpg)#222 no-repeat   35%;
-  height: 225px;
+  height: 200px;
 
 }
 
 #upload-header {
   background-size: cover !important;
   background:url(./cdj.jpg) #222 no-repeat 50% 0%;
-  height: 225px;
+  height: 200px;
 }
 
 #charts-header {
   background-size: cover !important;
   background:url(./mixer.jpg) #222 no-repeat 0%;
-  height: 225px;
+  height: 200px;
 }
 
 .background-header h1 {
@@ -259,8 +259,8 @@ ul {
 }
 
 .uploadOuter {
-  margin-top: 50px;
-  border: 1px solid black;
+  margin-top: 25px;
+ 
 }
 
 
@@ -354,12 +354,17 @@ text-align: center;
 
 div.filepicker {
   border: none !important;
-  margin-top: 50px;
+  margin-top: 25px;
   margin-bottom: 30px !important;
   background-color: #546E7A !important;
   color: black !important;
-  font-size: 14px !important;
+  font-size: 16px !important;
+  font-weight: bold;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 3px 5px 6px #ccc;
 }
+
 
 .progress {
   background-color: #546E7A !important;
@@ -385,6 +390,14 @@ div.filepicker {
 .dz-size {
   font-weight: bold;
 }
+
+.dz-message {
+    background: none;
+}
+
+.dz-message span {
+    display: block;
+}
    
 
 .file-field input[type=file] {
@@ -393,4 +406,13 @@ div.filepicker {
 
 .btn, .btn-large {
   background-color: #546E7A
+}
+
+.track-link {
+  color: grey;
+  font-size: 8px;
+}
+
+.track-link:hover {
+  color: darkgrey;
 }
