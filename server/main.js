@@ -5,6 +5,10 @@ import '../imports/api/beats/mp3s.js';
 import { Accounts } from 'meteor/accounts-base';
 import '../imports/startup/server/mail-url.js';
 import { Email } from 'meteor/email';
+import { Meteor } from 'meteor/meteor';
+
+
+
 
 
 
@@ -23,7 +27,6 @@ Accounts.onCreateUser(function(options, user) {
    * Send E-mail to Newly Created User
    * 
    */
-
   /* Disabled for now...
   Email.send({
   to: 'josh91hickman@gmail.com',

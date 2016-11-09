@@ -106,11 +106,14 @@ export default class Song extends Component {
         cursorWidth: 3,
         hideScrollbar: true
       }
+      const cdnSource = {
+        beatUrl: 'https://d2hbl0lksauo4z.cloudfront.net/Jahosh_R2Instrumental.mp3'
+      }
     return (
      <div> 
        <li className="collection-item avatar beat" key={this.props.song._id}>
          { this.state.loading ? <Blaze template="spinner" /> : '' }
-         <span className="title"><Link to={this.props.song.username}><p className="flow-text">{this.props.song.username}</p></Link></span>
+         <span className="title"><Link to={ '/' + this.props.song.username}><p className="flow-text">{this.props.song.username}</p></Link></span>
          <Link className="track-link" to={ this.props.song.username + '/' + this.props.song.title }><p className="songTitle">{this.props.song.title}</p></Link><br />
          <p>{this.props.song.fileName}</p>
 

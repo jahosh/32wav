@@ -16,15 +16,14 @@ import BeatsContainer from '../containers/BeatsContainer.jsx';
 //react components
 import Header from './Header.jsx';
 
-//template helpers
-import Upload from '../../photoupload.js';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
   }
   componentDidMount() {
-
+    console.log(Meteor.user())
   }
   handleSubmitUpload(event) {
     event.preventDefault();
@@ -62,6 +61,7 @@ class App extends Component {
             <p className="flow-text">
               Can purchase beats from producers without the hassle.
             </p>
+          
           </div>
           <div id="divider"></div>
           <div className="col s12 m12 l10 offset-l1 center" id="signup-heading">

@@ -24,6 +24,6 @@ Slingshot.createDirective("uploadToAmazonS3", Slingshot.S3Storage, {
   },
   key: function (file) {
     let currentUserId = this.userId;
-    return currentUserId + "/" + file.name;
+    return file.name;
   }
 });

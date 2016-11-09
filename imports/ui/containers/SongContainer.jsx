@@ -29,13 +29,11 @@ SongContainer.PropTypes = {
 }
 
 export default createContainer( (props) => {
-  console.log(props)
   const subscription = Meteor.subscribe('beats');
   const loading = !subscription.ready();
   const username = props.params.username;
   const track = props.params.track
   const userBeats = Beats.find({username: username, title: track }).fetch();
-  
   return {
    userBeats: userBeats,
    track: track,
