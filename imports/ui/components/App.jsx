@@ -7,8 +7,8 @@ import { Link } from 'react-router';
 
 
 // mongo collection
-import { Beats } from '../../api/beats/beats.js';
-import { Mp3s } from '../../api/beats/mp3s.js';
+import { Tracks } from '../../api/tracks/tracks.js';
+
 
 //react containers
 import BeatsContainer from '../containers/BeatsContainer.jsx';
@@ -21,26 +21,6 @@ import Header from './Header.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
-  }
-  componentDidMount() {
-    console.log(Meteor.user())
-  }
-  handleSubmitUpload(event) {
-    event.preventDefault();
-
-    const files = ReactDOM.findDOMNode(this.refs.songlink).files[0];
-
-     if (files !== undefined) {
-      //alert('please select a file');
-      const file  = ReactDOM.findDOMNode(this.refs.songlink).files[0].name;
-    }
-
-    const title = ReactDOM.findDOMNode(this.refs.songTitle).value.trim();
-    
-    Meteor.call('songs.insert', title, file);
-    
-    ReactDOM.findDOMNode(this.refs.songTitle).value = '';
-    ReactDOM.findDOMNode(this.refs.songlink).value = '';
   }
   render() {
     return (
@@ -61,7 +41,6 @@ class App extends Component {
             <p className="flow-text">
               Can purchase beats from producers without the hassle.
             </p>
-          
           </div>
           <div id="divider"></div>
           <div className="col s12 m12 l10 offset-l1 center" id="signup-heading">
@@ -79,20 +58,12 @@ class App extends Component {
 }
 
 App.propTypes = {
-  beats: PropTypes.array.isRequired,
-  incompleteCount: PropTypes.number.isRequired,
   currentUser: PropTypes.object,
 }
 
 export default createContainer( () => {
-  const subscription = Meteor.subscribe('beats');
-  const loading = !subscription.ready();
-  const beats = Beats.find({}, { limit: 3, sort: { createdAt: -1 } }).fetch();
   const currentUser = Meteor.user();
   return {
-    beats: beats,
-    incompleteCount: Beats.find({ checked: { $ne: true } }).count(),
     currentUser: currentUser,
-    loading: loading,
   };
 }, App);

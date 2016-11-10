@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 
 // mongo collection
-import { Beats } from '../../api/beats/beats.js';
+import { Tracks } from '../../api/tracks/tracks.js';
 
 //containers
 import BeatsContainer from './BeatsContainer.jsx';
@@ -29,11 +29,11 @@ SongContainer.PropTypes = {
 }
 
 export default createContainer( (props) => {
-  const subscription = Meteor.subscribe('beats');
+  const subscription = Meteor.subscribe('Tracks');
   const loading = !subscription.ready();
   const username = props.params.username;
   const track = props.params.track
-  const userBeats = Beats.find({username: username, title: track }).fetch();
+  const userBeats = Tracks.find({username: username, title: track }).fetch();
   return {
    userBeats: userBeats,
    track: track,

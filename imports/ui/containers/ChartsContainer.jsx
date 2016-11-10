@@ -3,7 +3,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 
 // mongo collection
-import { Beats } from '../../api/beats/beats.js';
+import { Tracks } from '../../api/tracks/tracks.js';
 
 //react components
 import Charts from '../components/Charts.jsx';
@@ -42,13 +42,13 @@ ChartsContainer.propTypes = {
 }
 
 export default createContainer( () => {
-  const subscription = Meteor.subscribe('beats');
+  const subscription = Meteor.subscribe('Tracks');
   const loading = !subscription.ready();
-  const beats = Beats.find({}, { sort: { createdAt: -1 } }).fetch();
+  const beats = Tracks.find({}, { sort: { createdAt: -1 } }).fetch();
   const currentUser = Meteor.user();
   return {
     beats: beats,
-    savedBeats: Beats.find({ checked: { $ne: true } }).count(),
+    savedBeats: Tracks.find({ checked: { $ne: true } }).count(),
     currentUser: currentUser,
     loading: loading,
   };

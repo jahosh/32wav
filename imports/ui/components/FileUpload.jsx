@@ -8,6 +8,9 @@ import { default as swal } from 'sweetalert2';
 import '../../../node_modules/sweetalert2/dist/sweetalert2.min.css';
 
 
+//methods
+import { insertTrack } from '../../api/tracks/methods.js';
+
 import '../../../node_modules/dropzone/dist/min/dropzone.min.css';
 import '../../../node_modules/react-dropzone-component/styles/filepicker.css';
 
@@ -132,14 +135,21 @@ saveTrack(source) {
   console.log(title);
   console.log(price);
   console.log(genre);
-
-    Meteor.call('beats.insert', title, source, (err) => {
+    /*Meteor.call('beats.insert', title, source, (err) => {
       if (err) {
         console.log(err);
       }
+      
       console.log('uploaded');
 
      this.displayFileUploaded();
+    });
+    */
+
+    insertTrack.call({ title: title, fileSource: source}, (err) => {
+      if (err) {
+        alert (err.reason);
+      }
     });
 }
 handleSubmit(e) {

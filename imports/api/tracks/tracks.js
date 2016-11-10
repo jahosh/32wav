@@ -4,12 +4,13 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { moment } from 'meteor/momentjs:moment';
 
-export const Beats = new Mongo.Collection('beats');
+
+export const Tracks = new Mongo.Collection('Tracks');
 
 if (Meteor.isServer) {
 
-  Meteor.publish('beats', function beatsPublication() {
-    return Beats.find({
+  Meteor.publish('Tracks', function tracksPublication() {
+    return Tracks.find({
       $or: [
         { private: { $ne: true } },
         { owner: this.userId },
@@ -19,35 +20,6 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'beats.insert'(title, fileSource) {
-    let timeStamp = moment().format('X');
-
-    const userName = Meteor.user().username != null ? Meteor.user().username : Meteor.user().profile.name
-    check(title, String);
-    check(fileSource, String);
-
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
-
-    console.log(Meteor.user());
-
-    if (!Meteor.user().username) {
-      const userName = 'no UserName';
-  
-    }
-
-    Beats.insert({ 
-      title,
-      fileSource,
-      createdAt: timeStamp,
-      owner: Meteor.userId(),
-      username: userName,
-      likedBy: [],
-      plays: 0
-      //stream: mp3Link, 
-    });
-  },
   'beats.remove'(songId) {
     check(songId, String);
     const song = Beats.findOne(songId);

@@ -7,7 +7,7 @@ import { Session } from 'meteor/session';
 import Wavesurfer from 'react-wavesurfer';
 import { Link } from 'react-router';
 
-import { Beats } from '../../api/beats/beats.js';
+import { Tracks } from '../../api/tracks/tracks.js';
 
 //react components
 import Loader from './Loader.jsx';
