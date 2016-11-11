@@ -6,6 +6,7 @@ import { Session } from 'meteor/session';
 import Wavesurfer from 'react-wavesurfer';
 import { Link } from 'react-router';
 import _ from 'lodash';
+import { default as swal } from 'sweetalert2';
 
 import { Tracks } from '../../api/tracks/tracks.js';
 
@@ -69,27 +70,40 @@ export default class Track extends Component {
     });
   }
   deleteSong() {
+    let trackId = this.props.song._id;
+    swal({
+      title: "Are you want to delete this track?",
+      text: "You will not be able to recover this file",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel",
+  }).then(function(isConfirm) {
+      if (isConfirm) {
+        removeTrack.call({ trackId: trackId }, (err) => {
+          if (err) {
+            console.log(err);
+            Bert.timer = 5;
+            Bert.alert(err.reason, 'danger', 'fixed-top');
+          }
+          swal("Deleted!", "The track has been deleted.", "success");
+        });
 
-    removeTrack.call({ trackId: this.props.song._id }, (err) => {
-      if (err) {
-        console.log(err);
-        Bert.timer = 5;
-        Bert.alert(err.reason, 'danger', 'fixed-top');
+      } else {
+        swal("Cancelled", "Your imaginary file is safe :)", "error");
       }
-    })
+    });
   }
   togglePrivate() {
-
     setTrackPrivate.call({ trackId: this.props.song._id, setPrivate: !this.props.song.private }), (err) => {
       if (err) {
         Materialize.toast('Unauthorized', 4000) 
       }
       Materialize.toast('Privacy Toggled', 4000) 
     }
- 
   }
   render() {
- 
       const options = {
         height: 80,
         cursorColor: '#0000',
