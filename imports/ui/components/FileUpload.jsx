@@ -97,6 +97,7 @@ displayFileUploaded() {
 }
 onDrop(file) {
   const self = this;
+  const fileKey = file.name;
   self.displayUploadElements();
 
   console.log(file);
@@ -114,7 +115,7 @@ onDrop(file) {
 
       $("#track-data").submit(function(e){
         e.preventDefault();
-        self.saveTrack(source)
+        self.saveTrack(source, fileKey)
       });
   });
 
@@ -125,7 +126,7 @@ onDrop(file) {
     }
   }); 
 }
-saveTrack(source) {
+saveTrack(source, fileKey) {
   let title = $('#beatTitle').val()
   let price = $('#beatPrice').val();
   let genre = $( "#beat-genre option:selected" ).text();
@@ -147,7 +148,7 @@ saveTrack(source) {
     });
     */
 
-    insertTrack.call({ title: title, fileSource: source}, (err) => {
+    insertTrack.call({ title: title, fileSource: source, fileKey: fileKey}, (err) => {
       if (err) {
         alert (err.reason);
       }

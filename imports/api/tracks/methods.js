@@ -4,6 +4,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { moment } from 'meteor/momentjs:moment';
 
+
 /*
  * Adds a Track to the database, (string info only)
  * @param {string} title - the title of the track
@@ -14,6 +15,7 @@ export const insertTrack = new ValidatedMethod({
   validate: new SimpleSchema({
     title: { type: String },
     fileSource: { type: String },
+    fileKey: { type: String },
   }).validator(),
   run(beat) {
     let timeStamp = moment().format('X');
@@ -26,6 +28,7 @@ export const insertTrack = new ValidatedMethod({
     Tracks.insert({ 
       title: beat.title,
       fileSource: beat.fileSource,
+      fileKey: beat.fileKey,
       createdAt: timeStamp,
       owner: Meteor.userId(),
       username: userName,
@@ -53,6 +56,13 @@ export const removeTrack = new ValidatedMethod({
     }
 
     Tracks.remove(trackId);
+
+    if (this.isSimulation) {
+
+    } else {
+
+      Delete.deleteFromS3(track.fileKey);
+    }
   }
 });
 
@@ -93,7 +103,7 @@ export const incrementTrackPlayCount = new ValidatedMethod({
 
 
 /*
- * set a tracks visibility to private
+ * sets a tracks visibility to private
  * @param {string} trackId - the title of the track
  * @param {boolean} setPrivate - should song be set to private visibility 
  * 

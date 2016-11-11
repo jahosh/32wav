@@ -9,8 +9,8 @@ Slingshot.fileRestrictions("uploadToAmazonS3", {
 });
 
 Slingshot.createDirective("uploadToAmazonS3", Slingshot.S3Storage, {
-  AWSAccessKeyId: config.s3AccessId,
-  AWSSecretAccessKey: config.s3AccessKey,
+  AWSAccessKeyId: Meteor.settings.s3AccessId,
+  AWSSecretAccessKey: Meteor.settings.s3AccessKey,
   bucket: "jahosh-meteor-files",
   acl: "public-read",
   region: "us-west-2",
