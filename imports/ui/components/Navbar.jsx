@@ -9,8 +9,7 @@ import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 export default class Navbar extends Component {
   componentDidMount() {
   // Initialize collapse button
-  $(".button-collapse").sideNav();  
-   
+  $(".button-collapse").sideNav();    
   }
   render() {
     return (

@@ -20,16 +20,6 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'beats.remove'(songId) {
-    check(songId, String);
-    const song = Beats.findOne(songId);
-
-    if (song.private && song.owner !== this.userId || song.owner !== this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
-
-    Beats.remove(songId);
-  },
   'beats.setChecked'(songId, setChecked) {
     check(songId, String);
     check(setChecked, Boolean);

@@ -5,7 +5,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Tracks } from '../../api/tracks/tracks.js';
 
 //containers
-import BeatsContainer from './BeatsContainer.jsx';
+import TracksContainer from './TracksContainer.jsx';
 
 class ProfileContainer extends Component {
   componentDidMount() {
@@ -18,8 +18,8 @@ class ProfileContainer extends Component {
           {this.props.params.username}'s Profile
         </h1>
 
-          <BeatsContainer
-            beats={this.props.userBeats}
+          <TracksContainer
+            beats={this.props.userTracks}
             currentUser={this.props.currentUser}
           />  
       </div>
@@ -35,9 +35,9 @@ export default createContainer( (props) => {
   const subscription = Meteor.subscribe('Tracks');
   const loading = !subscription.ready();
   const username = props.params.username;
-  const userBeats = Tracks.find({username: username }, { limit: 3, sort: { createdAt: -1 } }).fetch();
+  const userTracks = Tracks.find({username: username }, { limit: 3, sort: { createdAt: -1 } }).fetch();
   
   return {
-   userBeats: userBeats,
+   userTracks: userTracks,
   };
 }, ProfileContainer);

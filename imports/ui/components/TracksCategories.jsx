@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 
 // allows a user to filter based on categories
-export default class BeatCategories extends Component {
+export default class TracksCategories extends Component {
   componentDidMount() {
      $('.dropdown-button').dropdown({
       inDuration: 300,
@@ -14,12 +14,10 @@ export default class BeatCategories extends Component {
       alignment: 'left' // Displays dropdown with edge aligned to the left of button
     }
   );
-
   }
   render() {
     return (
-      <div>
-       
+      <div>    
         <a className='dropdown-button btn blue-grey darken-1 categories' href='#' data-activates='dropdown1'>Categories</a>
         <ul id='dropdown1' className='dropdown-content'>
           <li><a href="#!">Rap</a></li>

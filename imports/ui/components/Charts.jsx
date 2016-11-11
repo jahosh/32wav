@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 
 //react containers
-import BeatsContainer from '../containers/BeatsContainer.jsx';
+import TracksContainer from '../containers/TracksContainer.jsx';
 export default class Charts extends Component {
   render() {
     return (
       <div>   
-        <BeatsContainer
+        <TracksContainer
           beats={this.props.beats}
           currentUser={this.props.currentUser}
         />

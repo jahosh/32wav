@@ -5,26 +5,22 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Tracks } from '../../api/tracks/tracks.js';
 
 //containers
-import BeatsContainer from './BeatsContainer.jsx';
+import TracksContainer from './TracksContainer.jsx';
 
-class SongContainer extends Component {
-  componentDidMount() {
- 
-  }
+class TrackContainer extends Component {
   render() {
     return (
       <div>
-
-          <BeatsContainer
-            beats={this.props.userBeats}
-            currentUser={this.props.currentUser}
-          />  
-      </div>
+        <TracksContainer
+          beats={this.props.userTrack}
+          currentUser={this.props.currentUser}
+        />  
+     </div>
     );
   }
 }
 
-SongContainer.PropTypes = {
+TrackContainer.PropTypes = {
  userBeats: PropTypes.array.isRequired,
 }
 
@@ -33,9 +29,9 @@ export default createContainer( (props) => {
   const loading = !subscription.ready();
   const username = props.params.username;
   const track = props.params.track
-  const userBeats = Tracks.find({username: username, title: track }).fetch();
+  const userTrack = Tracks.find({username: username, title: track }).fetch();
   return {
-   userBeats: userBeats,
+   userBeats: userTrack,
    track: track,
   };
-}, SongContainer);
+}, TrackContainer);

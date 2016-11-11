@@ -10,7 +10,7 @@ import ChartsContainer from '../../ui/containers/ChartsContainer.jsx';
 import ContactContainer from '../../ui/containers/ContactContainer.jsx';
 import UploadContainer from '../../ui/containers/UploadContainer.jsx';
 import ProfileContainer from '../../ui/containers/ProfileContainer.jsx';
-import SongContainer from '../../ui/containers/SongContainer.jsx';
+import TrackContainer from '../../ui/containers/TrackContainer.jsx';
 
 
 //pages
@@ -27,8 +27,6 @@ const requireAuth = (nextState, replace) => {
   }
 };
 
-
-
 export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Route path="/" component={AppContainer}>
@@ -40,7 +38,7 @@ export const renderRoutes = () => (
       <Route path="/faq" component={FAQ} />
       <Route path="/contact" component={ContactContainer} />
       <Route path="/:username" component={ProfileContainer} />
-      <Route path="/:username/:track" component={SongContainer} /> 
+      <Route path="/:username/:track" component={TrackContainer} /> 
     </Route>
     <Route path="*" component={NotFound} />
   </Router>

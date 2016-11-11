@@ -11,6 +11,7 @@ import '../../../node_modules/sweetalert2/dist/sweetalert2.min.css';
 //methods
 import { insertTrack } from '../../api/tracks/methods.js';
 
+
 import '../../../node_modules/dropzone/dist/min/dropzone.min.css';
 import '../../../node_modules/react-dropzone-component/styles/filepicker.css';
 

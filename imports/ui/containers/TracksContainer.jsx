@@ -2,32 +2,32 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 
 //Components
-import BeatsList from '../components/BeatsList.jsx';
-import Song from '../components/Song.jsx';
-import BeatCategories from '../components/BeatCategories';
+import TracksList from '../components/TracksList.jsx';
+import Track from '../components/Track.jsx';
+import TracksCategories from '../components/TracksCategories';
 
-class BeatsContainer extends Component {
+class TracksContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      hideCompleted: false,
-    };
   }
-  renderSongs() {
-    let filteredSongs = this.props.beats;
+  renderTracks() {
+    let filteredTracks = this.props.beats;
+    /*
     if (this.state.hideCompleted) {
       filteredSongs = filteredSongs.filter( song => !song.checked);
     }
-    return filteredSongs.map( (song) => {
+    */
+
+    return filteredTracks.map( (track) => {
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
-      const showPrivateButton = song.owner === currentUserId;
+      const showPrivateButton = track.owner === currentUserId;
       const currentUser = Meteor.user();
-      const source = song.fileSource;    
+      const source = track.fileSource;    
       return (
-        <Song 
-          key={song._id} 
-          song={song}
-          source={song.fileSource}
+        <Track 
+          key={track._id} 
+          song={track}
+          source={source}
           showPrivateButton={showPrivateButton}
           currentUser={currentUser}
         />
@@ -37,15 +37,15 @@ class BeatsContainer extends Component {
   render() {
     return (
       <div className="col s12 m12 l10 offset-l1">
-       <BeatsList
-          handleRenderSongs={this.renderSongs.bind(this)} 
+       <TracksList
+          handleRenderTracks={this.renderTracks.bind(this)} 
         />
       </div>
     )
   }
 }
 
-BeatsContainer.PropTypes = {
+TracksContainer.PropTypes = {
   beats: PropTypes.array.isRequired,
   currentUser: PropTypes.object.isRequired,
 }
@@ -55,4 +55,4 @@ export default createContainer( () => {
   return {
     currentUser: currentUser,
   };
-}, BeatsContainer);
+}, TracksContainer);

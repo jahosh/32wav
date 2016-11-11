@@ -1,18 +1,22 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
-import classnames from 'classnames';
 import { Bert } from 'meteor/themeteorchef:bert';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 import { Session } from 'meteor/session';
 import Wavesurfer from 'react-wavesurfer';
 import { Link } from 'react-router';
+import _ from 'lodash';
 
 import { Tracks } from '../../api/tracks/tracks.js';
 
-//react components
-import Loader from './Loader.jsx';
+//methods
+import { removeTrack } from '../../api/tracks/methods.js';
+import { likeTrack } from '../../api/tracks/methods.js'; 
+import { incrementTrackPlayCount } from '../../api/tracks/methods.js';
+import { setTrackPrivate } from '../../api/tracks/methods.js';
 
-export default class Song extends Component {
+
+export default class Track extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,12 +30,10 @@ export default class Song extends Component {
     this.handleReady = this.handleReady.bind(this);
 
   }
-  componentDidMount() {
-
-  }
   handleTogglePlay() {
    if (!this.state.playing) {
-   Meteor.call('beats.incrementPlayCount', this.props.song._id);
+   incrementTrackPlayCount.call({ trackId: this.props.song._id});
+   
    }
     this.setState({
       playing: !this.state.playing
@@ -42,29 +44,23 @@ export default class Song extends Component {
       pos: e.originalArgs[0]
     });
   }
+  handleLoading() {
+
+  }
   toggleChecked() {
-    //toggle a song checked
-    Meteor.call('beats.setChecked', this.props.song._id, !this.props.song.checked, function(err) {
-      if (err) {
-        
-        Bert.alert('Permission denied', 'danger', 'growl-top-right');
-      }
-    });
+ 
   }
   likeSong() {
     let selectedBeat = this.props.song._id;
-  
-    Meteor.call('beats.like', selectedBeat, function(err) {
-      if (err){
-        Bert.alert('Uh-oh, try again', 'danger', 'growl-top-right');      
-      }
-      //has song been liked already? if so show that user has unliked song
-      Materialize.toast('Beat Liked!', 4000) 
-      //Bert.alert('Beat Liked', 'success', 'growl-top-right') 
-    });
-  }
-  handleLoading(int, int2) {
 
+    likeTrack.call({ trackId: selectedBeat }, (err) => {
+      if (err) {
+        console.log(err);
+        Bert.timer = 5;
+        Bert.alert(err.reason, 'danger', 'fixed-top');
+      }
+      Materialize.toast('Beat Liked!', 4000) 
+    })
   }
   handleReady(wavesurfer) {
     this.setState({
@@ -73,30 +69,27 @@ export default class Song extends Component {
     });
   }
   deleteSong() {
-    Meteor.call('beats.remove', this.props.song._id, (err) => {
+
+    removeTrack.call({ trackId: this.props.song._id }, (err) => {
       if (err) {
+        console.log(err);
         Bert.timer = 5;
-        Bert.alert('Cannot delete song', 'danger', 'fixed-top');
+        Bert.alert(err.reason, 'danger', 'fixed-top');
       }
-    });
+    })
   }
   togglePrivate() {
-    Meteor.call('beats.setPrivate', this.props.song._id, !this.props.song.private, (err) => {
-      if (err) {
-      Materialize.toast('Unauthorized', 4000) 
-      }
 
+    setTrackPrivate.call({ trackId: this.props.song._id, setPrivate: !this.props.song.private }), (err) => {
+      if (err) {
+        Materialize.toast('Unauthorized', 4000) 
+      }
       Materialize.toast('Privacy Toggled', 4000) 
-    });
+    }
+ 
   }
   render() {
-    /* not used right now ~ later
-      const songClassName = classnames({
-        checked: this.props.song.checked + ' song',
-        private: this.props.song.private + ' song',
-      });
-      */
-
+ 
       const options = {
         height: 80,
         cursorColor: '#0000',
@@ -169,7 +162,7 @@ export default class Song extends Component {
   }
 }
 
-Song.propTypes = {
+Track.propTypes = {
   song: PropTypes.object.isRequired,
   showPrivateButton: React.PropTypes.bool.isRequired,
 };

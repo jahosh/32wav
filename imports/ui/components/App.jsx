@@ -9,10 +9,6 @@ import { Link } from 'react-router';
 // mongo collection
 import { Tracks } from '../../api/tracks/tracks.js';
 
-
-//react containers
-import BeatsContainer from '../containers/BeatsContainer.jsx';
-
 //react components
 import Header from './Header.jsx';
 
@@ -44,13 +40,9 @@ class App extends Component {
           </div>
           <div id="divider"></div>
           <div className="col s12 m12 l10 offset-l1 center" id="signup-heading">
- 
-          <h3 className="center-align">Sign Up</h3>
-
+            <h3 className="center-align">Sign Up</h3>
           <Link className="waves-effect waves-light btn blue-grey darken-1" to="/signin"><i className="material-icons left">cloud</i>Register Here!</Link>
-
-
-        </div>
+          </div>
         </div>        
       </div>
     );
