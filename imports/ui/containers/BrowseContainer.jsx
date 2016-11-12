@@ -7,24 +7,27 @@ import { Tracks } from '../../api/tracks/tracks.js';
 
 //react components
 import Charts from '../components/Charts.jsx';
+import TracksCategories from '../components/TracksCategories';
 
 
-class ChartsContainer extends Component {
+/*         -- BrowseContainer --
+ * Container responsible for the Browse view.
+ * Grabs data for all children views.
+*/
+class BrowseContainer extends Component {
   render() {
     return (
-      
       <div>
-      {this.props.loading ? <Blaze template="spinner" /> :
+        {this.props.loading ? <Blaze template="spinner" /> :
       <div className="row">
-      <div className="col s12 m12 l10 offset-l1">
-        <header className="background-header text-center" id="charts-header">
-          <h1 className="center">Browse</h1>
-        </header>
-        <span className="small margin-left-15"><p className="flow-text center">Browse uploaded tracks</p></span>
-        <div className="divider mrg-bottom-10"></div>
-      </div>
+        <div className="col s12 m12 l10 offset-l1">
+          <header className="background-header text-center" id="charts-header">
+            <h1 className="center">Browse</h1>
+          </header>
+             <TracksCategories />
+        </div>
         <Charts
-          beats={this.props.beats}
+          tracks={this.props.tracks}
           currentUser={this.props.currentUser} 
         />
       </div>
@@ -34,9 +37,8 @@ class ChartsContainer extends Component {
   }
 }
 
-ChartsContainer.propTypes = {
-  beats: PropTypes.array.isRequired,
-  savedBeats: PropTypes.number.isRequired,
+BrowseContainer.propTypes = {
+  tracks: PropTypes.array.isRequired,
   currentUser: PropTypes.object,
   loading: PropTypes.bool.isRequired,
 }
@@ -44,12 +46,11 @@ ChartsContainer.propTypes = {
 export default createContainer( () => {
   const subscription = Meteor.subscribe('Tracks');
   const loading = !subscription.ready();
-  const beats = Tracks.find({}, { sort: { createdAt: -1 } }).fetch();
+  const tracks = Tracks.find({}, { sort: { createdAt: -1 } }).fetch();
   const currentUser = Meteor.user();
   return {
-    beats: beats,
-    savedBeats: Tracks.find({ checked: { $ne: true } }).count(),
+    tracks: tracks,
     currentUser: currentUser,
     loading: loading,
   };
-}, ChartsContainer);
+}, BrowseContainer);

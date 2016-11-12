@@ -104,6 +104,7 @@ export default class Track extends Component {
     }
   }
   render() {
+    console.log('TRACK');
       const options = {
         height: 80,
         cursorColor: '#0000',

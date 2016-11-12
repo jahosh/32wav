@@ -7,7 +7,7 @@ export default class Charts extends Component {
     return (
       <div>   
         <TracksContainer
-          beats={this.props.beats}
+          tracks={this.props.tracks}
           currentUser={this.props.currentUser}
         />
       </div>  

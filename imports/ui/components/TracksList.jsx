@@ -7,7 +7,6 @@ import TracksCategories from './TracksCategories';
 const TracksList = (props) => {
   return (
     <div className="beatList"> 
-      <TracksCategories />
       <ul className="collection">
         { props.handleRenderTracks() }
       </ul>

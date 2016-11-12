@@ -7,14 +7,11 @@ import { Router } from 'react-router';
 import { default as swal } from 'sweetalert2';
 import '../../../node_modules/sweetalert2/dist/sweetalert2.min.css';
 
-
 //methods
 import { insertTrack } from '../../api/tracks/methods.js';
 
-
 import '../../../node_modules/dropzone/dist/min/dropzone.min.css';
 import '../../../node_modules/react-dropzone-component/styles/filepicker.css';
-
 
 //react components
 import Uploader from './Uploader.jsx';
@@ -40,7 +37,6 @@ const template = ReactDOMServer.renderToStaticMarkup(
 export default class FileUpload extends Component {
   constructor(props) {
     super(props);
-
     this.config = {
       iconFiletypes: ['.mp3'],
       showFiletypeIcon: false,
@@ -64,6 +60,7 @@ componentDidMount() {
 initMaterialize() {
   $(document).ready(function() {
     $('select').material_select();
+    $()
   });
 }
 hideUploadElements() {
@@ -134,25 +131,13 @@ saveTrack(source, fileKey) {
     alert('please enter a title');
   return;
   }
-  console.log(title);
-  console.log(price);
-  console.log(genre);
-    /*Meteor.call('beats.insert', title, source, (err) => {
-      if (err) {
-        console.log(err);
-      }
-      
-      console.log('uploaded');
 
-     this.displayFileUploaded();
-    });
-    */
-
-    insertTrack.call({ title: title, fileSource: source, fileKey: fileKey}, (err) => {
-      if (err) {
-        alert (err.reason);
-      }
-    });
+  insertTrack.call({ title: title, fileSource: source, fileKey: fileKey}, (err) => {
+    if (err) {
+      alert (err.reason);
+    }
+      this.displayFileUploaded();
+  });
 }
 handleSubmit(e) {
   e.preventDefault();

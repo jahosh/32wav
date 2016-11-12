@@ -6,7 +6,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import App from '../../ui/components/App.jsx';
 import AppContainer  from '../../ui/containers/AppContainer.jsx';
 import MyAccountContainer from '../../ui/containers/MyAccountContainer.jsx';
-import ChartsContainer from '../../ui/containers/ChartsContainer.jsx';
+import BrowseContainer from '../../ui/containers/BrowseContainer.jsx';
 import ContactContainer from '../../ui/containers/ContactContainer.jsx';
 import UploadContainer from '../../ui/containers/UploadContainer.jsx';
 import ProfileContainer from '../../ui/containers/ProfileContainer.jsx';
@@ -17,6 +17,7 @@ import TrackContainer from '../../ui/containers/TrackContainer.jsx';
 import { NotFound } from '../../ui/pages/NotFound.jsx';
 import { FAQ } from '../../ui/pages/FAQ.jsx';
 import { SignIn } from '../../ui/pages/SignIn.jsx';
+import { VerifyEmail } from '../../ui/pages/VerifyEmail.jsx';
 
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
@@ -27,6 +28,7 @@ const requireAuth = (nextState, replace) => {
   }
 };
 
+
 export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Route path="/" component={AppContainer}>
@@ -34,10 +36,11 @@ export const renderRoutes = () => (
       <Route path="/upload" component={UploadContainer}  />
       <Route path="/signin" component={SignIn} />
       <Route path="/myaccount" component={MyAccountContainer} onEnter={requireAuth} />
-      <Route path="/charts" component={ChartsContainer} />
+      <Route path="/browse" component={BrowseContainer} />
       <Route path="/faq" component={FAQ} />
       <Route path="/contact" component={ContactContainer} />
       <Route path="/:username" component={ProfileContainer} />
+      <Route path="/verify-email/:token" component={VerifyEmail} />
       <Route path="/:username/:track" component={TrackContainer} /> 
     </Route>
     <Route path="*" component={NotFound} />

@@ -11,13 +11,7 @@ class TracksContainer extends Component {
     super(props);
   }
   renderTracks() {
-    let filteredTracks = this.props.beats;
-    /*
-    if (this.state.hideCompleted) {
-      filteredSongs = filteredSongs.filter( song => !song.checked);
-    }
-    */
-
+    let filteredTracks = this.props.tracks;
     return filteredTracks.map( (track) => {
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
       const showPrivateButton = track.owner === currentUserId;
@@ -46,7 +40,7 @@ class TracksContainer extends Component {
 }
 
 TracksContainer.PropTypes = {
-  beats: PropTypes.array.isRequired,
+  tracks: PropTypes.array.isRequired,
   currentUser: PropTypes.object.isRequired,
 }
 

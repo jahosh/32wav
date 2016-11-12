@@ -35,6 +35,26 @@ Accounts.onCreateUser(function(options, user) {
   html: "</strong> Welcome Jahosh to 32.wav</strong> normal?</strong><i>Italic</i>",
   });
   */
+
+  Meteor.call('sendVerificationLink', (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('sent');
+    }
+  })
   return user
 });
+
+/*
+Accounts.onLogin(function(){ 
+  Meteor.call('sendVerificationLink', (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('sent');
+    }
+  })
+});
+*/
 

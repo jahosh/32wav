@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
+import Blaze from 'meteor/gadicc:blaze-react-component';
 
 // mongo collection
 import { Tracks } from '../../api/tracks/tracks.js';
@@ -14,14 +15,18 @@ class ProfileContainer extends Component {
   render() {
     return (
       <div>
+        {this.props.loading ? <Blaze template="spinner" /> :
+        <div>
         <h1 className="center-align">
           {this.props.params.username}'s Profile
         </h1>
 
           <TracksContainer
-            beats={this.props.userTracks}
+            tracks={this.props.userTracks}
             currentUser={this.props.currentUser}
           />  
+          </div> 
+        }
       </div>
     );
   }

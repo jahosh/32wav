@@ -19,6 +19,7 @@ class App extends Component {
     super(props);
   }
   render() {
+    console.log('APP');
     return (
       <div className="row">
         <Header />

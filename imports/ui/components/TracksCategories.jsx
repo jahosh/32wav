@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 
-
 // allows a user to filter based on categories
 export default class TracksCategories extends Component {
   componentDidMount() {
@@ -14,17 +13,42 @@ export default class TracksCategories extends Component {
       alignment: 'left' // Displays dropdown with edge aligned to the left of button
     }
   );
+   $(document).ready(function() {
+    $('select').material_select();
+  });
   }
   render() {
     return (
-      <div>    
-        <a className='dropdown-button btn blue-grey darken-1 categories' href='#' data-activates='dropdown1'>Categories</a>
-        <ul id='dropdown1' className='dropdown-content'>
-          <li><a href="#!">Rap</a></li>
-          <li><a className="text-black" href="#!">Trap</a></li>
-          <li className="divider"></li>
-          <li><a href="#!">R&B</a></li>
-        </ul>
+      <div className="row">
+      <header>
+      <h3> Filters </h3>
+        <div className="input-field col l4">
+          <select>
+            <option value="" defaultValue>Choose your option</option>
+            <option value="1">Hip-Hop / Boom-Bap</option>
+            <option value="2">Hip-Hop / Trap</option>
+            <option value="3">Hip-Hop / WestCoast</option>
+          </select>
+          <label>Genre</label>
+        </div>
+        <div className="input-field col l4">
+          <select>
+            <option value="" defaultValue>Any</option>
+            <option value="1">Lease</option>
+            <option value="2">Exclusive</option>
+          </select>
+          <label>License Type</label>
+        </div>
+        <div className="input-field col l4">
+          <select>
+            <option value="" defaultValue>Any</option>
+            <option value="1"> $0 - $50 </option>
+            <option value="2"> $50 - $250 </option>
+            <option value="3"> $250 - $500</option>
+          </select>
+          <label>Price</label>
+        </div>
+        </header>
       </div>
     );
   }
