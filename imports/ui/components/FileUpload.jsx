@@ -195,7 +195,7 @@ render() {
                   ref="beatPrice"
                   min="1"
                 />
-                <label htmlFor="beatprice">Price</label>
+                <label htmlFor="beatprice">Price (USD)</label>
               </div>
             </div>
             <div className="row">
@@ -212,9 +212,10 @@ render() {
               <div className="input-field col s6">
                 <select id="beat-genre">
                   <option defaultValue="">Choose your option</option>
-                  <option value="1">Hip-Hop/Rap</option>
-                  <option value="2">Acoustic</option>
-                  <option value="3">Acapella</option>
+                  <option value="1">Hip-Hop / Boom-Bap</option>
+                  <option value="2">Hip-Hop / Trap</option>
+                  <option value="3">Hip-Hop / West-Coast</option>
+                  <option value="4">Electronic</option>
                 </select>
                 <label>Genre</label>
               </div>
