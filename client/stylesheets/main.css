@@ -167,7 +167,18 @@ input[type="search"] {
   background-size: cover !important;
   background:url(./records.jpg)#222 no-repeat   35%;
   height: 200px;
+}
 
+#faq-header {
+  background-size: cover !important;
+  background:url(./mic.jpg)#222 no-repeat   35%;
+  height: 200px;
+}
+
+#contact-header {
+  background-size: cover !important;
+  background:url(./faders.jpg)#222 no-repeat   35%;
+  height: 200px;
 }
 
 #upload-header {

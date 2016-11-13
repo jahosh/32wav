@@ -24,7 +24,7 @@ export default class TracksCategories extends Component {
       <h3> Filters </h3>
         <div className="input-field col l4">
           <select>
-            <option value="" defaultValue>Choose your option</option>
+            <option value="" defaultValue>All</option>
             <option value="1">Hip-Hop / Boom-Bap</option>
             <option value="2">Hip-Hop / Trap</option>
             <option value="3">Hip-Hop / WestCoast</option>
@@ -33,7 +33,7 @@ export default class TracksCategories extends Component {
         </div>
         <div className="input-field col l4">
           <select>
-            <option value="" defaultValue>Any</option>
+            <option value="" defaultValue>All</option>
             <option value="1">Lease</option>
             <option value="2">Exclusive</option>
           </select>
@@ -41,7 +41,7 @@ export default class TracksCategories extends Component {
         </div>
         <div className="input-field col l4">
           <select>
-            <option value="" defaultValue>Any</option>
+            <option value="" defaultValue>All</option>
             <option value="1"> $0 - $50 </option>
             <option value="2"> $50 - $250 </option>
             <option value="3"> $250 - $500</option>

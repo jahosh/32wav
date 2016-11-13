@@ -7,9 +7,12 @@ import ContactForm from '../components/ContactForm.jsx';
 export default class ContactContainer extends Component {
   render() {
     return (
-      <div>
-        <h1 className="center-align">Contact</h1>
-        <p className="flow-text center-align">Coming Soon...</p> 
+      <div className="row">
+        <div className="col s12 m12 l10 offset-l1">
+          <header className="background-header text-center" id="contact-header">
+            <h1 className="center">Contact</h1>
+          </header>
+        </div>
       </div>
     );
   }
