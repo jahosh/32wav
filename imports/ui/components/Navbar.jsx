@@ -33,7 +33,7 @@ export default class Navbar extends Component {
             <li><Link to="/myaccount" activeClassName="active">Account</Link></li>
             <li><Link to="/faq" activeClassName="active">FAQ</Link></li>
             <li><Link to="/contact" activeClassName="active">Contact</Link></li>
-            <li><Link to="/signin" activeClassName="active">Login / Register</Link></li>
+            <li><Link to="/signin" activeClassName="active">{ this.props.currentUser ? <div className="user-email"> {this.props.currentUser.emails[0].address} </div> : 'Login / Register' }</Link></li>
           </ul>
           <ul className="side-nav links" id="mobile-demo">
             <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>

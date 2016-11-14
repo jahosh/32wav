@@ -9,6 +9,7 @@ export default class Charts extends Component {
         <TracksContainer
           tracks={this.props.tracks}
           currentUser={this.props.currentUser}
+          onLoadMore={this.props.onLoadMore}
         />
       </div>  
     );

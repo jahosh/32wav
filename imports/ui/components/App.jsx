@@ -44,7 +44,7 @@ class App extends Component {
           <Link className="waves-effect waves-light btn blue-grey darken-1" to="/signin"><i className="material-icons left">cloud</i>Register Here!</Link>
           <div id="divider"></div>
           <div className="follow-jahosh">
-            <a href="https://twitter.com/Jahoshuma" className="twitter-follow-button follow-jahosh" data-show-count="false">By @Jahoshuma</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a href="https://twitter.com/Jahoshuma" className="twitter-follow-button follow-jahosh" data-show-count="false">By @Jahoshuma</a><script async src="//platform.twitter.com/widgets.js" charSet="utf-8"></script>
           </div>
           </div>
         </div>        

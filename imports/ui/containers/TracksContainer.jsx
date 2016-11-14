@@ -34,6 +34,9 @@ class TracksContainer extends Component {
        <TracksList
           handleRenderTracks={this.renderTracks.bind(this)} 
         />
+          <div className="load-more center-align">
+              <button className="btn" onClick={this.props.onLoadMore}>Load More</button>
+            </div>
       </div>
     )
   }
