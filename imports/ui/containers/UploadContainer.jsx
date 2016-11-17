@@ -6,13 +6,13 @@ import { createContainer } from 'meteor/react-meteor-data';
 //react components
 import FileUpload from '../components/FileUpload.jsx';
 
-class UploadContainer extends Component {
+export default class UploadContainer extends Component {
   render() {
+    console.log(Meteor.user())
     return (
-      <div className="row">
-        
+      <div className="row">     
         <div className="">
-          { this.props.currentUser ? 
+          { Meteor.user() !== null ? 
             <div>
               <div className="col s12 m12  l10 offset-l1">
                 <header className="background-header text-center" id="upload-header">
@@ -33,9 +33,3 @@ class UploadContainer extends Component {
   }
 }
 
-export default createContainer( (props) => {
-  const currentUser = Meteor.user();
-  return {
-    currentUser: currentUser,
-  };
-}, UploadContainer);

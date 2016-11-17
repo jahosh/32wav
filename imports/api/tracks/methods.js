@@ -1,9 +1,11 @@
 import { Meteor } from 'meteor/meteor';
-import { Tracks } from './tracks.js';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { moment } from 'meteor/momentjs:moment';
 
+
+//mongo collections
+import Tracks from './tracks.js';
 
 /*
  * Adds a Track to the database, (string info only)
@@ -14,19 +16,21 @@ export const insertTrack = new ValidatedMethod({
   name: "Tracks.methods.insert",
   validate: new SimpleSchema({
     title: { type: String },
+    price: { type: String },
+    genre: { type: String },
+    description: { type: String },
     fileSource: { type: String },
     fileKey: { type: String },
   }).validator(),
   run(beat) {
     let timeStamp = moment().format('X');
-
     const userName = Meteor.user().username != null ? Meteor.user().username : Meteor.user().profile.name
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
-
     Tracks.insert({ 
       title: beat.title,
+      genre: beat.genre,
       fileSource: beat.fileSource,
       fileKey: beat.fileKey,
       createdAt: timeStamp,
@@ -50,13 +54,10 @@ export const removeTrack = new ValidatedMethod({
   }).validator(),
   run( {trackId} ) {
     const track = Tracks.findOne(trackId);
-
     if (track.owner !== this.userId) {
       throw new Meteor.Error('not-authorized');
     }
-
     Tracks.remove(trackId);
-
     if (this.isSimulation) {
 
     } else {
@@ -79,7 +80,6 @@ export const likeTrack = new ValidatedMethod({
   run( {trackId } ) {
     const track = Tracks.findOne(trackId);
     const user = this.userId
-
     Tracks.update(track, { $addToSet: { likedBy: user } });
   }
 });
@@ -95,8 +95,7 @@ export const incrementTrackPlayCount = new ValidatedMethod({
   validate: new SimpleSchema({
     trackId: { type: String }
   }).validator(),
-  run( { trackId }) {
-    
+  run( { trackId }) {   
     Tracks.update(trackId, { $inc: { plays: 1 } });
   }
 });
@@ -115,13 +114,10 @@ export const setTrackPrivate = new ValidatedMethod({
     setPrivate: { type: Boolean },
   }).validator(),
   run( { trackId, setPrivate} ) {
-
     const track = Tracks.findOne(trackId);
-
     if (track.owner !== this.userId) {
       throw new Meteor.Error('not-authorized');
     }
-
     Tracks.update(trackId, { $set: { private: setPrivate } });
   }
 });

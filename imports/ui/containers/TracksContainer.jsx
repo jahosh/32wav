@@ -12,6 +12,9 @@ class TracksContainer extends Component {
   }
   renderTracks() {
     let filteredTracks = this.props.tracks;
+    let genreFilter    = this.props.genreFilter
+    console.log(genreFilter)
+    //filteredTracks = filteredTracks.filter(track => track.genre === this.props.genreFilter);
     return filteredTracks.map( (track) => {
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
       const showPrivateButton = track.owner === currentUserId;

@@ -37,6 +37,7 @@ export const renderRoutes = () => (
       <Route path="/signin" component={SignIn} />
       <Route path="/myaccount" component={MyAccountContainer} onEnter={requireAuth} />
       <Route path="/browse" component={BrowseContainer} />
+      <Route path="/browse/:limit" component={BrowseContainer} />
       <Route path="/faq" component={FAQ} />
       <Route path="/contact" component={ContactContainer} />
       <Route path="/:username" component={ProfileContainer} />

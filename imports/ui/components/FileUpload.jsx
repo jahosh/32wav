@@ -97,8 +97,6 @@ onDrop(file) {
   const fileKey = file.name;
   self.displayUploadElements();
 
-  console.log(file);
-
   const upload = new Slingshot.Upload("uploadToAmazonS3");
     upload.send(file, function(err, source) {
       computation.stop();
@@ -115,7 +113,6 @@ onDrop(file) {
         self.saveTrack(source, fileKey)
       });
   });
-
   let computation = Tracker.autorun( () => {
     const self = this
     if (!isNaN(upload.progress())) {
@@ -124,15 +121,25 @@ onDrop(file) {
   }); 
 }
 saveTrack(source, fileKey) {
-  let title = $('#beatTitle').val()
-  let price = $('#beatPrice').val();
-  let genre = $( "#beat-genre option:selected" ).text();
+  let title       = $("#beatTitle").val()
+  let price       = $("#beatPrice").val();
+  let genre       = $("#beat-genre option:selected").val();
+  let description = $("#track-desc").text()
   if (title === '') {
     alert('please enter a title');
   return;
   }
 
-  insertTrack.call({ title: title, fileSource: source, fileKey: fileKey}, (err) => {
+  let track = {
+    title: title,
+    price: price,
+    genre: genre,
+    description: description,
+    fileSource: source,
+    fileKey: fileKey
+  }
+
+  insertTrack.call(track, (err) => {
     if (err) {
       alert (err.reason);
     }
@@ -212,17 +219,16 @@ render() {
               <div className="input-field col s6">
                 <select id="beat-genre">
                   <option defaultValue="">Choose your option</option>
-                  <option value="1">Hip-Hop / Boom-Bap</option>
-                  <option value="2">Hip-Hop / Trap</option>
-                  <option value="3">Hip-Hop / West-Coast</option>
-                  <option value="4">Electronic</option>
+                  <option value="hiphop">Hip-Hop</option>
+                  <option value="electronic">Electronic</option>
+                  <option value="indie">Indie</option>
                 </select>
                 <label>Genre</label>
               </div>
             </div>
             <div className="row">
               <div className="input-field col s12">
-                <textarea id="textarea1" className="materialize-textarea"></textarea>
+                <textarea id="track-desc" className="materialize-textarea"></textarea>
                 <label htmlFor="textarea1">Description</label>
               </div>
             </div>

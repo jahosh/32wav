@@ -13,7 +13,7 @@ import { Tracks } from '../../api/tracks/tracks.js';
 import Header from './Header.jsx';
 
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
   }
@@ -53,13 +53,3 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  currentUser: PropTypes.object,
-}
-
-export default createContainer( () => {
-  const currentUser = Meteor.user();
-  return {
-    currentUser: currentUser,
-  };
-}, App);

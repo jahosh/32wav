@@ -3,7 +3,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 
 // mongo collection
-import { Tracks } from '../../api/tracks/tracks.js';
+import Tracks from '../../api/tracks/tracks.js';
 
 //containers
 import TracksContainer from './TracksContainer.jsx';
@@ -37,9 +37,10 @@ ProfileContainer.PropTypes = {
 }
 
 export default createContainer( (props) => {
-  const subscription = Meteor.subscribe('Tracks');
-  const loading = !subscription.ready();
   const username = props.params.username;
+  const subscription = Meteor.subscribe('Tracks.all');
+  const loading = !subscription.ready();
+  
   const userTracks = Tracks.find({username: username }, { limit: 3, sort: { createdAt: -1 } }).fetch();
   
   return {

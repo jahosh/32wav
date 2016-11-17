@@ -1,5 +1,5 @@
 //Server Methods
-import '../imports/api/tracks/tracks.js';
+import '../imports/api/tracks/server/publications.js';
 import '../imports/api/tracks/methods.js';
 
 import { Accounts } from 'meteor/accounts-base';
