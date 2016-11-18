@@ -36,7 +36,6 @@ export default class TracksCategories extends Component {
             <option value="indie">Indie</option>
           </select>
           <label>genre</label>
-          <p>{this.props.genre}</p>
         </div>
         <div className="input-field col l4">
           <select>

@@ -7,11 +7,6 @@ import '../imports/startup/server/mail-url.js';
 import { Email } from 'meteor/email';
 import { Meteor } from 'meteor/meteor';
 
-
-
-
-
-
 Accounts.onCreateUser(function(options, user) {
   // We're enforcing at least an empty profile object to avoid needing to check
   // for its existence later.

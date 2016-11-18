@@ -12,7 +12,6 @@ import UploadContainer from '../../ui/containers/UploadContainer.jsx';
 import ProfileContainer from '../../ui/containers/ProfileContainer.jsx';
 import TrackContainer from '../../ui/containers/TrackContainer.jsx';
 
-
 //pages
 import { NotFound } from '../../ui/pages/NotFound.jsx';
 import { FAQ } from '../../ui/pages/FAQ.jsx';
@@ -27,7 +26,6 @@ const requireAuth = (nextState, replace) => {
     });
   }
 };
-
 
 export const renderRoutes = () => (
   <Router history={browserHistory}>

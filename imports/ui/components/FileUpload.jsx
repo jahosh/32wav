@@ -162,8 +162,7 @@ render() {
   }
   const uploadStyle = {
     width: Math.round(this.state.progress) + '%'
-  }
-  
+  } 
   return (
       <div className="row">
          <DropzoneComponent

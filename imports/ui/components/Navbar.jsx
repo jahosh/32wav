@@ -13,7 +13,7 @@ export default class Navbar extends Component {
   }
   render() {
     return (
-      <nav className="blue-grey darken-1 topNav">
+      <nav className="black topNav">
         <div className="nav-wrapper">
           
           <ul className="right">
