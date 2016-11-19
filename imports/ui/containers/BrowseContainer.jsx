@@ -10,10 +10,6 @@ import Tracks from '../../api/tracks/tracks.js';
 import Charts from '../components/Charts.jsx';
 import TracksCategories from '../components/TracksCategories';
 
-const TRACKS_PER_PAGE = 10;
-const StartAt = 0
-
-
 /*         -- BrowseContainer --
  * Container responsible for the Browse view.
  * Grabs data for all children views.

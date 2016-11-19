@@ -167,6 +167,7 @@ input[type="search"] {
   background-size: cover !important;
   background:url(./records.jpg)#222 no-repeat   35%;
   height: 200px;
+  margin-bottom: 100px;
 }
 
 #faq-header {
@@ -428,10 +429,6 @@ div.filepicker {
   color: darkgrey;
 }
 
-.at-input {
-
-
-}
 
 #at-btn {
   margin-top: 20px;
