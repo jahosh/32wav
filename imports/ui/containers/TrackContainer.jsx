@@ -5,41 +5,51 @@ import Blaze from 'meteor/gadicc:blaze-react-component';
 // mongo collection
 import Tracks from '../../api/tracks/tracks.js';
 
-//containers
-import TracksContainer from './TracksContainer.jsx';
+//components
+import Track from '../components/Track.jsx';
+import TracksList from '../components/TracksList.jsx';
 
 class TrackContainer extends Component {
+  renderSong() {
+      const track       = this.props.userTracks[0];
+      const currentUser = this.props.currentUser;
+      const currentUserId = this.props.currentUser && this.props.currentUser._id;
+      const showPrivateButton = track.owner === currentUserId;
+     return (
+       <Track 
+          key={track._id} 
+          song={track}
+          source={track.fileSource}
+          showPrivateButton={showPrivateButton}
+          currentUser={currentUser}
+        />
+     );
+  }
   render() {
     return (
       <div>
-        {this.props.loading ? <Blaze template="spinner" /> :
-        <TracksContainer
-          tracks={this.props.userTracks}
-          currentUser={this.props.currentUser}
-        />  
+        { this.props.loading ? <Blaze template="spinner" /> : 
+          <TracksList
+            handleRenderTracks={this.renderSong.bind(this)}
+          /> 
         }
-     </div>
+      </div>
     );
   }
 }
-
 TrackContainer.PropTypes = {
  userTracks: PropTypes.array.isRequired,
 }
-
 export default createContainer( (props) => {
   const subscription = Meteor.subscribe('Tracks.all');
   const loading = !subscription.ready();
   const username = props.params.username;
   const track = props.params.track
-  const findOneTrack = { username: username, title: track };
-  const findAllTracks = { username: username };
-
-  console.log(props);
   const userTracks = Tracks.find({username: username, title: track }).fetch();
-  console.log(userTracks);
+
   return {
    userTracks: userTracks,
    track: track,
+   loading: loading,
   };
 }, TrackContainer);

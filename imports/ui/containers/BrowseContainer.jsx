@@ -10,37 +10,38 @@ import Tracks from '../../api/tracks/tracks.js';
 import Charts from '../components/Charts.jsx';
 import TracksCategories from '../components/TracksCategories';
 
-/*         -- BrowseContainer --
+
+/*      -- BrowseContainer --
  * Container responsible for the Browse view.
  * Grabs data for all children views.
+ * Handles filtering state
 */
 class BrowseContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
-      genre: 'All',
-      page: 0
+      genre: 'all',
+      license: 'all',
+      price: 'all',
     }
   }
   componentDidMount() {
-    this.handleChange();
+    this.handleFilterChange();
   }
-  loadMore(e) {
-    pageNumber.set(pageNumber.get() + 1 );
-  }
-  handleChange() {
+  handleFilterChange() {
     const self = this;
     $('#genre').on('change', 'select', function(e){ 
-    let value = $(this).val()
-
-   self.setState({genre: value });
-  });
-  }
-  load(div) {
-
-    console.log('clicked');
-    console.log(div);
-   
+      let value = $(this).val()
+      self.setState({genre: value });
+    });
+    $('#license').on('change', 'select', function(e) {
+      let value = $(this).val()
+      self.setState({ license: value });
+    });
+    $('#price').on('change', 'select', function(e) {
+      let value = $(this).val()
+      self.setState({ price: value });
+    })
   }
   render() {
     return (
@@ -53,14 +54,15 @@ class BrowseContainer extends Component {
                 </header>
               <TracksCategories
                 genre={this.state.genre}
-                onChange={this.handleChange.bind(this)}
+                license={this.state.license}
+                price={this.state.price}
+                onFilterChange={this.handleFilterChange.bind(this)}
               />
               </div> 
               <Charts
                 tracks={this.props.tracks}
                 currentUser={this.props.currentUser}
-                onLoadMore={this.loadMore.bind(this)} 
-                genre={this.state.genre}
+                filters={this.state}
               />
               <div className="center-align col s12 m12 l10 offset-l1">
                 <ul className="pagination">
@@ -79,19 +81,15 @@ class BrowseContainer extends Component {
     );
   }
 }
-
 BrowseContainer.propTypes = {
   tracks: PropTypes.array.isRequired,
   currentUser: PropTypes.object,
   loading: PropTypes.bool.isRequired,
 }
-
 export default createContainer( (props) => {
   const subscription = Meteor.subscribe('Tracks.all');
   const loading = !subscription.ready();
   const tracks = Tracks.find({}).fetch();
-  console.log(subscription);
-  console.log(loading);
   const currentUser = Meteor.user();
   return {
     tracks: tracks,

@@ -18,24 +18,30 @@ export const insertTrack = new ValidatedMethod({
     title: { type: String },
     price: { type: String },
     genre: { type: String },
+    licenseType: { type: String },
     description: { type: String },
     fileSource: { type: String },
     fileKey: { type: String },
+    setPrivate: { type: Boolean },
   }).validator(),
-  run(beat) {
+  run(track) {
     let timeStamp = moment().format('X');
     const userName = Meteor.user().username != null ? Meteor.user().username : Meteor.user().profile.name
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
     Tracks.insert({ 
-      title: beat.title,
-      genre: beat.genre,
-      fileSource: beat.fileSource,
-      fileKey: beat.fileKey,
+      title: track.title,
+      genre: track.genre,
+      price: track.price,
+      description: track.description,
+      licenseType: track.licenseType,
+      fileSource: track.fileSource,
+      fileKey: track.fileKey,
       createdAt: timeStamp,
       owner: Meteor.userId(),
       username: userName,
+      setPrivate: track.setPrivate,
       likedBy: [],
       plays: 0
     });

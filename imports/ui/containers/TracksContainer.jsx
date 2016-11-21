@@ -11,9 +11,17 @@ class TracksContainer extends Component {
     super(props);
   }
   renderTracks() {
-    let filteredTracks = this.props.tracks;
-    let genreFilter    = this.props.genreFilter
-    console.log(genreFilter)
+    const allTracks      = this.props.tracks;
+      
+    const filteredTracks = allTracks.filter( (track) => {
+      let genreFilter    = this.props.genreFilter.genre,
+          priceFilter    = this.props.genreFilter.price,
+          licenseFilter  = this.props.genreFilter.license;
+        
+      return this.checkFilter(track, genreFilter, priceFilter);
+      });
+ 
+
     //filteredTracks = filteredTracks.filter(track => track.genre === this.props.genreFilter);
     return filteredTracks.map( (track) => {
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
@@ -30,6 +38,27 @@ class TracksContainer extends Component {
         />
       );
     });
+  }
+  checkFilter(track, genreFilter, priceFilter) {
+    if (genreFilter === "all" && priceFilter === "all") {
+      return track;
+    } else {
+      if (genreFilter === track.genre) {
+        return track;
+      }
+    }
+    /*
+       if (genreFilter === "all") {
+        if (priceFilter === "all") {
+          if (licenseFilter === "all") {
+            return track;
+          }
+        }
+      }
+  
+      if (track.genre === genreFilter || track.genre === genreFilter && track.price <= priceFilter || priceFilter === 'all') {
+        return track;
+        */
   }
   render() {
     return (

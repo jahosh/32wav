@@ -5,12 +5,33 @@ import Blaze from 'meteor/gadicc:blaze-react-component';
 // mongo collection
 import Tracks from '../../api/tracks/tracks.js';
 
+//components
+import TracksList from '../components/TracksList.jsx';
+import Track from '../components/Track.jsx';
+
 //containers
-import TracksContainer from './TracksContainer.jsx';
+import TrackContainer from './TrackContainer.jsx';
 
 class ProfileContainer extends Component {
   componentDidMount() {
  
+  }
+  renderSong() {
+      const tracks      = this.props.userTracks;
+      const currentUser = this.props.currentUser;
+     return tracks.map( (track) => {
+      const currentUserId = this.props.currentUser && this.props.currentUser._id;
+      const showPrivateButton = track.owner === currentUserId;
+        return (
+          <Track 
+            key={track._id} 
+            song={track}
+            source={track.fileSource}
+            showPrivateButton={showPrivateButton}
+            currentUser={currentUser}
+          />
+        );
+     });
   }
   render() {
     return (
@@ -20,11 +41,10 @@ class ProfileContainer extends Component {
         <h1 className="center-align">
           {this.props.params.username}'s Profile
         </h1>
-
-          <TracksContainer
-            tracks={this.props.userTracks}
-            currentUser={this.props.currentUser}
-          />  
+          <TracksList
+            handleRenderTracks={this.renderSong.bind(this)}
+          /> 
+        }
           </div> 
         }
       </div>
@@ -33,17 +53,17 @@ class ProfileContainer extends Component {
 }
 
 ProfileContainer.PropTypes = {
- userBeats: PropTypes.array.isRequired,
+ userTracks: PropTypes.array.isRequired,
 }
 
 export default createContainer( (props) => {
   const username = props.params.username;
   const subscription = Meteor.subscribe('Tracks.all');
   const loading = !subscription.ready();
-  
-  const userTracks = Tracks.find({username: username }, { limit: 3, sort: { createdAt: -1 } }).fetch();
-  
+  const userTracks = Tracks.find({username: username }, { sort: { createdAt: -1 } }).fetch();
   return {
    userTracks: userTracks,
+   username: username,
+   loading: loading,
   };
 }, ProfileContainer);

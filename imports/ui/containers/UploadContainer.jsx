@@ -8,7 +8,6 @@ import FileUpload from '../components/FileUpload.jsx';
 
 export default class UploadContainer extends Component {
   render() {
-    console.log(Meteor.user())
     return (
       <div className="row">     
         <div className="">

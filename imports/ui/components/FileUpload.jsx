@@ -56,6 +56,12 @@ export default class FileUpload extends Component {
 componentDidMount() {
   this.initMaterialize();
   this.hideUploadElements();
+  $("#visability").click(function() {
+      let licenseType = $("#visablity").prop('checked');
+      let privateStatus = $("#private").prop('checked');
+    console.log(licenseType);
+    console.log(privateStatus);
+  })
 }
 initMaterialize() {
   $(document).ready(function() {
@@ -90,7 +96,7 @@ displayFileUploaded() {
     '<i class="fa fa-thumbs-up"></i> Great!',
   cancelButtonText:
     '<i class="fa fa-thumbs-down"></i>'
-})
+  });
 }
 onDrop(file) {
   const self = this;
@@ -121,24 +127,29 @@ onDrop(file) {
   }); 
 }
 saveTrack(source, fileKey) {
-  let title       = $("#beatTitle").val()
-  let price       = $("#beatPrice").val();
-  let genre       = $("#beat-genre option:selected").val();
-  let description = $("#track-desc").text()
+  let title             = $("#beatTitle").val()
+  let price             = $("#beatPrice").val();
+  let genre             = $("#beat-genre option:selected").val();
+  let description       = $("#track-desc").val()
+  let privateSelect     = $("#private").prop("checked");
+  let publicSelect      = $("#public").prop("checked");
+  let visability        = privateSelect ? true : false 
+  let licenseType       = $("#track-license option:selected").val();
+
   if (title === '') {
     alert('please enter a title');
   return;
   }
-
   let track = {
     title: title,
     price: price,
     genre: genre,
+    licenseType: licenseType,
     description: description,
     fileSource: source,
-    fileKey: fileKey
+    fileKey: fileKey,
+    setPrivate: visability
   }
-
   insertTrack.call(track, (err) => {
     if (err) {
       alert (err.reason);
@@ -154,7 +165,6 @@ render() {
   const eventHandlers = {
     init: function(dropzone) {
       dropzone.options.dictDefaultMessage = "Click here to upload";
-
       dropzone.on("addedfile", function(file) {
        self.onDrop(file);
       });
@@ -185,7 +195,7 @@ render() {
           <form className="new-task col s12" id="track-data" onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="input-field col s6">
-                <i className="material-icons prefix">queue_music</i>
+               
                 <input 
                   type="text"
                   id="beatTitle"
@@ -194,7 +204,7 @@ render() {
                 <label htmlFor="beatname">Title</label>
               </div>
               <div className="input-field col s6">
-                <i className="material-icons prefix">credit_card</i>
+               
                 <input 
                   type="number"
                   id="beatPrice"
@@ -205,19 +215,17 @@ render() {
               </div>
             </div>
             <div className="row">
-              <div className="radio col s6">
-                <p>
-                  <input name="group1" type="radio" id="test1" />
-                  <label htmlFor="test1">Public</label>
-                </p>
-                <p>
-                  <input name="group1" type="radio" id="test2" />
-                  <label htmlFor="test2">Private</label>
-                </p>
+              <div className="input-field col s6">
+                <select id="track-license">
+                  <option defaultValue="">Select a license</option>
+                  <option value="lease">Lease</option>
+                  <option value="exclusive">Exclusive</option>
+                </select>
+                <label>License</label>
               </div>
               <div className="input-field col s6">
                 <select id="beat-genre">
-                  <option defaultValue="">Choose your option</option>
+                  <option defaultValue="">Select a genre</option>
                   <option value="hiphop">Hip-Hop</option>
                   <option value="electronic">Electronic</option>
                   <option value="indie">Indie</option>
@@ -226,13 +234,22 @@ render() {
               </div>
             </div>
             <div className="row">
-              <div className="input-field col s12">
+            <div className="radio col s6" id="visability">
+                <p>
+                  <input name="public-private" type="radio" value="public" id="public" />
+                  <label htmlFor="public">Public</label>
+                </p>
+                <p>
+                  <input name="public-private" type="radio" value="private" id="private" />
+                  <label htmlFor="private">Private</label>
+                </p>
+              </div>
+              <div className="input-field  col s6">
                 <textarea id="track-desc" className="materialize-textarea"></textarea>
                 <label htmlFor="textarea1">Description</label>
               </div>
             </div>
              <div id="uploadSubmit">
-      
             <button id="uploadBtn" className="btn waves-effect waves-light blue-grey darken-1 center-align" type="submit" name="action">Submit
               <i className="material-icons right">send</i>
             </button>
