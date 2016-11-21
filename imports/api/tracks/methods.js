@@ -16,7 +16,7 @@ export const insertTrack = new ValidatedMethod({
   name: "Tracks.methods.insert",
   validate: new SimpleSchema({
     title: { type: String },
-    price: { type: String },
+    price: { type: Number },
     genre: { type: String },
     licenseType: { type: String },
     description: { type: String },
