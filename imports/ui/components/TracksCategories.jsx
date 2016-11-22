@@ -28,7 +28,7 @@ export default class TracksCategories extends Component {
       <div className="row">
       <header>
       <h5> Filters </h5>
-        <div className="input-field col l4" id="genre">
+        <div className="input-field col  s12 l4" id="genre">
           <select>
             <option value="all" defaultValue>All</option>
             <option value="hiphop">Hip-Hop</option>
@@ -36,28 +36,34 @@ export default class TracksCategories extends Component {
             <option value="indie">Indie</option>
           </select>
           <label>Genre</label>
-          {this.props.genre}
         </div>
-        <div className="input-field col l4" id="license">
+        <div className="input-field col s12 l4" id="license">
           <select>
             <option value="all" defaultValue>All</option>
             <option value="lease">Lease</option>
             <option value="exclusive">Exclusive</option>
           </select>
           <label>License Type</label>
-          {this.props.license}
         </div>
-        <div className="input-field col l4" id="price">
+        <div className="input-field col s12 l4" id="price">
           <select>
-            <option value="all" defaultValue>All</option>
-            <option value="50"> $0 - $50 </option>
-            <option value="250"> $50 - $250 </option>
-            <option value="500"> $250 - $500</option>
+            <option value="0" defaultValue>All</option>
+            <option value="50">  $50 </option>
+            <option value="250"> $250 </option>
+            <option value="500"> $500</option>
+            <option value="1000"> $1000</option>
           </select>
           <label>Price</label>
-          {this.props.price}
         </div>
         </header>
+        <hr />
+         <div className="stats">
+          <h5 className="stats">Stats</h5>
+          <div id="divider"></div>
+          <p>
+            Total tracks: {this.props.trackCount}
+          </p>
+        </div>
       </div>
     );
   }

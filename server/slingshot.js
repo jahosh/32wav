@@ -14,7 +14,6 @@ Slingshot.createDirective("uploadToAmazonS3", Slingshot.S3Storage, {
   bucket: "jahosh-meteor-files",
   acl: "public-read",
   region: "us-west-2",
-
   authorize: function () {
     if (!this.userId) {
       let message = "Please login before posting images";

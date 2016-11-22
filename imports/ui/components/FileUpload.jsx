@@ -133,7 +133,7 @@ saveTrack(source, fileKey) {
   let description       = $("#track-desc").val()
   let privateSelect     = $("#private").prop("checked");
   let publicSelect      = $("#public").prop("checked");
-  let visability        = privateSelect ? true : false 
+  let visability        = privateSelect ? true : false;
   let licenseType       = $("#track-license option:selected").val();
 
   if (title === '') {
@@ -142,7 +142,7 @@ saveTrack(source, fileKey) {
   }
   let track = {
     title: title,
-    price: price,
+    price: parseInt(price),
     genre: genre,
     licenseType: licenseType,
     description: description,

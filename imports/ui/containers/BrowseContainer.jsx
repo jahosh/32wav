@@ -22,7 +22,7 @@ class BrowseContainer extends Component {
     this.state = {
       genre: 'all',
       license: 'all',
-      price: 'all',
+      price: 0,
     }
   }
   componentDidMount() {
@@ -32,7 +32,7 @@ class BrowseContainer extends Component {
     const self = this;
     $('#genre').on('change', 'select', function(e){ 
       let value = $(this).val()
-      self.setState({genre: value });
+      self.setState({ genre: value });
     });
     $('#license').on('change', 'select', function(e) {
       let value = $(this).val()
@@ -40,7 +40,7 @@ class BrowseContainer extends Component {
     });
     $('#price').on('change', 'select', function(e) {
       let value = $(this).val()
-      self.setState({ price: value });
+      self.setState({ price: parseInt(value) });
     })
   }
   render() {
@@ -56,6 +56,7 @@ class BrowseContainer extends Component {
                 genre={this.state.genre}
                 license={this.state.license}
                 price={this.state.price}
+                trackCount={this.props.trackCount}
                 onFilterChange={this.handleFilterChange.bind(this)}
               />
               </div> 
@@ -90,10 +91,12 @@ export default createContainer( (props) => {
   const subscription = Meteor.subscribe('Tracks.all');
   const loading = !subscription.ready();
   const tracks = Tracks.find({}).fetch();
+  const trackCount = Tracks.find({}).count();
   const currentUser = Meteor.user();
   return {
     tracks: tracks,
     currentUser: currentUser,
     loading: loading,
+    trackCount: trackCount,
   };
 }, BrowseContainer);

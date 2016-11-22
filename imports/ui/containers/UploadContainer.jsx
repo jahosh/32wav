@@ -11,20 +11,20 @@ export default class UploadContainer extends Component {
     return (
       <div className="row">     
         <div className="">
-          { Meteor.user() !== null ? 
-            <div>
-              <div className="col s12 m12  l10 offset-l1">
+          <div className="col s12 m12  l10 offset-l1">
                 <header className="background-header text-center" id="upload-header">
                   <h1 className="center">Upload</h1>
                 </header>
               </div>
+          { Meteor.user() !== null ? 
+            <div>
             <div className="col s12 m10 offset-m1 l8 offset-l2 uploadOuter">
             
             <FileUpload
               currentUser={this.props.currentUser}
             /> 
             </div>
-            </div> : <div> <p className="flow-text center"> Please log in to upload</p></div>           
+            </div> : <div className="col s12 l12"><br /> <p className="flow-text center"> Please log in to upload</p></div>           
           }
         </div>
       </div>
