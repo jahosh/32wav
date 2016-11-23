@@ -56,7 +56,6 @@ export default class TracksCategories extends Component {
           <label>Price</label>
         </div>
         </header>
-        <hr />
          <div className="stats">
           <h5 className="stats">Stats</h5>
           <div id="divider"></div>

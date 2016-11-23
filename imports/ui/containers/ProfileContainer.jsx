@@ -35,15 +35,17 @@ class ProfileContainer extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="row">
         {this.props.loading ? <Blaze template="spinner" /> :
         <div>
         <h1 className="center-align">
           {this.props.params.username}'s Profile
         </h1>
+        <div className="col s12 m12 l10 offset-l1">
           <TracksList
             handleRenderTracks={this.renderSong.bind(this)}
           /> 
+          </div>
         }
           </div> 
         }
@@ -58,7 +60,7 @@ ProfileContainer.PropTypes = {
 
 export default createContainer( (props) => {
   const username = props.params.username;
-  const subscription = Meteor.subscribe('Tracks.all');
+  const subscription = Meteor.subscribe('Tracks.user', username);
   const loading = !subscription.ready();
   const userTracks = Tracks.find({username: username }, { sort: { createdAt: -1 } }).fetch();
   return {

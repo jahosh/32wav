@@ -12,4 +12,13 @@ if (Meteor.isServer) {
       ]}, { sort  : { createdAt: -1 }
     });
   });
+
+  Meteor.publish('Tracks.user', function tracksPublication(username){
+    return Tracks.find({ username: username,
+      $or: [
+        { private: { $ne: true } },
+        { owner: this.userId },
+      ]}, { sort  : { createdAt: -1 }
+    });
+  });
 }
