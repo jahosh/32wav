@@ -70,6 +70,7 @@ TracksContainer.PropTypes = {
 
 export default createContainer( () => {
   const currentUser = Meteor.user();
+
   return {
     currentUser: currentUser,
   };

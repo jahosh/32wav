@@ -46,3 +46,4 @@ peerlibrary:aws-sdk
 practicalmeteor:mocha
 xolvio:cleaner
 dburles:factory
+reywood:publish-composite
