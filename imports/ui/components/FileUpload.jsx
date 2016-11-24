@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 import DropzoneComponent from 'react-dropzone-component';
-import { Router } from 'react-router';
+import { Router, browserHistory } from 'react-router';
 import { default as swal } from 'sweetalert2';
 import '../../../node_modules/sweetalert2/dist/sweetalert2.min.css';
 
@@ -96,7 +96,10 @@ displayFileUploaded() {
     '<i class="fa fa-thumbs-up"></i> Great!',
   cancelButtonText:
     '<i class="fa fa-thumbs-down"></i>'
-  });
+  }).then(function() {
+    browserHistory.push('/browse');
+  })
+  
 }
 onDrop(file) {
   const self = this;

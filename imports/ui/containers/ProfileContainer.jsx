@@ -42,7 +42,7 @@ class ProfileContainer extends Component {
           <div className="col l12  center-align mainProfile">
             <div className="col l10 offset-l1 s12" id="profile-header">
               <div className="col l2">
-                <img className="responsive-img userPic" src="defaultAvatar.jpeg" />
+                <img className="responsive-img userPic" src={ this.props.user[0].profile_img ? `${this.props.user[0].profile_img}` : "defaultAvatar.jpeg" } />
                 <br />
               </div>
               <div className="col l2" id="user-info">
@@ -99,6 +99,7 @@ ProfileContainer.PropTypes = {
 
 export default createContainer( (props) => {
   const username = props.params.username;
+  
   console.log(username);
   const subscription = Meteor.subscribe('users.info', username);
   const loading = !subscription.ready();

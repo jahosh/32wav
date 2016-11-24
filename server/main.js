@@ -10,6 +10,10 @@ import '../imports/startup/server/mail-url.js';
 import { Email } from 'meteor/email';
 import { Meteor } from 'meteor/meteor';
 
+import './accounts/validateUser.js';
+import './accounts/createUser.js';
+
+/*
 Accounts.onCreateUser(function(options, user) {
   // We're enforcing at least an empty profile object to avoid needing to check
   // for its existence later.
@@ -19,8 +23,9 @@ Accounts.onCreateUser(function(options, user) {
   } else {
     user.profile = { name: 'test' }
   }
-  //user.profile = options.profile ? options.profile : {};
 
+  */
+  //user.profile = options.profile ? options.profile : {};
   /*
    * Send E-mail to Newly Created User
    * 
@@ -32,8 +37,7 @@ Accounts.onCreateUser(function(options, user) {
   subject: "Example Email",
   html: "</strong> Welcome Jahosh to 32.wav</strong> normal?</strong><i>Italic</i>",
   });
-  */
-
+  
   Meteor.call('sendVerificationLink', (err, response) => {
     if (err) {
       console.log(err);
@@ -42,7 +46,8 @@ Accounts.onCreateUser(function(options, user) {
     }
   })
   return user
-});
+*/
+
 
 /*
 Accounts.onLogin(function(){ 
