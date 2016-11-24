@@ -448,15 +448,16 @@ div.filepicker {
 
 .mainProfile {
   height: 80px;
-  margin-bottom: 400px;
+  margin-bottom: 300px;
 }
 
 .userPic {
-  height: 125px;
-  width: 125px;
+  height: 175px;
+  width: 175px;
   padding: 10px;
-  border: 1px solid black;
+ 
   border-radius: 50%;
+  margin-top: 15px;
 }
 
 .profileContact {
@@ -466,4 +467,18 @@ div.filepicker {
 
 #profile-name {
   margin: none !important;
+  font-size: 22px;
+}
+
+#profile-header {
+  border: 1px solid black;
+  background: black;
+  height: 260px;
+  color: white;
+  border-radius: 5px;
+}
+#user-info {
+  
+  margin-top: 25px;
+  font-size: 12px;
 }

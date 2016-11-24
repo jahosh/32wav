@@ -34,40 +34,50 @@ class ProfileContainer extends Component {
      });
   }
   render() {
+    //<p>Member Since: <br />{ this.props.user[0].createdAt ? `${this.props.user[0].createdAt}` : '' }</p>
     return (
       <div className="row">
         { this.props.loading ? <Blaze template="spinner" /> :
         <div>
           <div className="col l12  center-align mainProfile">
-            <div id="profile-name">
-              <h4 className="center-align">
-                {this.props.params.username}
-              </h4>
+            <div className="col l10 offset-l1 s12" id="profile-header">
+              <div className="col l2">
+                <img className="responsive-img userPic" src="defaultAvatar.jpeg" />
+                <br />
+              </div>
+              <div className="col l2" id="user-info">
+                <div className="" id="profile-name">
+                  <h3 className="center-align">
+                  {this.props.params.username}
+                  </h3>
+                </div>
+                 
+              </div>
+              <div className="col l4" id="">
+                
+              </div>
             </div>
-             <p>Member Since: <br />{ this.props.user[0].createdAt ? `${this.props.user[0].createdAt}` : '' }</p>
-            <div className="center-align">
-              <img className="responsive-img userPic" src="defaultAvatar.jpeg" />
-              <br />
-              <div className="col l8 offset-l2">
-              <a className="btn disabled profileContact">Contact</a> 
-              <a className="btn disabled profileContact">Follow</a> 
+              <div className="col l10 offset-l1 s12">
               <table className="centered">
                 <thead>
                   <tr>
-                    <th data-field="id">Location</th>
-                    <th data-field="name">Total Tracks</th>
-                    <th data-field="price">Downloads</th>
+                    <th data-field="id">Orgin</th>
+                    <th data-field="id">twitter</th>
+                    <th data-field="id">Member Since:</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Alvin</td>
-                    <td>Eclair</td>
-                    <td>$0.87</td>
+                    <td>Los Angeles, CA</td>
+                    <td>
+                      <i className="fa fa-twitter" aria-hidden="true"></i>
+                    </td>
+                    <td>
+                      { this.props.user[0].createdAt ? `${this.props.user[0].createdAt}` : '' }
+                    </td>
                   </tr>
                 </tbody>
-              </table> 
-              </div>  
+              </table>  
               <br />
             </div>
           </div>
