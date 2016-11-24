@@ -90,7 +90,7 @@ BrowseContainer.propTypes = {
 export default createContainer( (props) => {
   const subscription = Meteor.subscribe('Tracks.all');
   const loading = !subscription.ready();
-  const tracks = Tracks.find({}).fetch();
+  const tracks = Tracks.find({}, { sort: { createdAt: -1 } }).fetch();
   const trackCount = Tracks.find({}).count();
   const currentUser = Meteor.user();
   return {
