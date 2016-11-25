@@ -1,5 +1,6 @@
 //Server Methods
 import '../imports/api/tracks/methods.js';
+import '../imports/api/users/methods.js';
 
 //Server Publications
 import '../imports/api/tracks/server/publications.js';

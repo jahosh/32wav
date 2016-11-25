@@ -47,9 +47,10 @@ class ProfileContainer extends Component {
               </div>
               <div className="col l2" id="user-info">
                 <div className="" id="profile-name">
-                  <h3 className="center-align">
+                  <h3 className="center-align" id="user-name">
                   {this.props.params.username}
                   </h3>
+                  <p className="flow-text" id="user-tagline">{this.props.user[0].bio ? `${this.props.user[0].bio}` : ''} </p>
                 </div>
                  
               </div>
@@ -99,13 +100,10 @@ ProfileContainer.PropTypes = {
 
 export default createContainer( (props) => {
   const username = props.params.username;
-  
-  console.log(username);
   const subscription = Meteor.subscribe('users.info', username);
   const loading = !subscription.ready();
   const userTracks = Tracks.find({username: username }, { sort: { createdAt: -1 } }).fetch();
   const user = Meteor.users.find({username: username }).fetch()
-  console.log(user);
   return {
    userTracks: userTracks,
    username: username,

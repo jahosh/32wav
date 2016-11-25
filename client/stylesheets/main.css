@@ -483,3 +483,20 @@ div.filepicker {
   margin-top: 25px;
   font-size: 12px;
 }
+
+#user-name {
+  margin-bottom:0px;
+}
+#user-tagline {
+  margin-top: 0px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+
+/* Bert Alert Styling */
+.bert-alert.profile-updated {
+  margin-top: 300px;
+  background: black;
+  color: #fff;
+}
