@@ -5,7 +5,7 @@
 body {
  margin-top: 30px;
   font-family: sans-serif;
-  background-color: white;
+  background-color: #F9F9F9;
   background-attachment: fixed;
  
   position: absolute;
@@ -285,7 +285,8 @@ ul {
 
 .beat {
   margin-bottom: 20px;
-
+  border-radius: 5px;
+  padding: 50px;
 }
 
 .margin-left-15 {

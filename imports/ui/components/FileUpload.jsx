@@ -59,14 +59,11 @@ componentDidMount() {
   $("#visability").click(function() {
       let licenseType = $("#visablity").prop('checked');
       let privateStatus = $("#private").prop('checked');
-    console.log(licenseType);
-    console.log(privateStatus);
   })
 }
 initMaterialize() {
   $(document).ready(function() {
     $('select').material_select();
-    $()
   });
 }
 hideUploadElements() {
@@ -257,12 +254,21 @@ render() {
               <i className="material-icons right">send</i>
             </button>
             <div className="tos">
-              <p className="small center-align">By uploading you agree to our <a href="#">terms of service</a> & also agree to own the copyright to the instrumental / song your uploading</p>
+              <p className="small center-align">By uploading you agree to our <a href="#modal1">terms of service</a> & also agree to own the copyright to the instrumental / song your uploading</p>
             </div>
           </div>
           </form>
           <div id="divider"> </div>
           <div>-</div>
+          <div id="modal1" className="modal bottom-sheet">
+            <div className="modal-content">
+              <h4>Modal Header</h4>
+              <p>A bunch of text</p>
+            </div>
+            <div className="modal-footer">
+              <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+          </div>
         </div>     
       </div>
     );
