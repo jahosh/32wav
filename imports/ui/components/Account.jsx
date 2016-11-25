@@ -4,10 +4,20 @@ import { Link } from 'react-router';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 
+//methods
 import { updateBio } from '../../api/users/methods.js';
+
+//components
+import { EditProfile } from './Account/EditProfile.jsx';
 
 
 export default class Account extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      progress: 0
+    }
+  }
   componentDidMount() {
      $(document).ready(function(){
       $('.collapsible').collapsible();
@@ -19,13 +29,47 @@ export default class Account extends Component {
     console.log('edit');
     $("#editProfile").toggle("slow");
   }
+  onAvatarUpload(e) {
+    const self = this;
+    e.preventDefault();
+    const file = $("#profile-pic-upload")[0].files[0];
+    console.log(file);
+
+    const upload = new Slingshot.Upload("avatarToAmazonS3");
+    upload.send(file, function(err, source) {
+      computation.stop();
+      if (err) {
+        self.setState({ progress: 0 });
+        console.error(err);
+        alert(err);
+        return;
+      }
+      console.log(source);
+    });
+   let computation = Tracker.autorun(() => {
+    if (!isNaN(upload.progress())) {
+      self.setState({ progress: upload.progress() * 100 });
+    }
+    }); 
+  }
   onFormSubmit(e) {
     e.preventDefault();
-    let payload = {};
 
-   const text = $("#bio").val();
+   let payload         = {},
+       bio             = $("#bio").val(),
+       twitter         = $("#twitter-name").val();
 
-   payload.bio = text;
+    let bioDefault     = $("#bio").prop("defaultValue"),
+        twitterDefault = $("#twitter-name").prop("defaultValue");
+
+      if (bio === bioDefault && twitter === twitterDefault) {
+        alert('no change');
+        return;
+      }
+     
+   payload.bio = bio;
+   payload.twitter = twitter;
+
    updateBio.call(payload, (err) => {
      if (err) {
        console.log(err);
@@ -50,26 +94,19 @@ export default class Account extends Component {
     return (
       <div className="row">
         <div className="col l10 offset-l1">
-          <div className="collection ">
+          <div className="collection" id="account-links">
             <Link to={'/' + this.props.user[0].username} className="collection-item">My Profile</Link>
-            <Link onClick={this.editProfile} className="collection-item"><span className="badge">1</span>Edit My Profile</Link>            
+            <Link onClick={this.editProfile} className="collection-item">Edit My Profile</Link>   
+            <Link className="collection-item">Subscription</Link>         
             <a href="#!" className="collection-item"><span className="new badge">4</span>Send Links</a>
             <a href="#!" className="collection-item">Purchases</a>
             <a href="#!" className="collection-item"><span className="badge">14</span>Reset Password</a>
           </div>
-        </div>
-        <div className="col m8 s8 l8 offset-l2" id="editProfile">
-          <div className="row">
-            <form className="col s12" onSubmit={this.onFormSubmit}>
-              <div className="row">
-                <div className="input-field col s6">
-                  <input defaultValue={this.props.user[0].bio} id="bio" type="text" maxLength="30" className="validate" />
-                  <label className="active" htmlFor="first_name2">Bio</label>
-                </div>
-              </div>
-            </form>
-          </div>
-          <p>Name</p>
+          <EditProfile
+            user={this.props.user}
+            handleFormSubmit={this.onFormSubmit.bind(this)}
+            handleAvatarUpload={this.onAvatarUpload.bind(this)}
+          />
         </div>
       </div>  
     );

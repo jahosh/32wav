@@ -7,7 +7,12 @@ class AccountContainer extends Component {
   render() {
     console.log(this.props);
     return (
-      <div>
+      <div className="row">
+       <div className="col s12 m12 l10 offset-l1">
+          <header className="background-header text-center" id="account-header">
+            <h1 className="center">Account</h1>
+          </header>
+        </div>
         { this.props.loading ? <Blaze template="spinner" /> : 
         <div>
           <Account

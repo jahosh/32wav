@@ -188,6 +188,12 @@ input[type="search"] {
   height: 200px;
 }
 
+#account-header {
+  background-size: cover !important;
+  background:url(./mixer2.jpg) #222 no-repeat 50% 0%;
+  height: 200px;
+}
+
 #charts-header {
   background-size: cover !important;
   background:url(./mixer_1.jpg) #222 no-repeat 0%;
@@ -491,6 +497,16 @@ div.filepicker {
   margin-top: 0px;
   font-size: 14px;
   font-style: italic;
+}
+
+#account-links {
+  cursor: pointer !important;
+
+}
+#account-links a {
+  height: 45px;
+  font-size: 15px;
+  color: black;
 }
 
 

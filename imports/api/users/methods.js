@@ -6,13 +6,12 @@ export const updateBio = new ValidatedMethod({
   name: "Users.methods.updateBio",
   validate: new SimpleSchema({
     bio: { type: String },
+    twitter: { type: String },
   }).validator(),
-  run( { bio } ) {
+  run( { bio, twitter } ) {
     const userId = Meteor.userId()
     user = Meteor.users.findOne(userId);
-    if (user.bio === bio) {
-      throw new Meteor.Error('no changes to save');
-    }
-    Meteor.users.update(user, { $set: {bio: bio } });
+
+    Meteor.users.update(user, { $set: { bio: bio, twitter: twitter } });
   }
 });

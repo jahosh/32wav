@@ -71,7 +71,10 @@ class ProfileContainer extends Component {
                   <tr>
                     <td>Los Angeles, CA</td>
                     <td>
-                      <i className="fa fa-twitter" aria-hidden="true"></i>
+                      { this.props.user[0].twitter? <a href={`http://twitter.com/${this.props.user[0].twitter}`}>  
+                        <i className="fa fa-twitter" aria-hidden="true"></i>
+                      </a>
+                      : '' }
                     </td>
                     <td>
                       { this.props.user[0].createdAt ? `${this.props.user[0].createdAt}` : '' }
