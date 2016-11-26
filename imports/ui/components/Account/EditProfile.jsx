@@ -3,8 +3,14 @@ import React from 'react';
 export const EditProfile = (props) => {
   return (
    <div className="col m8 s8 l8 offset-l2" id="editProfile">
+        <div className="row">
+            <div className="center-align">
+              <img className="userPic" src={props.user[0].profile_img} />
+              <p className="flow-text">current profile picture</p>
+            </div>
+          </div>
           <div className="row">
-            <form className="col s12" onSubmit={props.onFormSubmit}>
+            <form className="col s12" onSubmit={props.handleFormSubmit}>
               <div className="row">
                 <div className="input-field col s12">
                   <input defaultValue={props.user[0].bio} id="bio" type="text" maxLength="30" className="validate" />
@@ -41,13 +47,6 @@ export const EditProfile = (props) => {
              <div className="progress">
             <div className="determinate" style={props.progress}></div>
           </div>
-          </div>
-          <div className="row">
-          <div className="center-align">
-            <img className="userPic" src={props.user[0].profile_img} />
-            <p className="flow-text">current profile picture</p>
-          </div>
-          
           </div>
         </div>
   );

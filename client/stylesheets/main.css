@@ -7,28 +7,55 @@ body {
   font-family: sans-serif;
   background-color: #F9F9F9;
   background-attachment: fixed;
- 
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
- 
   padding: 0;
   margin: 0;
- 
   font-size: 14px;
 }
 
 html {
-    overflow: -moz-scrollbars-vertical; 
-    overflow-y: scroll;
+  overflow: -moz-scrollbars-vertical; 
+  overflow-y: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .mainNav {
   
   border: 1px solid black;
   height: 125px;
+}
+
+#home-body {
+
+}
+
+#home-background {
+  height: 1000px;
+  color: white;
+  background:url(./cover.jpg)#222 no-repeat   35%;
+  background-size: cover !important;
+  background-color: #222;
+}
+
+
+.tagline {
+  font-size: 16px;
+  margin-top: 0px;
+}
+#signup-btn {
+  border-radius: 5px;
+}
+
+#headline {
+  font-size: 55px;
+  margin-bottom: 5px;
 }
 .sideNav {
   border: 2px solid black;
@@ -165,7 +192,7 @@ input[type="search"] {
 
 #welcome-header {
   background-size: cover !important;
-  background:url(./records.jpg)#222 no-repeat   35%;
+  background:url(./cover.jpg)#222 no-repeat   35%;
   height: 200px;
   margin-bottom: 100px;
 }
@@ -261,7 +288,7 @@ ul {
 }
 
 #signup-heading {
-  margin-top: 100px;
+  margin-top: 10px;
 }
 
 .mrg-bottom-10 {

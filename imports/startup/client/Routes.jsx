@@ -17,6 +17,7 @@ import { NotFound } from '../../ui/pages/NotFound.jsx';
 import { FAQ } from '../../ui/pages/FAQ.jsx';
 import { SignIn } from '../../ui/pages/SignIn.jsx';
 import { VerifyEmail } from '../../ui/pages/VerifyEmail.jsx';
+import { FileShare } from '../../ui/pages/FileShare.jsx';
 
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
@@ -38,6 +39,7 @@ export const renderRoutes = () => (
       <Route path="/browse/:limit" component={BrowseContainer} />
       <Route path="/faq" component={FAQ} />
       <Route path="/contact" component={ContactContainer} />
+      <Route path="/send" component={FileShare} />
       <Route path="/:username" component={ProfileContainer} />
       <Route path="/verify-email/:token" component={VerifyEmail} />
       <Route path="/:username/:track" component={TrackContainer} /> 

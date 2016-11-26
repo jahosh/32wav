@@ -13,8 +13,6 @@ export const VerifyEmail = (props) => (
 
 */
 
-
-
 export class VerifyEmail extends Component {
   componentDidMount() {
     console.log(this.props);

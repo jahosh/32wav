@@ -18,32 +18,21 @@ export default class App extends Component {
     super(props);
   }
   render() {
-    console.log('APP');
     return (
       <div className="row">
+        <div>
         <Header />
-   
-        <div className="home-content">
-          <div className="col s12 m6 l4 offset-l1 center-align">
-            <p className="promo-caption">Producers</p>
-            <p className="flow-text">
-              Can sell beats online efficently and smoothly.
+        <div className="row" id="home-body">
+          <div className="col s12 m12 l10 offset-l1 center-align home-content">
+            <p className="promo-caption flow-text" id="headline">Instrumental marketplace</p>
+            <p className="flow-text tagline">
+              high quality audio instrumentals
             </p>
           </div>
-          <div className="col s12 m6 l4 offset-l1 center-align">
-            <p className="promo-caption">Artists</p>
-            <p className="flow-text">
-              Can purchase beats from producers without the hassle.
-            </p>
+          <div className="col s12 m12 l10 offset-l1 center-align" id="signup-heading">
+            <Link className="waves-effect waves-light btn-large black" id="signup-btn" to="/signin">SIGN UP FOR FREE</Link>
+           
           </div>
-          <div id="divider"></div>
-          <div className="col s12 m12 l10 offset-l1 center" id="signup-heading">
-            <h3 className="center-align">Sign Up</h3>
-            <Link className="waves-effect waves-light btn black" to="/signin"><i className="material-icons left">cloud</i>Register Here!</Link>
-            <div id="divider"></div>
-            <div className="follow-jahosh">
-              <a href="https://twitter.com/Jahoshuma" className="twitter-follow-button follow-jahosh" data-show-count="false">By @Jahoshuma</a><script async src="//platform.twitter.com/widgets.js" charSet="utf-8"></script>
-            </div>
           </div>
         </div>        
       </div>
