@@ -15,3 +15,15 @@ export const updateBio = new ValidatedMethod({
     Meteor.users.update(user, { $set: { bio: bio, twitter: twitter } });
   }
 });
+
+export const updateProfileImage = new ValidatedMethod({
+  name: "Users.methods.updateProfileImage",
+  validate: new SimpleSchema({
+    source: { type: String },
+  }).validator(),
+  run( { source } ) {
+    const userId = Meteor.userId()
+
+    Meteor.users.update(userId, { $set: { profile_img: source } });
+  }
+})

@@ -6,10 +6,10 @@ import { Bert } from 'meteor/themeteorchef:bert';
 
 //methods
 import { updateBio } from '../../api/users/methods.js';
+import { updateProfileImage } from '../../api/users/methods.js';
 
 //components
 import { EditProfile } from './Account/EditProfile.jsx';
-
 
 export default class Account extends Component {
   constructor(props){
@@ -19,23 +19,30 @@ export default class Account extends Component {
     }
   }
   componentDidMount() {
-     $(document).ready(function(){
-      $('.collapsible').collapsible();
-      $("#editProfile").hide();
-      $('input#bio').characterCounter();
-  });
+    this.hideUploadElements();
+    $('.collapsible').collapsible();
+    $("#editProfile").hide();
+  }
+  hideUploadElements() {
+    $(".progress").hide();
+    $(".progress-status").hide();
+    $(".progress-result-success").hide();
+  }
+  displayUploadElements() {
+    $(".progress").fadeIn();
+    $(".progress-status").fadeIn();
   }
   editProfile() {
     console.log('edit');
     $("#editProfile").toggle("slow");
   }
   onAvatarUpload(e) {
-    const self = this;
     e.preventDefault();
+    const self = this;
+    self.displayUploadElements();
     const file = $("#profile-pic-upload")[0].files[0];
-    console.log(file);
-
     const upload = new Slingshot.Upload("avatarToAmazonS3");
+
     upload.send(file, function(err, source) {
       computation.stop();
       if (err) {
@@ -44,17 +51,32 @@ export default class Account extends Component {
         alert(err);
         return;
       }
-      console.log(source);
+     let profileImage = {
+       source: source
+     };
+
+      updateProfileImage.call(profileImage, (err) => {
+        if (err) {
+          console.log(err);
+        }
+        Bert.alert({
+          type: 'profile-updated',
+          style: 'growl-top-right',
+          title: 'profile image updated',
+          message: '',
+          icon: 'fa-user'
+        });
+      });
     });
    let computation = Tracker.autorun(() => {
     if (!isNaN(upload.progress())) {
       self.setState({ progress: upload.progress() * 100 });
+      console.log(self.state);
     }
     }); 
   }
-  onFormSubmit(e) {
+  onEditProfile(e) {
     e.preventDefault();
-
    let payload         = {},
        bio             = $("#bio").val(),
        twitter         = $("#twitter-name").val();
@@ -62,13 +84,12 @@ export default class Account extends Component {
     let bioDefault     = $("#bio").prop("defaultValue"),
         twitterDefault = $("#twitter-name").prop("defaultValue");
 
-      if (bio === bioDefault && twitter === twitterDefault) {
+    if (bio === bioDefault && twitter === twitterDefault) {
         alert('no change');
         return;
-      }
-     
-   payload.bio = bio;
-   payload.twitter = twitter;
+    }   
+    payload.bio = bio;
+    payload.twitter = twitter;
 
    updateBio.call(payload, (err) => {
      if (err) {
@@ -91,6 +112,9 @@ export default class Account extends Component {
    });
   }
   render() {
+    const uploadStyle = {
+      width: Math.round(this.state.progress) + '%'
+    } 
     return (
       <div className="row">
         <div className="col l10 offset-l1">
@@ -104,7 +128,8 @@ export default class Account extends Component {
           </div>
           <EditProfile
             user={this.props.user}
-            handleFormSubmit={this.onFormSubmit.bind(this)}
+            progress={uploadStyle}
+            handleFormSubmit={this.onEditProfile.bind(this)}
             handleAvatarUpload={this.onAvatarUpload.bind(this)}
           />
         </div>

@@ -1,8 +1,6 @@
 import React from 'react';
 
 export const EditProfile = (props) => {
-  let fileInput;
-
   return (
    <div className="col m8 s8 l8 offset-l2" id="editProfile">
           <div className="row">
@@ -37,6 +35,19 @@ export const EditProfile = (props) => {
                 </div>
               </div>
             </form>
+            <div className="progress-status">
+              <p className="flow-text center-align">Progress: {props.progress.width}</p>
+            </div>
+             <div className="progress">
+            <div className="determinate" style={props.progress}></div>
+          </div>
+          </div>
+          <div className="row">
+          <div className="center-align">
+            <img className="userPic" src={props.user[0].profile_img} />
+            <p className="flow-text">current profile picture</p>
+          </div>
+          
           </div>
         </div>
   );

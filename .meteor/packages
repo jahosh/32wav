@@ -34,7 +34,6 @@ sacha:spin
 email@1.1.18
 useraccounts:core
 useraccounts:materialize
-
 copleykj:livestamp
 aldeed:template-extension
 aldeed:collection2
@@ -48,4 +47,4 @@ xolvio:cleaner
 dburles:factory
 reywood:publish-composite
 service-configuration
-aldeed:autoform
+
