@@ -9,16 +9,19 @@ import Tracks from '../../api/tracks/tracks.js';
 
 class PurchaseContainer extends Component {
   render() {
-    console.log(this.props.track[0]);
+    console.log(this.props);
     return (
-      <div>
+      <div className="center-align">
       { this.props.loading ? <Blaze template="spinner" /> : 
       <div>
-      <h1>Purchase</h1>
-      <h2>${this.props.track[0].price}</h2>
-      <Purchase
-        track={this.props.track[0]} />
-        </div>
+        <h3>{this.props.track[0].title}</h3>
+        <h5>${this.props.track[0].price}</h5>
+       
+        <Purchase
+          track={this.props.track[0]}
+          seller={this.props.seller}
+        />
+      </div>
       }
       </div>
     );
@@ -26,12 +29,17 @@ class PurchaseContainer extends Component {
 }
 
 export default createContainer( (props) => {
-  const subscription = Meteor.subscribe('Tracks.purchase');
-  const loading = !subscription.ready();
   const trackId = props.params.trackId;
-  const track = Tracks.find(trackId, { fields: { "title": 1, price: 1, } }).fetch();
+  const subscription = Meteor.subscribe('Tracks.purchase', trackId);
+  const loading = !subscription.ready();
+  const track = Tracks.find({ _id: trackId }, { fields: { "title": 1, price: 1, } }).fetch();
+  const seller = Meteor.users.findOne({}, { fields: { paypal: 1 } });
+  console.log(seller);
+
+
   return {
    track: track,
    loading: loading,
+   seller: seller,
   };
 }, PurchaseContainer);
