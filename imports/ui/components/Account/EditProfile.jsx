@@ -7,6 +7,7 @@ export const EditProfile = (props) => {
             <div className="center-align">
               <img className="userPic" src={props.user[0].profile_img} />
               <p className="flow-text">current profile picture</p>
+              <p className="flow-text" id="user-tagline">{props.user[0].bio}</p>
             </div>
           </div>
           <div className="row">
