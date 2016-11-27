@@ -3,6 +3,8 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import Tracks from '../tracks';
 
 if (Meteor.isServer) {
+
+  /* Publication for Browse Page */
   Meteor.publish('Tracks.all', function tracksPublication(){
     return Tracks.find({
       $or: [
@@ -11,6 +13,18 @@ if (Meteor.isServer) {
       ]}, { sort  : { createdAt: -1 }
     });
   });
+
+    /* Publication for Purchase Page */
+    Meteor.publish('Tracks.purchase', function tracksPublication(trackId){
+    return Tracks.find({trackId,
+      $or: [
+        { private: { $ne: true } },
+        { owner: this.userId },
+      ]}, { fields: { "title": 1, price: 1, } }, { limit: 1, sort  : { createdAt: -1 },
+    });
+  });
+
+  /* Publication for Account Page */
   Meteor.publish('users.info', function tracksPublication(username){
     return [ Tracks.find({ username: username,
       $or: [

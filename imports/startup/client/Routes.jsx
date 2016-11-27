@@ -41,7 +41,7 @@ export const renderRoutes = () => (
       <Route path="/faq" component={FAQ} />
       <Route path="/contact" component={ContactContainer} />
       <Route path="/send" component={FileShare} />
-      <Route path="/purchase/:trackid" component={PurchaseContainer} />
+      <Route path="/purchase/:trackId" component={PurchaseContainer} />
       <Route path="/verify-email/:token" component={VerifyEmail} />
       <Route path="/:username" component={ProfileContainer} />
       <Route path="/:username/:track" component={TrackContainer} /> 

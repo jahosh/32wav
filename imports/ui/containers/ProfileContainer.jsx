@@ -16,7 +16,6 @@ class ProfileContainer extends Component {
 
   }
   renderSong() {
-    console.log(this.props);
       const tracks      = this.props.userTracks;
       const currentUser = this.props.currentUser;
      return tracks.map( (track) => {
