@@ -11,6 +11,7 @@ import ContactContainer from '../../ui/containers/ContactContainer.jsx';
 import UploadContainer from '../../ui/containers/UploadContainer.jsx';
 import ProfileContainer from '../../ui/containers/ProfileContainer.jsx';
 import TrackContainer from '../../ui/containers/TrackContainer.jsx';
+import PurchaseContainer from '../../ui/containers/PurchaseContainer.jsx';
 
 //pages
 import { NotFound } from '../../ui/pages/NotFound.jsx';
@@ -40,8 +41,9 @@ export const renderRoutes = () => (
       <Route path="/faq" component={FAQ} />
       <Route path="/contact" component={ContactContainer} />
       <Route path="/send" component={FileShare} />
-      <Route path="/:username" component={ProfileContainer} />
+      <Route path="/purchase/:trackid" component={PurchaseContainer} />
       <Route path="/verify-email/:token" component={VerifyEmail} />
+      <Route path="/:username" component={ProfileContainer} />
       <Route path="/:username/:track" component={TrackContainer} /> 
     </Route>
     <Route path="*" component={NotFound} />

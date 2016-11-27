@@ -17,8 +17,8 @@ export default class Navbar extends Component {
         <div className="nav-wrapper">
           
           <ul className="right">
-            <form>
-              <div className="input-field">
+            <form className="hide-on-small-only">
+              <div className="input-field ">
                 <input id="search" type="search" required />
                 <label htmlFor="search"><i className="material-icons">search</i></label>
                 <i className="material-icons">close</i>

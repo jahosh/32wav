@@ -30,6 +30,16 @@ export const EditProfile = (props) => {
               </div>
             </form>
           </div>
+             <div className="row">
+            <form className="col s12" onSubmit={props.handleFormSubmit}>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input defaultValue={props.user[0].paypal} id="paypal-name" type="text" maxLength="30" className="validate" />
+                  <label className="active" htmlFor="first_name2">Paypal:</label>
+                </div>
+              </div>
+            </form>
+          </div>
           <div className="row">
             <form onChange={props.handleAvatarUpload}>
               <div className="file-field input-field">

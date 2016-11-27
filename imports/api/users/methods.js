@@ -7,12 +7,13 @@ export const updateBio = new ValidatedMethod({
   validate: new SimpleSchema({
     bio: { type: String },
     twitter: { type: String },
+    paypal: { type: String },
   }).validator(),
-  run( { bio, twitter } ) {
+  run( { bio, twitter, paypal } ) {
     const userId = Meteor.userId()
     user = Meteor.users.findOne(userId);
 
-    Meteor.users.update(user, { $set: { bio: bio, twitter: twitter } });
+    Meteor.users.update(user, { $set: { bio: bio, twitter: twitter, paypal: paypal } });
   }
 });
 

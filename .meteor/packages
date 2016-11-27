@@ -38,9 +38,6 @@ copleykj:livestamp
 aldeed:template-extension
 aldeed:collection2
 mdg:validated-method
-meteorhacks:kadira-profiler@1.3.0
-meteorhacks:kadira@2.30.2
-kadira:debug
 peerlibrary:aws-sdk
 practicalmeteor:mocha
 xolvio:cleaner

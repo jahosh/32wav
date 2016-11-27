@@ -33,7 +33,6 @@ export default class Account extends Component {
     $(".progress-status").fadeIn();
   }
   editProfile() {
-    console.log('edit');
     $("#editProfile").toggle("slow");
   }
   onAvatarUpload(e) {
@@ -79,17 +78,20 @@ export default class Account extends Component {
     e.preventDefault();
    let payload         = {},
        bio             = $("#bio").val(),
-       twitter         = $("#twitter-name").val();
+       twitter         = $("#twitter-name").val(),
+       paypal          = $("#paypal-name").val();
 
     let bioDefault     = $("#bio").prop("defaultValue"),
-        twitterDefault = $("#twitter-name").prop("defaultValue");
+        twitterDefault = $("#twitter-name").prop("defaultValue"),
+        paypalDefault  = $("#paypal-name").prop("defaultValue");
 
-    if (bio === bioDefault && twitter === twitterDefault) {
+    if (bio === bioDefault && twitter === twitterDefault && paypal === paypalDefault) {
         alert('no change');
         return;
     }   
     payload.bio = bio;
     payload.twitter = twitter;
+    payload.paypal = paypal;
 
    updateBio.call(payload, (err) => {
      if (err) {

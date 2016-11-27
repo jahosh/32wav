@@ -162,12 +162,10 @@ export default class Track extends Component {
           <a className="btn-flat btn-small disabled songPrivacy" onClick={this.togglePrivate.bind(this)}>
             {this.props.song.private ? 'Private' : 'Public'}
           </a>
-          <i className="fa fa-usd" aria-hidden="true"></i>
-          <i className="fa fa-usd" aria-hidden="true"></i>
-          <i className="material-icons">payment</i>
-          <a className="btn-flat btn-small disabled" id="payment-tag">
+        
+          <Link to={"/purchase/" + this.props.song._id }  className="btn-flat btn-small disabled" id="payment-tag">
             Purchase
-          </a>
+          </Link>
         
       </div>
       </li>
