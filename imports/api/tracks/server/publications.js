@@ -17,14 +17,16 @@ if (Meteor.isServer) {
     /* Publication for Purchase Page */
     Meteor.publish('Tracks.purchase', function tracksPublication(trackId){
       //check trackId (later)
-      const user = Tracks.findOne(trackId).owner;
+      const user = Tracks.findOne(trackId);
+  
+
     return [ Tracks.find({_id: trackId,
       $or: [
         { private: { $ne: true } },
         { owner: this.userId },
-      ]}, { fields: { "title": 1, price: 1, } }, { limit: 1, sort  : { createdAt: -1 },
+      ]}, { fields: { title: 1, price: 1, owner: 1 },
     }),
-      Meteor.users.find({_id: user}, { fields: { paypal: 1 } })
+      Meteor.users.find({ _id: user.owner }, { fields: { paypal: 1 } })
     ]
   });
 

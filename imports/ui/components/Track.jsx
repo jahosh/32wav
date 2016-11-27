@@ -104,13 +104,12 @@ export default class Track extends Component {
     }
   }
   render() {
-    console.log('TRACK');
       const options = {
         height: 80,
         cursorColor: '#0000',
         progressColor: '#546E7A',
         barWidth: 2,
-        maxCanvasWidth: 200,
+
         cursorWidth: 3,
         hideScrollbar: true
       }
@@ -119,57 +118,63 @@ export default class Track extends Component {
       }
     return (
      <div> 
-       <li className="collection-item avatar beat" key={this.props.song._id}>
+       <li className="collection-item avatar track" key={this.props.song._id}>
          { this.state.loading ? <Blaze template="spinner" /> : '' }
-         <span className="title"><Link to={ '/' + this.props.song.username}><p className="flow-text">{this.props.song.username}</p></Link></span>
-         <Link className="track-link" to={ this.props.song.username + '/' + this.props.song.title }><p className="songTitle">{this.props.song.title}</p></Link><br />
-         <p>{this.props.song.fileName}</p>
-
+         <div className="row">
+         <div className="col s12 l3" id="track-info">
+            <span className="trackTitle"><Link className="trackLink" to={ this.props.song.username + '/' + this.props.song.title}><p id="username-link" className="flow-text">{this.props.song.title}</p></Link></span>
+            <Link className="track-link" to={ this.props.song.username}><p className="songTitle">{this.props.song.username}</p></Link>
+            <p>{this.props.song.fileName}</p>
+            <img src="./test_cover_resize.jpg" className="track-photo responsive" />
+         </div>
+         <div className="col s12 l9" id="track-wave">
+          {this.state.playing ? 
+            <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> :
+            <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> 
+          }      
+          
+          <Wavesurfer 
+            audioFile={this.props.source}
+            options={options}
+            pos={this.state.pos}
+            onLoading={this.handleLoading}
+            onReady={this.handleReady}
+            onPosChange={this.handlePosChange}
+            playing={this.state.playing}
+          />
          
-        {this.state.playing ? 
-          <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> :
-          <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> 
-        }      
-
-        <Wavesurfer 
-          audioFile={this.props.source}
-          options={options}
-          pos={this.state.pos}
-          onLoading={this.handleLoading}
-          onReady={this.handleReady}
-          onPosChange={this.handlePosChange}
-          playing={this.state.playing}
-        />
-        
-        
-        <div className="stats">
-          <p>Total Plays: </p> <span id="plays">{this.props.song.plays}</span> 
-          <br />
-          <p> Likes: </p> <span id="likes">{this.props.song.likedBy.length}</span>
+          <div className="stats">
+            Plays: <span id="plays">{this.props.song.plays}</span> <br />
+            Likes: <span id="likes">{this.props.song.likedBy.length}</span> <br />
+            Uploaded: <span className="" data-livestamp={this.props.song.createdAt}></span>
+          </div>
+           </div>
         </div>
-        <span data-livestamp={this.props.song.createdAt}></span>
+        <div className="row">
+          <div className="col s12" id="track-misc">
+          
+          <div className="beatActions">
+            <span className="secondary-content">${this.props.song.price}</span>
+            {/* 
+              <a href="#!" onClick={this.likeSong.bind(this)} className="secondary-content"><i className="em em-pray"></i></a>   
+              <div>
+              <button className="delete" onClick={this.deleteSong.bind(this)}>
+                &times;
+              </button>
+              </div>
+            */}
 
-        <div className="beatActions">
-        <a href="#!" onClick={this.likeSong.bind(this)} className="secondary-content"><i className="em em-pray"></i></a>
-        
-  
-          <div>
-        <button className="delete" onClick={this.deleteSong.bind(this)}>
-          &times;
-        </button>
+            <a className="btn-flat btn-small disabled songPrivacy" onClick={this.togglePrivate.bind(this)}>
+              {this.props.song.private ? 'Private' : 'Public'}
+            </a>
+          
+            <Link to={"/purchase/" + this.props.song._id }  className="btn-flat btn-small disabled" id="payment-tag">
+              Purchase
+            </Link>
         </div>
-
-          <a className="btn-flat btn-small disabled songPrivacy" onClick={this.togglePrivate.bind(this)}>
-            {this.props.song.private ? 'Private' : 'Public'}
-          </a>
-        
-          <Link to={"/purchase/" + this.props.song._id }  className="btn-flat btn-small disabled" id="payment-tag">
-            Purchase
-          </Link>
-        
-      </div>
-      </li>
-        
+        </div>
+        </div>
+      </li>      
     </div>
     );
   }
