@@ -103,6 +103,9 @@ export default class Track extends Component {
       Materialize.toast('Privacy Toggled', 4000) 
     }
   }
+  generateTweet(track) {
+    return "Listen to" + track.title + "by " + this.props.currentUser.username;
+  }
   render() {
       const options = {
         height: 80,
@@ -129,8 +132,8 @@ export default class Track extends Component {
          </div>
          <div className="col s12 l9" id="track-wave">
           {this.state.playing ? 
-            <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> :
-            <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="50px" /> 
+            <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="60px" /> :
+            <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="60px" /> 
           }      
           
           <Wavesurfer 
@@ -143,10 +146,10 @@ export default class Track extends Component {
             playing={this.state.playing}
           />
          
-          <div className="stats">
-            Plays: <span id="plays">{this.props.song.plays}</span> <br />
-            Likes: <span id="likes">{this.props.song.likedBy.length}</span> <br />
-            Uploaded: <span className="" data-livestamp={this.props.song.createdAt}></span>
+          <div className="track-stats">
+            <i className="tiny material-icons">play_arrow</i><span id="plays">{this.props.song.plays}</span> <br />
+            <i className="tiny material-icons">star</i><span id="likes">{this.props.song.likedBy.length}</span> <br />
+            <i className="tiny material-icons">playlist_add</i> <span className="" data-livestamp={this.props.song.createdAt}></span>
           </div>
            </div>
         </div>
@@ -164,16 +167,22 @@ export default class Track extends Component {
               </div>
             */}
 
-            <a className="btn-flat btn-small disabled songPrivacy" onClick={this.togglePrivate.bind(this)}>
+            <a className="btn-flat btn-small disabled float-right songPrivacy" onClick={this.togglePrivate.bind(this)}>
               {this.props.song.private ? 'Private' : 'Public'}
             </a>
-          
             <Link to={"/purchase/" + this.props.song._id }  className="btn-flat btn-small disabled" id="payment-tag">
               Purchase
+            </Link>
+             <Link className="btn-flat btn-small disabled twitter-share-button" href="#" id="share-tag">
+              Share
+            </Link>
+            <Link  onClick={this.likeSong.bind(this)} className="btn-flat btn-small disabled" id="like-tag">
+              Like
             </Link>
         </div>
         </div>
         </div>
+        <hr />
       </li>      
     </div>
     );

@@ -95,7 +95,7 @@ html {
 }
 
 .songPrivacy {
-  width: 10%;
+
   cursor: pointer !important;
   padding: 10px;
 }
@@ -184,6 +184,15 @@ ul.dropdown-content.select-dropdown li span {
 }
 
 .stats {
+  margin-top:5px;
+  margin-right: 5px;
+
+
+}
+
+.track-stats {
+  margin-top:5px;
+  margin-right: 5px;
 
 }
 .beatActions {
@@ -491,9 +500,6 @@ div.filepicker {
   color: white;
 }
 
-.stats {
-  margin-top: 30px;
-}
 
 .mainProfile {
   height: 80px;
@@ -559,15 +565,20 @@ div.filepicker {
 
 #track-info {
 
-  padding: 10px;
-
+  padding: 5px;
+ 
  
 }
 
 #track-wave {
   padding: 10px;
- 
+  padding-top: 20px;
 
+
+}
+
+canvas {
+  cursor: pointer !important;
 }
 
 #track-misc {
