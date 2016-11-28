@@ -199,6 +199,12 @@ ul.dropdown-content.select-dropdown li span {
   margin-bottom: 10px;
 }
 
+.collection {
+  border-radius: 5px;
+  margin-top: 0px !important;
+
+}
+
 
 nav .nav-wrapper form, nav .nav-wrapper form .input-field{
 height: 100%;
@@ -506,12 +512,23 @@ div.filepicker {
   margin-bottom: 300px;
 }
 
-.userPic {
-  height: 140px;
-  width: 140px;
- 
+.userPic { 
   border-radius: 50%;
   margin-top: 15px;
+}
+
+.user-avatar {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background:url(./defaultAvatar.jpeg) no-repeat;
+  background-size: cover !important;
+  background-color: black;
+  display: block;
+  margin-top: 30px;
+}
+.profie-pic {
+  border: 5px solid white !important;
 }
 
 .profileContact {
@@ -581,11 +598,12 @@ canvas {
   cursor: pointer !important;
 }
 
-#track-misc {
-
-}
 .float-right {
   float: right;
+}
+
+#browse-header .row {
+  margin-bottom: 0px;
 }
 
 

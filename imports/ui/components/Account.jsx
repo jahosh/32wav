@@ -117,6 +117,8 @@ export default class Account extends Component {
     const uploadStyle = {
       width: Math.round(this.state.progress) + '%'
     } 
+    const src = this.props.user[0].profile_img;
+    const reSized = src.replace('https://jahosh-meteor-files.s3-us-west-2', 'https://jahosh-meteor-files-resized.s3-us-west-1');
     return (
       <div className="row">
         <div className="col l10 offset-l1">
@@ -130,6 +132,7 @@ export default class Account extends Component {
           </div>
           <EditProfile
             user={this.props.user}
+            pic={reSized}
             progress={uploadStyle}
             handleFormSubmit={this.onEditProfile.bind(this)}
             handleAvatarUpload={this.onAvatarUpload.bind(this)}

@@ -5,7 +5,7 @@ export const EditProfile = (props) => {
    <div className="col m8 s8 l8 offset-l2" id="editProfile">
         <div className="row">
             <div className="center-align">
-              <img className="userPic" src={props.user[0].profile_img} />
+              <span className="user-avatar" style={{"background": 'url(' + props.pic + ')', "margin": "0 auto"}}></span>
               <p className="flow-text">current profile picture</p>
               <p className="flow-text" id="user-tagline">{props.user[0].bio}</p>
             </div>

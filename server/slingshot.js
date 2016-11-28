@@ -47,6 +47,6 @@ Slingshot.createDirective("avatarToAmazonS3", Slingshot.S3Storage, {
   },
   key: function (file) {
     let currentUserId = this.userId;
-    return file.name + currentUserId;
+    return currentUserId + file.name;
   }
 });

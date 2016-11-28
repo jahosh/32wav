@@ -48,7 +48,7 @@ class BrowseContainer extends Component {
       <div>
         {this.props.loading ? <Blaze template="spinner" /> :
           <div className="row">
-              <div className="col s12 m12 l10 offset-l1">
+              <div className="col s12 m12 l10 offset-l1" id="browse-header">
                 <header className="background-header text-center" id="charts-header">
                   <h1 className="center">Browse</h1>
                 </header>
