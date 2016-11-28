@@ -521,7 +521,7 @@ div.filepicker {
   height: 200px;
   width: 200px;
   border-radius: 50%;
-  background:url(./defaultAvatar.jpeg) no-repeat;
+  background:url(./defaultAvatar.jpeg) no-repeat 35%;
   background-size: cover !important;
   background-color: black;
   display: block;
@@ -612,4 +612,8 @@ canvas {
   margin-top: 300px;
   background: black;
   color: #fff;
+}
+
+.pic-load {
+  margin-top: 500px;
 }

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 import { Bert } from 'meteor/themeteorchef:bert';
 
-
 //methods
 import { updateBio } from '../../api/users/methods.js';
 import { updateProfileImage } from '../../api/users/methods.js';
@@ -15,7 +14,8 @@ export default class Account extends Component {
   constructor(props){
     super(props);
     this.state = {
-      progress: 0
+      progress: 0,
+      uploading: false
     }
   }
   componentDidMount() {
@@ -24,7 +24,7 @@ export default class Account extends Component {
     $("#editProfile").hide();
   }
   hideUploadElements() {
-    $(".progress").hide();
+    $(".progress").hide("slow");
     $(".progress-status").hide();
     $(".progress-result-success").hide();
   }
@@ -38,22 +38,24 @@ export default class Account extends Component {
   onAvatarUpload(e) {
     e.preventDefault();
     const self = this;
-    self.displayUploadElements();
     const file = $("#profile-pic-upload")[0].files[0];
     const upload = new Slingshot.Upload("avatarToAmazonS3");
 
     upload.send(file, function(err, source) {
       computation.stop();
       if (err) {
-        self.setState({ progress: 0 });
+        self.setState({ progress: 0, uploading: false });
         console.error(err);
         alert(err);
         return;
       }
+     self.displayUploadElements();
      let profileImage = {
        source: source
      };
-
+     Meteor.setTimeout(function(){ self.setState({ uploading: false });    }, 1000);
+     
+     console.log(self.state);
       updateProfileImage.call(profileImage, (err) => {
         if (err) {
           console.log(err);
@@ -65,11 +67,12 @@ export default class Account extends Component {
           message: '',
           icon: 'fa-user'
         });
+        Meteor.setTimeout(function(){ self.hideUploadElements();   }, 4000);
       });
     });
    let computation = Tracker.autorun(() => {
     if (!isNaN(upload.progress())) {
-      self.setState({ progress: upload.progress() * 100 });
+      self.setState({ progress: upload.progress() * 100, uploading: true });
       console.log(self.state);
     }
     }); 
@@ -132,6 +135,7 @@ export default class Account extends Component {
           </div>
           <EditProfile
             user={this.props.user}
+            uploading={this.state.uploading}
             pic={reSized}
             progress={uploadStyle}
             handleFormSubmit={this.onEditProfile.bind(this)}

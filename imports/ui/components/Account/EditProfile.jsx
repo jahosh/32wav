@@ -1,15 +1,25 @@
 import React from 'react';
+import Blaze from 'meteor/gadicc:blaze-react-component';
 
 export const EditProfile = (props) => {
   return (
    <div className="col m8 s8 l8 offset-l2" id="editProfile">
         <div className="row">
+           { props.uploading ?<div className="col l12"> <Blaze className="pic-load" template="spinner" /> </div>:
             <div className="center-align">
               <span className="user-avatar" style={{"background": 'url(' + props.pic + ')', "margin": "0 auto"}}></span>
               <p className="flow-text">current profile picture</p>
               <p className="flow-text" id="user-tagline">{props.user[0].bio}</p>
             </div>
+           }
+            <div className="progress-status">
+              <p className="flow-text center-align">Progress: {props.progress.width}</p>
+            </div>
+            <div className="progress">
+              <div className="determinate" style={props.progress}></div>
+            </div>
           </div>
+
           <div className="row">
             <form className="col s12" onSubmit={props.handleFormSubmit}>
               <div className="row">
@@ -52,12 +62,6 @@ export const EditProfile = (props) => {
                 </div>
               </div>
             </form>
-            <div className="progress-status">
-              <p className="flow-text center-align">Progress: {props.progress.width}</p>
-            </div>
-             <div className="progress">
-            <div className="determinate" style={props.progress}></div>
-          </div>
           </div>
         </div>
   );
