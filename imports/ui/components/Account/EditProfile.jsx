@@ -8,7 +8,7 @@ export const EditProfile = (props) => {
            { props.uploading ?<div className="col l12"> <Blaze className="pic-load" template="spinner" /> </div>:
             <div className="center-align">
               <span className="user-avatar" style={{"background": 'url(' + props.pic + ')', "margin": "0 auto"}}></span>
-              <p className="flow-text">current profile picture</p>
+              <p className="margin-5px" id="currentPhoto">current profile picture</p>
               <p className="flow-text" id="user-tagline">{props.user[0].bio}</p>
             </div>
            }

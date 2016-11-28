@@ -128,7 +128,7 @@ export default class Track extends Component {
             <span className="trackTitle"><Link className="trackLink" to={ this.props.song.username + '/' + this.props.song.title}><p id="username-link" className="flow-text">{this.props.song.title}</p></Link></span>
             <Link className="track-link" to={ this.props.song.username}><p className="songTitle">{this.props.song.username}</p></Link>
             <p>{this.props.song.fileName}</p>
-            <img src="./test_cover_resize.jpg" className="track-photo responsive" />
+            <span className="track-photo" ></span>
          </div>
          <div className="col s12 l9" id="track-wave">
           {this.state.playing ? 

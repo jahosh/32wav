@@ -195,9 +195,6 @@ ul.dropdown-content.select-dropdown li span {
   margin-right: 5px;
 
 }
-.beatActions {
-  margin-bottom: 10px;
-}
 
 .collection {
   border-radius: 5px;
@@ -205,7 +202,20 @@ ul.dropdown-content.select-dropdown li span {
 
 }
 
+hr {
 
+  text-align:center;
+  margin: 0 auto;
+}
+
+.margin5px {
+  margin: 0px !important;
+
+}
+#currentPhoto  {
+  font-size: 20px;
+  margin: 0 !important;
+}
 nav .nav-wrapper form, nav .nav-wrapper form .input-field{
 height: 100%;
 }
@@ -486,7 +496,6 @@ div.filepicker {
 }
 #username-link {
   color:black;
-  margin-bottom: 5px;
 }
 
 .track-link:hover {
@@ -576,8 +585,11 @@ div.filepicker {
 
 .track-photo {
   border: 1px solid black;
-  height: 175px;
-  width: 175px;
+  height: 200px;
+  width: 200px;
+  background:url(./test_cover_resize.jpg) no-repeat center !important;
+  background-size: cover !important;
+  display: block;
 
 }
 

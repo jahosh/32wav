@@ -4,7 +4,7 @@ export const ProfileHeader = (props) => (
   <div className="col l12  center-align mainProfile">
     <div className="col l10 offset-l1 s12" id="profile-header">
       <div className="col l2">
-        <span className="user-avatar profile-pic" style={{"background": 'url(' + props.user[0].profile_img + ')'}}></span>
+        <span className="user-avatar profile-pic" style={{"background": 'url(' + props.avatar + ')'}}></span>
         <br />
       </div>
       <div className="col l2" id="user-info">

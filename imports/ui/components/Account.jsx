@@ -29,8 +29,8 @@ export default class Account extends Component {
     $(".progress-result-success").hide();
   }
   displayUploadElements() {
-    $(".progress").fadeIn();
-    $(".progress-status").fadeIn();
+    $(".progress").fadeIn("slow");
+    $(".progress-status").fadeIn("slow");
   }
   editProfile() {
     $("#editProfile").toggle("slow");
@@ -40,6 +40,7 @@ export default class Account extends Component {
     const self = this;
     const file = $("#profile-pic-upload")[0].files[0];
     const upload = new Slingshot.Upload("avatarToAmazonS3");
+    self.displayUploadElements();
 
     upload.send(file, function(err, source) {
       computation.stop();
@@ -49,11 +50,10 @@ export default class Account extends Component {
         alert(err);
         return;
       }
-     self.displayUploadElements();
      let profileImage = {
        source: source
      };
-     Meteor.setTimeout(function(){ self.setState({ uploading: false });    }, 2000);
+     Meteor.setTimeout(function(){ self.setState({ uploading: false });    }, 1000);
      
      console.log(self.state);
       updateProfileImage.call(profileImage, (err) => {
