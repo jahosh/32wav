@@ -53,7 +53,7 @@ export default class Account extends Component {
      let profileImage = {
        source: source
      };
-     Meteor.setTimeout(function(){ self.setState({ uploading: false });    }, 1000);
+     Meteor.setTimeout(function(){ self.setState({ uploading: false });    }, 2000);
      
      console.log(self.state);
       updateProfileImage.call(profileImage, (err) => {
