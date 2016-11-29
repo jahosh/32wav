@@ -1,7 +1,8 @@
 Accounts.onCreateUser((options, user) => {
+
   if (user.services.twitter) {
     const { profile_image_url, screenName } = user.services.twitter;
-
+    //grab photo link from twitter
     user.profile_img = profile_image_url.replace(/(_normal)/i, '');
     user.username = screenName;
     user.emails = [
@@ -10,7 +11,16 @@ Accounts.onCreateUser((options, user) => {
         "verified": false
       },
     ]
-
-    return user;
   }
+  
+     Meteor.call('sendVerificationLink', user, (err) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      console.log('sent');
+    }
+  });
+  
+  return user;
 });

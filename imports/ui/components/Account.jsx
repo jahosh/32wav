@@ -15,13 +15,15 @@ export default class Account extends Component {
     super(props);
     this.state = {
       progress: 0,
-      uploading: false
+      uploading: false,
+      processing: false
     }
   }
   componentDidMount() {
     this.hideUploadElements();
     $('.collapsible').collapsible();
     $("#editProfile").hide();
+
   }
   hideUploadElements() {
     $(".progress").hide("slow");
@@ -53,7 +55,7 @@ export default class Account extends Component {
      let profileImage = {
        source: source
      };
-     Meteor.setTimeout(function(){ self.setState({ uploading: false });    }, 1000);
+     //Meteor.setTimeout(function(){ self.setState({ uploading: false });    }, 4000);
      
      console.log(self.state);
       updateProfileImage.call(profileImage, (err) => {
@@ -67,7 +69,8 @@ export default class Account extends Component {
           message: '',
           icon: 'fa-user'
         });
-        Meteor.setTimeout(function(){ self.hideUploadElements();   }, 4000);
+        self.setState({ processing: true });
+        Meteor.setTimeout(function(){ self.setState({ uploading: false, processing: false }); self.hideUploadElements();   }, 6000);
       });
     });
    let computation = Tracker.autorun(() => {
@@ -120,8 +123,17 @@ export default class Account extends Component {
     const uploadStyle = {
       width: Math.round(this.state.progress) + '%'
     } 
-    const src = this.props.user[0].profile_img;
-    const reSized = src.replace('https://jahosh-meteor-files.s3-us-west-2', 'https://jahosh-meteor-files-resized.s3-us-west-1');
+    const src = this.props.user[0] ? `${this.props.user[0].profile_img}` : 'not here';
+    function testSrc(src) {
+      if (src === "undefined") {
+        return './defaultAvatar.jpeg';
+      }
+       return src.replace('https://jahosh-meteor-files.s3-us-west-2', 'https://jahosh-meteor-files-resized.s3-us-west-1');
+    }
+   
+    
+    const source = testSrc(src)
+   
     return (
       <div className="row">
         <div className="col l10 offset-l1">
@@ -136,7 +148,8 @@ export default class Account extends Component {
           <EditProfile
             user={this.props.user}
             uploading={this.state.uploading}
-            pic={reSized}
+            processing={this.state.processing}
+            pic={source}
             progress={uploadStyle}
             handleFormSubmit={this.onEditProfile.bind(this)}
             handleAvatarUpload={this.onAvatarUpload.bind(this)}

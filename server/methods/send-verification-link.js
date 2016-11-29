@@ -1,8 +1,11 @@
 Meteor.methods({
-  sendVerificationLink() {
+  sendVerificationLink(user) {
+    this.unblock();
+    
     let userId = Meteor.userId();
     if ( userId ) {
-      return Accounts.sendVerificationEmail(userId);
+  
+        return Accounts.sendVerificationEmail(userId);
     }
   }
 });

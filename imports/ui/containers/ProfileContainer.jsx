@@ -35,7 +35,7 @@ class ProfileContainer extends Component {
   }
   render() {
     //<p>Member Since: <br />{ this.props.user[0].createdAt ? `${this.props.user[0].createdAt}` : '' }</p>
-     const src = this.props.user[0].profile_img;
+    const src = this.props.user[0] ? `${this.props.user[0].profile_img}` : 'not here';
     const reSized = src.replace('https://jahosh-meteor-files.s3-us-west-2', 'https://jahosh-meteor-files-resized.s3-us-west-1');
     return (
       <div className="row">

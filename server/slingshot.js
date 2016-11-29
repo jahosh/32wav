@@ -29,7 +29,7 @@ Slingshot.createDirective("uploadToAmazonS3", Slingshot.S3Storage, {
 /* Avatar Uploads to S3 */
 Slingshot.fileRestrictions("avatarToAmazonS3", {
   allowedFileTypes: ["image/png", "image/jpeg", "image/jpg"],
-  maxSize: 5 * 1024 * 1024,
+  maxSize: 10 * 1024 * 1024,
 });
 
 Slingshot.createDirective("avatarToAmazonS3", Slingshot.S3Storage, {

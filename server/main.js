@@ -11,8 +11,11 @@ import '../imports/startup/server/mail-url.js';
 import { Email } from 'meteor/email';
 import { Meteor } from 'meteor/meteor';
 
+
+//User Account Validation Modules
 import './accounts/validateUser.js';
 import './accounts/createUser.js';
+
 
 /*
 Accounts.onCreateUser(function(options, user) {
@@ -51,6 +54,7 @@ Accounts.onCreateUser(function(options, user) {
 
 
 /*
+
 Accounts.onLogin(function(){ 
   Meteor.call('sendVerificationLink', (err, response) => {
     if (err) {
@@ -60,5 +64,7 @@ Accounts.onLogin(function(){
     }
   })
 });
+
 */
+
 

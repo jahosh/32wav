@@ -5,6 +5,7 @@ export const EditProfile = (props) => {
   return (
    <div className="col m8 s8 l8 offset-l2" id="editProfile">
         <div className="row">
+           { props.processing ? <div className="center-align"> <h1> Processing File</h1> </div> : '' }
            { props.uploading ?<div className="col l12"> <Blaze className="pic-load" template="spinner" /> </div>:
             <div className="center-align">
               <span className="user-avatar" style={{"background": 'url(' + props.pic + ')', "margin": "0 auto"}}></span>

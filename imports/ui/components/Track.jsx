@@ -126,7 +126,7 @@ export default class Track extends Component {
          <div className="row">
          <div className="col s12 l3" id="track-info">
             <span className="trackTitle"><Link className="trackLink" to={ this.props.song.username + '/' + this.props.song.title}><p id="username-link" className="flow-text">{this.props.song.title}</p></Link></span>
-            <Link className="track-link" to={ this.props.song.username}><p className="songTitle">{this.props.song.username}</p></Link>
+            <Link className="track-link" to={this.props.song.username}><p className="songTitle">{this.props.song.username}</p></Link>
             <p>{this.props.song.fileName}</p>
             <span className="track-photo" ></span>
          </div>
