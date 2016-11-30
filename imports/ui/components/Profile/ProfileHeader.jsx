@@ -31,7 +31,7 @@ export const ProfileHeader = (props) => (
         <tr>
           <td>Los Angeles, CA</td>
           <td>
-            { props.user[0].twitter ? <a href={`http://twitter.com/${props.user[0].twitter}`}>  
+            { props.user[0].twitter ? <a  target="_blank" href={`http://twitter.com/${props.user[0].twitter}`}>  
             <i className="fa fa-twitter" aria-hidden="true"></i>
             </a>
             : '' }

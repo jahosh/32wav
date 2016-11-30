@@ -70,7 +70,7 @@ export default class Account extends Component {
           icon: 'fa-user'
         });
         self.setState({ processing: true });
-        Meteor.setTimeout(function(){ self.setState({ uploading: false, processing: false }); self.hideUploadElements();   }, 6000);
+        Meteor.setTimeout(function(){ self.setState({ uploading: false, processing: false }); self.hideUploadElements();   }, 7000);
       });
     });
    let computation = Tracker.autorun(() => {

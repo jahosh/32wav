@@ -32,8 +32,8 @@ html {
   height: 125px;
 }
 
-#home-body {
-
+.topNav {
+  margin-bottom: 32px !important;
 }
 
 #home-background {
@@ -44,6 +44,10 @@ html {
   background-color: #222;
 }
 
+#home-info {
+  margin-top: 100px;
+}
+
 
 .tagline {
   font-size: 16px;
@@ -51,12 +55,19 @@ html {
 }
 #signup-btn {
   border-radius: 5px;
+  font-size: 16px;
+
 }
 
 #headline {
-  font-size: 55px;
-  margin-bottom: 5px;
+  font-size: 75px;
 }
+
+
+.flow-text.tagline {
+  margin-bottom: 0px !important;
+}
+
 .sideNav {
   border: 2px solid black;
   margin-top: 10px;
@@ -228,7 +239,7 @@ input[type="search"] {
   background-size: cover !important;
   background:url(./cover.jpg)#222 no-repeat   35%;
   height: 200px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 #faq-header {
@@ -436,7 +447,7 @@ text-align: center;
 div.filepicker {
   border: none !important;
   margin-top: 25px;
-  margin-bottom: 30px !important;
+  margin-bottom: 10px !important;
   background-color: #546E7A !important;
   color: black !important;
   font-size: 16px !important;
@@ -444,6 +455,7 @@ div.filepicker {
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
   box-shadow:         3px 3px 5px 6px #ccc;
+  
 }
 
 
@@ -513,6 +525,12 @@ div.filepicker {
 
 .user-email {
   color: white;
+  font-size: 12px;
+  opacity: 50%;
+}
+
+.user-email:hover {
+  color: lightgrey;
 }
 
 
@@ -629,4 +647,11 @@ canvas {
 
 .pic-load {
   margin-top: 500px;
+}
+
+#file-types {
+  font-size: 12px;
+
+  font-style: italic;
+  bottom-margin: 40px;
 }

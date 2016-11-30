@@ -3,7 +3,7 @@ import config from './slingshot_config.js';
 
 /* Track Uploads to S3 */
 Slingshot.fileRestrictions("uploadToAmazonS3", {
-  allowedFileTypes: ["audio/mp3", "audio/mpeg", "audio/x-m4a"],
+  allowedFileTypes: ["audio/mp3", "audio/mpeg", "audio/x-m4a", "audio/wav"],
   maxSize: 10 * 1024 * 1024,
 });
 
@@ -47,6 +47,6 @@ Slingshot.createDirective("avatarToAmazonS3", Slingshot.S3Storage, {
   },
   key: function (file) {
     let currentUserId = this.userId;
-    return currentUserId + file.name;
+    return  "images" + "/" + currentUserId + file.name;
   }
 });

@@ -175,11 +175,15 @@ render() {
   } 
   return (
       <div className="row">
+       
          <DropzoneComponent
               config={this.config}
               eventHandlers={eventHandlers}
               djsConfig={this.djsConfig}
             />
+             <div className="center-align" id="file-types">
+          .mp3 / .mp4 / .wav - under 10mb
+        </div>
 
              <div className="progress-status">
             <p className="flow-text center-align">Progress: {uploadStyle.width}</p>

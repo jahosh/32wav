@@ -14,31 +14,25 @@ export default class Navbar extends Component {
   render() {
     return (
       <nav className="black topNav">
-        <div className="nav-wrapper">
-          
+        <div className="nav-wrapper">  
           <ul className="right">
-            <form className="hide-on-small-only">
-              <div className="input-field ">
-                <input id="search" type="search" required />
-                <label htmlFor="search"><i className="material-icons">search</i></label>
-                <i className="material-icons">close</i>
-              </div>
-            </form>
+            <li><Link to="/myaccount" activeClassName="active">{ this.props.currentUser ? <div className="user-email"> {this.props.currentUser.username } </div> : '' }</Link></li>
           </ul>
           <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
           <ul id="nav-mobile" className="left hide-on-med-and-down">
             <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
-            <li><Link to="/upload" activeClassName="active">Upload</Link></li>
             <li><Link to="/browse" activeClassName="active">Browse</Link></li>
+            <li><Link to="/upload" activeClassName="active">Upload</Link></li>
+            <li><Link to="/signin" activeClassName="active">Login/Register</Link></li>
             <li><Link to="/myaccount" activeClassName="active">Account</Link></li>
             <li><Link to="/faq" activeClassName="active">FAQ</Link></li>
             <li><Link to="/contact" activeClassName="active">Contact</Link></li>
-            <li><Link to="/signin" activeClassName="active">{ this.props.currentUser ? <div className="user-email"> {this.props.currentUser.emails[0].address} </div> : 'Login / Register' }</Link></li>
+
           </ul>
           <ul className="side-nav links" id="mobile-demo">
             <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
-            <li><Link to="/upload" activeClassName="active">Upload</Link></li>
             <li><Link to="/browse" activeClassName="active">Browse</Link></li>
+            <li><Link to="/upload" activeClassName="active">Upload</Link></li>
             <li><Link to="/myaccount" activeClassName="active">Account</Link></li>
             <li><Link to="/faq" activeClassName="active">FAQ</Link></li>
             <li><Link to="/contact" activeClassName="active">Contact</Link></li>
@@ -53,3 +47,15 @@ export default class Navbar extends Component {
 Navbar.PropTypes = {
 
 }
+
+/* -- Old Nav - Search
+
+ <form className="hide-on-small-only">
+              <div className="input-field ">
+                <input id="search" type="search" required />
+                <label htmlFor="search"><i className="material-icons">search</i></label>
+                <i className="material-icons">close</i>
+              </div>
+            </form>
+
+            */
