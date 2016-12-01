@@ -19,10 +19,10 @@ export const insertTrack = new ValidatedMethod({
     price: { type: Number },
     genre: { type: String },
     licenseType: { type: String },
-    description: { type: String },
     fileSource: { type: String },
     fileKey: { type: String },
     setPrivate: { type: Boolean },
+    trackImage: { type: String },
   }).validator(),
   run(track) {
     let timeStamp = moment().format('X');
@@ -34,7 +34,6 @@ export const insertTrack = new ValidatedMethod({
       title: track.title,
       genre: track.genre,
       price: track.price,
-      description: track.description,
       licenseType: track.licenseType,
       fileSource: track.fileSource,
       fileKey: track.fileKey,
@@ -42,6 +41,7 @@ export const insertTrack = new ValidatedMethod({
       owner: Meteor.userId(),
       username: userName,
       setPrivate: track.setPrivate,
+      trackImage: track.trackImage,
       likedBy: [],
       plays: 0
     });
@@ -128,3 +128,13 @@ export const setTrackPrivate = new ValidatedMethod({
   }
 });
 
+
+export const updateTrackImage = new ValidatedMethod({
+  name: "Tracks.methods.updateTrackImage",
+  validate: new SimpleSchema({
+    source: { type: String },
+  }).validator(),
+  run( { source } ) {
+
+  }
+});

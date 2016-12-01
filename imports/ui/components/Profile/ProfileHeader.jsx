@@ -7,8 +7,9 @@ export const ProfileHeader = (props) => (
         <span className="user-avatar profile-pic" style={{"background": 'url(' + props.avatar + ')'}}></span>
         <br />
       </div>
-      <div className="col l2" id="user-info">
+      <div className="col l2 offset-l1" id="user-info">
         <div className="" id="profile-name">
+        <i className="material-icons">verified_user</i>
         <h3 className="center-align" id="user-name">
           {props.params.username}
         </h3>

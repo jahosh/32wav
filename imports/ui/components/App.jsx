@@ -28,7 +28,7 @@ export default class App extends Component {
               </p>
             </div>
             <div className="col s12 m12 l10 offset-l1 center-align" id="signup-heading">
-              <Link className="waves-effect waves-light btn-large black" id="signup-btn" to="/signin">SIGN UP FOR FREE</Link>
+              <Link className="waves-effect waves-light btn-large grey darken-4" id="signup-btn" to="/signin">SIGN UP FOR FREE</Link>
             </div>
           </div>
           <div className="row">
@@ -38,7 +38,7 @@ export default class App extends Component {
                 <i className="large material-icons">verified_user</i>
                 < br />
                 <h5>verified producers</h5> <br />
-                buy tracks from your favorite producers
+                buy tracks from reptable producers in the industry
               </div>
 
               <div className="col s4 center-align">

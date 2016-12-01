@@ -132,7 +132,7 @@ html {
 
 .playPause {
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 .playPause:hover {
  opacity: 1.0;
@@ -184,6 +184,7 @@ ul.dropdown-content.select-dropdown li span {
 
 .uploadBtn {
   margin-top: 30px;
+  color: black !important;
 }
 
 .songTitle {
@@ -448,14 +449,19 @@ div.filepicker {
   border: none !important;
   margin-top: 25px;
   margin-bottom: 10px !important;
-  background-color: #546E7A !important;
-  color: black !important;
+  background-color: #212121 !important;
+  color: white !important;
   font-size: 16px !important;
   font-weight: bold;
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
   box-shadow:         3px 3px 5px 6px #ccc;
   
+}
+
+/* Keeps font black after upload */
+div.dz-preview.dz-file-preview.card {
+  color: black !important;
 }
 
 
@@ -570,7 +576,7 @@ div.filepicker {
 
 #profile-header {
   border: 1px solid black;
-  background: black;
+  background: #212121;
   height: 260px;
   color: white;
   border-radius: 5px;
@@ -612,17 +618,22 @@ div.filepicker {
 }
 
 #track-info {
-
   padding: 5px;
- 
- 
 }
 
 #track-wave {
   padding: 10px;
   padding-top: 20px;
+}
 
-
+#default-artwork {
+  background-color: #212121;
+  background-size: cover !important;
+  height: 200px;
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 50px;
 }
 
 canvas {

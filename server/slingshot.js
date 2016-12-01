@@ -50,3 +50,28 @@ Slingshot.createDirective("avatarToAmazonS3", Slingshot.S3Storage, {
     return  "images" + "/" + currentUserId + file.name;
   }
 });
+
+/* Track Avatar Uploads to S3 */
+Slingshot.fileRestrictions("trackAvatarToAmazonS3", {
+  allowedFileTypes: ["image/png", "image/jpeg", "image/jpg"],
+  maxSize: 10 * 1024 * 1024,
+});
+
+Slingshot.createDirective("trackAvatarToAmazonS3", Slingshot.S3Storage, {
+  AWSAccessKeyId: Meteor.settings.s3AccessId,
+  AWSSecretAccessKey: Meteor.settings.s3AccessKey,
+  bucket: "jahosh-meteor-files",
+  acl: "public-read",
+  region: "us-west-2",
+  authorize: function () {
+    if (!this.userId) {
+      let message = "Please login before posting images";
+      throw new Meteor.Error("Login Required", message);
+    }
+    return true;
+  },
+  key: function (file) {
+    let currentUserId = this.userId;
+    return  "trackimages" + "/" + currentUserId + file.name;
+  }
+});

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 import Blaze from 'meteor/gadicc:blaze-react-component';
-import DropzoneComponent from 'react-dropzone-component';
 import { Router, browserHistory } from 'react-router';
 import { default as swal } from 'sweetalert2';
 import '../../../node_modules/sweetalert2/dist/sweetalert2.min.css';
@@ -15,6 +14,8 @@ import '../../../node_modules/react-dropzone-component/styles/filepicker.css';
 
 //react components
 import Uploader from './Uploader.jsx';
+import { DropzoneUploader } from "./Upload/DropzoneUploader.jsx";
+import { UploadStatus } from "./Upload/UploadStatus.jsx";
 
 const template = ReactDOMServer.renderToStaticMarkup(
   <div className="dz-preview dz-file-preview card">
@@ -50,8 +51,12 @@ export default class FileUpload extends Component {
     };
     this.state = {
       progress: 0,
-      uploadComplete: false
+      uploading: false,
+      uploadComplete: false,
+      trackImage: ''
     }
+
+    this.change = this.change.bind(this);
   }
 componentDidMount() {
   this.initMaterialize();
@@ -59,7 +64,7 @@ componentDidMount() {
   $("#visability").click(function() {
       let licenseType = $("#visablity").prop('checked');
       let privateStatus = $("#private").prop('checked');
-  })
+  });
 }
 initMaterialize() {
   $(document).ready(function() {
@@ -70,6 +75,7 @@ hideUploadElements() {
   $(".progress").hide();
   $(".progress-status").hide();
   $(".progress-result-success").hide();
+  $("#display-track").hide();
 }
 displayUploadElements() {
   $(".progress").fadeIn();
@@ -99,10 +105,10 @@ displayFileUploaded() {
   
 }
 onDrop(file) {
+  console.log('fired');
   const self = this;
   const fileKey = file.name;
   self.displayUploadElements();
-
   const upload = new Slingshot.Upload("uploadToAmazonS3");
     upload.send(file, function(err, source) {
       computation.stop();
@@ -122,19 +128,42 @@ onDrop(file) {
   let computation = Tracker.autorun( () => {
     const self = this
     if (!isNaN(upload.progress())) {
-      self.setState({ progress: upload.progress() * 100 });
+      self.setState({ progress: upload.progress() * 100, uploading: true });
     }
   }); 
 }
+change(e) {
+
+  e.preventDefault();
+
+  const file = $("#track-photo")[0].files[0];
+  const self = this;
+  /* send track-image to s3 */
+  const upload = new Slingshot.Upload("trackAvatarToAmazonS3");
+    upload.send(file, function(err, source) {
+      if (err) {
+        this.setState({ progress: 0 });
+        console.error(err);
+        alert(err);
+        return;
+      }
+
+      console.log(source);
+      $("#photolink").append(source);
+      $("#default-artwork").css("background-image", "url(" + source + ")"); 
+      $("#display-track").show("slow");
+    });
+}
 saveTrack(source, fileKey) {
-  let title             = $("#beatTitle").val()
-  let price             = $("#beatPrice").val();
-  let genre             = $("#beat-genre option:selected").val();
-  let description       = $("#track-desc").val()
-  let privateSelect     = $("#private").prop("checked");
-  let publicSelect      = $("#public").prop("checked");
-  let visability        = privateSelect ? true : false;
-  let licenseType       = $("#track-license option:selected").val();
+  let title             = $("#beatTitle").val(),
+      price             = $("#beatPrice").val(),
+      genre             = $("#beat-genre option:selected").val(),
+      description       = $("#track-desc").val(),
+      privateSelect     = $("#private").prop("checked"),
+      publicSelect      = $("#public").prop("checked"),
+      visability        = privateSelect ? true : false,
+      licenseType       = $("#track-license option:selected").val(),
+      trackImage        = $("#photolink").text();
 
   if (title === '') {
     alert('please enter a title');
@@ -145,10 +174,10 @@ saveTrack(source, fileKey) {
     price: parseInt(price),
     genre: genre,
     licenseType: licenseType,
-    description: description,
     fileSource: source,
     fileKey: fileKey,
-    setPrivate: visability
+    setPrivate: visability,
+    trackImage: trackImage
   }
   insertTrack.call(track, (err) => {
     if (err) {
@@ -174,28 +203,27 @@ render() {
     width: Math.round(this.state.progress) + '%'
   } 
   return (
-      <div className="row">
-       
-         <DropzoneComponent
-              config={this.config}
-              eventHandlers={eventHandlers}
-              djsConfig={this.djsConfig}
-            />
-             <div className="center-align" id="file-types">
-          .mp3 / .mp4 / .wav - under 10mb
-        </div>
+    <div className="row">  
+      <DropzoneUploader
+        config={this.config}
+        eventHandlers={eventHandlers}
+        djsConfig={this.djsConfig}
+      />
 
-             <div className="progress-status">
-            <p className="flow-text center-align">Progress: {uploadStyle.width}</p>
-          </div>
-          <div className="progress-result-success">
-            <p className="center-align"> Success! </p>
-            <i className="fa fa-check center-align" aria-hidden="true"></i>
-          </div>
-          <div className="progress">
-            <div className="determinate" style={uploadStyle}></div>
-          </div>
-        <div className="uploadUI">
+    <div className="col s12" id="display-track"> 
+      <div className="center-align">
+        track photo:
+        <span className="center-align" id="default-artwork"></span>
+        <div id="photolink"></div>
+      </div>
+    </div> 
+
+      <UploadStatus
+        uploadProgress={uploadStyle.width} 
+      />
+ 
+
+    <div className="uploadUI">
           <form className="new-task col s12" id="track-data" onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="input-field col s6">
@@ -219,7 +247,7 @@ render() {
               </div>
             </div>
             <div className="row">
-              <div className="input-field col s6">
+              <div className="input-field col s6" id="license">
                 <select id="track-license">
                   <option defaultValue="">Select a license</option>
                   <option value="lease">Lease</option>
@@ -238,7 +266,22 @@ render() {
               </div>
             </div>
             <div className="row">
+            <div className="col s12">
+                  <div className="file-field input-field">
+                    <div className="btn grey darken-4">
+                      <span>Update image</span>
+                      <input onChange={this.change} id="track-photo" type="file" />
+                    </div>
+                    <div className="file-path-wrapper">
+                      <input className="file-path validate" type="text" />
+                    </div>
+                  </div>
+                  <label htmlFor="textarea1">Track Photo (.jpeg/.jpg/.png under 3mb)</label>
+              </div>
+            </div>
+            <div className="row">
             <div className="radio col s6" id="visability">
+            <b>Track visability</b>
                 <p>
                   <input name="public-private" type="radio" value="public" id="public" />
                   <label htmlFor="public">Public</label>
@@ -248,13 +291,10 @@ render() {
                   <label htmlFor="private">Private</label>
                 </p>
               </div>
-              <div className="input-field  col s6">
-                <textarea id="track-desc" className="materialize-textarea"></textarea>
-                <label htmlFor="textarea1">Description</label>
-              </div>
+              
             </div>
-             <div id="uploadSubmit">
-            <button id="uploadBtn" className="btn waves-effect waves-light blue-grey darken-1 center-align" type="submit" name="action">Submit
+            <div id="uploadSubmit">
+            <button id="uploadBtn" className="btn waves-effect waves-light grey darken-4 center-align" type="submit" name="action">Submit
               <i className="material-icons right">send</i>
             </button>
             <div className="tos">
