@@ -142,6 +142,10 @@ html {
   background-color: white;
 }
 
+.beatActions {
+  margin-bottom: 5px;
+}
+
 .collection .row {
   margin-bottom: 0px !important;
 }
@@ -514,6 +518,8 @@ div.dz-preview.dz-file-preview.card {
 }
 #username-link {
   color:black;
+  font-size: 15px;
+  font-style: bold;
 }
 
 .track-link:hover {
@@ -608,10 +614,9 @@ div.dz-preview.dz-file-preview.card {
 }
 
 .track-photo {
-  border: 1px solid black;
+  border: 3px solid black;
   height: 200px;
   width: 200px;
-  background:url(./test_cover_resize.jpg) no-repeat center !important;
   background-size: cover !important;
   display: block;
 

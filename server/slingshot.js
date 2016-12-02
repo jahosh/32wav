@@ -4,7 +4,7 @@ import config from './slingshot_config.js';
 /* Track Uploads to S3 */
 Slingshot.fileRestrictions("uploadToAmazonS3", {
   allowedFileTypes: ["audio/mp3", "audio/mpeg", "audio/x-m4a", "audio/wav"],
-  maxSize: 10 * 1024 * 1024,
+  maxSize: 15 * 1024 * 1024,
 });
 
 Slingshot.createDirective("uploadToAmazonS3", Slingshot.S3Storage, {

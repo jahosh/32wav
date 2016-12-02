@@ -110,14 +110,14 @@ export default class Track extends Component {
       const options = {
         height: 80,
         cursorColor: '#0000',
-        progressColor: '#546E7A',
+        progressColor: '#212121',
         barWidth: 2,
 
         cursorWidth: 3,
         hideScrollbar: true
       }
       const cdnSource = {
-        beatUrl: 'https://d2hbl0lksauo4z.cloudfront.net/Jahosh_R2Instrumental.mp3'
+        beatUrl: 'https://d2hbl0lksauo4z.cloudfront.net/05 Choosing Sides.mp3'
       }
     return (
      <div> 
@@ -128,7 +128,8 @@ export default class Track extends Component {
             <span className="trackTitle"><Link className="trackLink" to={ this.props.song.username + '/' + this.props.song.title}><p id="username-link" className="flow-text">{this.props.song.title}</p></Link></span>
             <Link className="track-link" to={this.props.song.username}><p className="songTitle">{this.props.song.username}</p></Link>
             <p>{this.props.song.fileName}</p>
-            <span className="track-photo" ></span>
+            <span className="track-photo" style={{"background": 'url(' + this.props.song.trackImage + ')'}} ></span>
+          
          </div>
          <div className="col s12 l9" id="track-wave">
           {this.state.playing ? 
@@ -166,11 +167,13 @@ export default class Track extends Component {
               </button>
               </div>
             */}
-
+            <a className="btn-flat btn-small disabled float-right" onClick={this.deleteSong.bind(this)}>
+              Delete 
+            </a>
             <a className="btn-flat btn-small disabled float-right songPrivacy" onClick={this.togglePrivate.bind(this)}>
               {this.props.song.private ? 'Private' : 'Public'}
             </a>
-            <Link to={"/purchase/" + this.props.song._id }  className="btn-flat btn-small disabled" id="payment-tag">
+            <Link to={"/purchase/" + this.props.song._id }  className="btn-flat btn-small disabled grey darken-4" id="payment-tag">
               Purchase
             </Link>
              <Link className="btn-flat btn-small disabled twitter-share-button" href="#" id="share-tag">
