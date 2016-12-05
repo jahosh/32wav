@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { browserHistory } from 'react-router';
 
 // allows a user to filter based on categories
 export default class TracksCategories extends Component {
@@ -22,6 +23,13 @@ export default class TracksCategories extends Component {
      $(document).ready(function() {
         $('select').material_select();
       }); 
+  }
+  handleSearch(e) {
+    e.preventDefault();
+    let term = $("#search").val()
+    console.log(term);
+
+    browserHistory.push('/search/' + term);
   }
   render() {
     return (
@@ -63,9 +71,9 @@ export default class TracksCategories extends Component {
             Total tracks: {this.props.trackCount}
           </p>
         </div>
-         <form className="hide-on-small-only">
+         <form className="hide-on-small-only" onSubmit={this.handleSearch}>
               <div className="input-field ">
-                <input id="search" type="search" required />
+                <input id="search" type="search" placeholder="search..." required />
                 <label htmlFor="search"><i className="material-icons">search</i></label>
                 <i className="material-icons">close</i>
               </div>

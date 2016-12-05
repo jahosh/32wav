@@ -8,6 +8,7 @@ import { Link } from 'react-router';
 import _ from 'lodash';
 import { default as swal } from 'sweetalert2';
 
+//collections
 import { Tracks } from '../../api/tracks/tracks.js';
 
 //methods
@@ -15,7 +16,6 @@ import { removeTrack } from '../../api/tracks/methods.js';
 import { likeTrack } from '../../api/tracks/methods.js'; 
 import { incrementTrackPlayCount } from '../../api/tracks/methods.js';
 import { setTrackPrivate } from '../../api/tracks/methods.js';
-
 
 export default class Track extends Component {
   constructor(props) {
@@ -29,12 +29,13 @@ export default class Track extends Component {
     this.handlePosChange = this.handlePosChange.bind(this);
     this.handleLoading = this.handleLoading.bind(this)
     this.handleReady = this.handleReady.bind(this);
-
+  }
+  componentDidMount() {
+     $('.materialboxed').materialbox();
   }
   handleTogglePlay() {
    if (!this.state.playing) {
    incrementTrackPlayCount.call({ trackId: this.props.song._id});
-   
    }
     this.setState({
       playing: !this.state.playing
@@ -128,7 +129,7 @@ export default class Track extends Component {
             <span className="trackTitle"><Link className="trackLink" to={ this.props.song.username + '/' + this.props.song.title}><p id="username-link" className="flow-text">{this.props.song.title}</p></Link></span>
             <Link className="track-link" to={this.props.song.username}><p className="songTitle">{this.props.song.username}</p></Link>
             <p>{this.props.song.fileName}</p>
-            <span className="track-photo" style={{"background": 'url(' + this.props.song.trackImage + ')'}} ></span>
+            <span className="track-photo materialboxed" style={{"background": 'url(' + this.props.song.trackImage + ')'}} ></span>
           
          </div>
          <div className="col s12 l9" id="track-wave">
@@ -155,10 +156,9 @@ export default class Track extends Component {
            </div>
         </div>
         <div className="row">
-          <div className="col s12" id="track-misc">
-          
+          <div className="col s12" id="track-misc">       
           <div className="beatActions">
-            <span className="secondary-content">${this.props.song.price}</span>
+            <Link to={ "/purchase/" + this.props.song._id }><span className="secondary-content">${this.props.song.price}</span></Link>
             {/* 
               <a href="#!" onClick={this.likeSong.bind(this)} className="secondary-content"><i className="em em-pray"></i></a>   
               <div>
@@ -167,13 +167,17 @@ export default class Track extends Component {
               </button>
               </div>
             */}
+            { this.props.song.owner === Meteor.user()._id ? 
+              <div>
             <a className="btn-flat btn-small disabled float-right" onClick={this.deleteSong.bind(this)}>
               Delete 
             </a>
             <a className="btn-flat btn-small disabled float-right songPrivacy" onClick={this.togglePrivate.bind(this)}>
               {this.props.song.private ? 'Private' : 'Public'}
             </a>
-            <Link to={"/purchase/" + this.props.song._id }  className="btn-flat btn-small disabled grey darken-4" id="payment-tag">
+            </div>
+            : ''}
+            <Link to={"/purchase/" + this.props.song._id }  className="btn-flat btn-small disabled" id="payment-tag">
               Purchase
             </Link>
              <Link className="btn-flat btn-small disabled twitter-share-button" href="#" id="share-tag">

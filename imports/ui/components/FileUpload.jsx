@@ -133,9 +133,8 @@ onDrop(file) {
   }); 
 }
 change(e) {
-
   e.preventDefault();
-
+  $("#photolink").empty();
   const file = $("#track-photo")[0].files[0];
   const self = this;
   /* send track-image to s3 */
@@ -147,10 +146,15 @@ change(e) {
         alert(err);
         return;
       }
-
-      console.log(source);
-      $("#photolink").append(source);
-      $("#default-artwork").css("background-image", "url(" + source + ")"); 
+      function testSrc(src) {
+      if (src === "undefined") {
+        return './defaultAvatar.jpeg';
+      }
+       return src.replace('https://jahosh-meteor-files.s3-us-west-2', 'https://jahosh-meteor-files-resized.s3-us-west-1');
+    }
+    reSizedsource = testSrc(source)
+      $("#photolink").append(reSizedsource);
+      $("#default-artwork").css("background-image", "url(" + reSizedsource + ")"); 
       $("#display-track").show("slow");
     });
 }

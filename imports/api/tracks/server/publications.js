@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import Tracks from '../tracks';
+import { check } from 'meteor/check';
+import { Match } from 'meteor/check';
 
 if (Meteor.isServer) {
 
@@ -42,6 +44,36 @@ if (Meteor.isServer) {
     ]
   });
   
+
+  Meteor.publish('Tracks.search', function(search) {
+    check(search, Match.OneOf( String, null, undefined) );
+
+    let query = [],
+        userQuery = [],
+        projection = { limit: 10, sort: { title: 1 } };
+
+        if (search) {
+          let regex = new RegExp(search, 'i');
+
+          query = {
+            $or: [
+              { title: regex },
+              { username: regex }
+            ]
+          };
+
+          userQuery = {
+            username: regex
+          }
+
+          projection.limit = 100;
+        }
+
+        return [
+          Tracks.find(query, projection),
+          Meteor.users.find(userQuery)
+        ];
+  });
 
   /*
 

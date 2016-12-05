@@ -27,9 +27,16 @@ html {
 }
 
 .mainNav {
-  
   border: 1px solid black;
   height: 125px;
+}
+
+.secondary-content {
+  color: black;
+  background: white;
+  font-size: 14px;
+  border-radius: 95px;
+  font-weight: bold;
 }
 
 .topNav {
@@ -140,6 +147,11 @@ html {
 
 .beatList {
   background-color: white;
+  border: 4px solid black;
+}
+
+hr {
+  border: 1px solid black;
 }
 
 .beatActions {
@@ -238,6 +250,10 @@ height: 100%;
 
 input[type="search"] {
   height: 64px !important; /* or height of nav */
+}
+
+#search {
+  margin-top: 40px;
 }
 
 #welcome-header {
@@ -512,19 +528,25 @@ div.dz-preview.dz-file-preview.card {
 }
 
 .track-link {
-  color: grey;
+  color: black;
   font-size: 6px;
-  font-style: italic;
-}
-#username-link {
-  color:black;
-  font-size: 15px;
-  font-style: bold;
-}
 
+}
 .track-link:hover {
   color: darkgrey;
 }
+#username-link {
+  color:black;
+  font-size: 20px;
+  line-height: 10px;
+ font-weight: bold;
+}
+
+#username-link:hover {
+  color: darkgrey;
+}
+
+
 
 
 #at-btn {
@@ -619,9 +641,13 @@ div.dz-preview.dz-file-preview.card {
   width: 200px;
   background-size: cover !important;
   display: block;
+  cursor: pointer !important;
 
 }
 
+.materialboxed.initialized.active {
+
+}
 #track-info {
   padding: 5px;
 }

@@ -72,6 +72,6 @@ Slingshot.createDirective("trackAvatarToAmazonS3", Slingshot.S3Storage, {
   },
   key: function (file) {
     let currentUserId = this.userId;
-    return  "trackimages" + "/" + currentUserId + file.name;
+    return "images" + "/" + currentUserId + file.name;
   }
 });

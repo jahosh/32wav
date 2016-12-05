@@ -12,6 +12,7 @@ import UploadContainer from '../../ui/containers/UploadContainer.jsx';
 import ProfileContainer from '../../ui/containers/ProfileContainer.jsx';
 import TrackContainer from '../../ui/containers/TrackContainer.jsx';
 import PurchaseContainer from '../../ui/containers/PurchaseContainer.jsx';
+import SearchContainer from '../../ui/containers/SearchContainer.jsx';
 
 //pages
 import { NotFound } from '../../ui/pages/NotFound.jsx';
@@ -43,6 +44,7 @@ export const renderRoutes = () => (
       <Route path="/send" component={FileShare} />
       <Route path="/purchase/:trackId" component={PurchaseContainer} />
       <Route path="/verify-email/:token" component={VerifyEmail} />
+      <Route path="/search/:term" component={SearchContainer} />
       <Route path="/:username" component={ProfileContainer} />
       <Route path="/:username/:track" component={TrackContainer} /> 
     </Route>
