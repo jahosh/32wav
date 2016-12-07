@@ -12,13 +12,23 @@ export class FileShare extends Component {
     const file = $("#profile-pic-upload")[0].files[0];
 
     console.log(file);
-    let data = {"file": file}
+    let data = file;
+
+
+/*
+    fetch("https://file.io", {
+      method: "POST",
+      body: new FormData({"file": file})
+    })
+    */
 
      
     $.ajax({
       url: "https://file.io",
       type: "POST",
-      data: JSON.stringify(data),
+      processData: false,
+      dataType: 'json',
+      data: data,
       success: function(res) {
         console.log(JSON.parse(res));
       },
@@ -26,6 +36,7 @@ export class FileShare extends Component {
         console.log(xhr);
       }
     });
+    
     
 
   }

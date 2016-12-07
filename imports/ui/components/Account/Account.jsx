@@ -4,11 +4,11 @@ import { Link } from 'react-router';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 //methods
-import { updateBio } from '../../api/users/methods.js';
-import { updateProfileImage } from '../../api/users/methods.js';
+import { updateBio } from '../../../api/users/methods.js';
+import { updateProfileImage } from '../../../api/users/methods.js';
 
 //components
-import { EditProfile } from './Account/EditProfile.jsx';
+import { EditProfile } from './EditProfile.jsx';
 
 export default class Account extends Component {
   constructor(props){
@@ -23,7 +23,6 @@ export default class Account extends Component {
     this.hideUploadElements();
     $('.collapsible').collapsible();
     $("#editProfile").hide();
-
   }
   hideUploadElements() {
     $(".progress").hide("slow");
@@ -36,6 +35,9 @@ export default class Account extends Component {
   }
   editProfile() {
     $("#editProfile").toggle("slow");
+    $('html, body').animate({
+    scrollTop: $("#bio").offset().top
+}, 1000);
   }
   onAvatarUpload(e) {
     e.preventDefault();
@@ -73,11 +75,11 @@ export default class Account extends Component {
         Meteor.setTimeout(function(){ self.setState({ uploading: false, processing: false }); self.hideUploadElements();   }, 7000);
       });
     });
-   let computation = Tracker.autorun(() => {
-    if (!isNaN(upload.progress())) {
-      self.setState({ progress: upload.progress() * 100, uploading: true });
-      console.log(self.state);
-    }
+    let computation = Tracker.autorun(() => {
+      if (!isNaN(upload.progress())) {
+        self.setState({ progress: upload.progress() * 100, uploading: true });
+        console.log(self.state);
+      }
     }); 
   }
   onEditProfile(e) {
@@ -130,19 +132,18 @@ export default class Account extends Component {
       }
        return src.replace('https://jahosh-meteor-files.s3-us-west-2', 'https://jahosh-meteor-files-resized.s3-us-west-1');
     }
-   
-    
     const source = testSrc(src)
    
     return (
       <div className="row">
         <div className="col l10 offset-l1">
+        <div className="center-align">
+        <span className="account-username center-align">{ this.props.user[0].username }</span>
+        </div>
           <div className="collection" id="account-links">
             <Link to={'/' + this.props.user[0].username} className="collection-item">My Profile</Link>
             <Link onClick={this.editProfile} className="collection-item">Edit My Profile</Link>   
-            <Link className="collection-item">Subscription</Link>         
-            <Link to="/send" className="collection-item">Send Links</Link>
-            <a href="#!" className="collection-item">Purchases</a>
+            <Link className="collection-item">Edit Tracks</Link>         
             <a href="#!" className="collection-item">Reset Password</a>
           </div>
           <EditProfile

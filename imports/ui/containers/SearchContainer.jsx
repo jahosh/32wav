@@ -29,8 +29,9 @@ class SearchContainer extends Component {
   }
   renderUsers() {
     const users = this.props.users;
+    const userId = Meteor.user() ? Meteor.user()._id : '';
     const foundUsers = users.filter( (user) => {
-      if (user._id === Meteor.user()._id) {
+      if (user._id === userId) {
         return
       }
       return user;

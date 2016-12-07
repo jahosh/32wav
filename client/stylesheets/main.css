@@ -484,6 +484,14 @@ div.dz-preview.dz-file-preview.card {
   color: black !important;
 }
 
+.account-username {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 
 .progress {
   background-color: #546E7A !important;

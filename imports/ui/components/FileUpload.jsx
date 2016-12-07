@@ -17,23 +17,8 @@ import Uploader from './Uploader.jsx';
 import { DropzoneUploader } from "./Upload/DropzoneUploader.jsx";
 import { UploadStatus } from "./Upload/UploadStatus.jsx";
 
-const template = ReactDOMServer.renderToStaticMarkup(
-  <div className="dz-preview dz-file-preview card">
-    <div className="dz-filename">
-      <span data-dz-name></span>
-    </div>
-    <i className="material-icons">present_to_all</i>
-              
-    <div className="dz-size" data-dz-size></div>
-    <div className="dz-details">
-      <img data-dz-thumbnail />     
-    </div>
-      
-    <div className="dz-success-mark"><span>✔</span></div>
-    <div className="dz-error-mark"><span>✘</span></div>
-    <div className="dz-error-message"><span data-dz-errormessage></span></div>
-  </div>
-);
+
+import { template } from './Upload/DropzoneTemplate.js';
 
 export default class FileUpload extends Component {
   constructor(props) {
@@ -105,7 +90,6 @@ displayFileUploaded() {
   
 }
 onDrop(file) {
-  console.log('fired');
   const self = this;
   const fileKey = file.name;
   self.displayUploadElements();
@@ -146,7 +130,11 @@ change(e) {
         alert(err);
         return;
       }
-      function testSrc(src) {
+      self.setState({ processing: true });
+      Meteor.setTimeout(function(){ 
+        self.setState({ uploading: false, processing: false });
+
+             function testSrc(src) {
       if (src === "undefined") {
         return './defaultAvatar.jpeg';
       }
@@ -155,7 +143,10 @@ change(e) {
     reSizedsource = testSrc(source)
       $("#photolink").append(reSizedsource);
       $("#default-artwork").css("background-image", "url(" + reSizedsource + ")"); 
-      $("#display-track").show("slow");
+      $("#display-track").show("slow"); 
+      
+     }, 4000);
+  
     });
 }
 saveTrack(source, fileKey) {

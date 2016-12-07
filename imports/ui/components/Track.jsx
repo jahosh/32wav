@@ -120,6 +120,8 @@ export default class Track extends Component {
       const cdnSource = {
         beatUrl: 'https://d2hbl0lksauo4z.cloudfront.net/05 Choosing Sides.mp3'
       }
+
+      const userId = Meteor.user() ? Meteor.user()._id : '';
     return (
      <div> 
        <li className="collection-item avatar track" key={this.props.song._id}>
@@ -167,7 +169,7 @@ export default class Track extends Component {
               </button>
               </div>
             */}
-            { this.props.song.owner === Meteor.user()._id ? 
+            { this.props.song.owner === userId ? 
               <div>
             <a className="btn-flat btn-small disabled float-right" onClick={this.deleteSong.bind(this)}>
               Delete 

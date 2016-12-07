@@ -65,17 +65,6 @@ class BrowseContainer extends Component {
                 currentUser={this.props.currentUser}
                 filters={this.state}
               />
-              <div className="center-align col s12 m12 l10 offset-l1">
-                <ul className="pagination">
-                  <li className="disabled"><a href="#!"><i className="material-icons">chevron_left</i></a></li>
-                  <li className="waves-effect" id="page-one"><Link to="/browse/1"activeClassName="active">1</Link></li>
-                  <li className="waves-effect"><Link to="/browse/2" activeClassName="active">2</Link></li>
-                  <li className="waves-effect"><Link to="/browse/3">3</Link></li>
-                  <li className="waves-effect"><a href="#!">4</a></li>
-                  <li className="waves-effect"><a href="#!">5</a></li>
-                  <li className="waves-effect"><a href="#!"><i className="material-icons">chevron_right</i></a></li>
-                </ul>
-             </div>
           </div>
         }
       </div>

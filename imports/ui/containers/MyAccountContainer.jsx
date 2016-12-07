@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
-import Account from '../components/Account.jsx';
+import Account from '../components/Account/Account.jsx';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 
 class AccountContainer extends Component {
