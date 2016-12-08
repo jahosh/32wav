@@ -106,19 +106,3 @@ AccountsTemplates.configure({
       },
     },
 });
-
-
-AccountsTemplates.addField({
-    _id: "plan_type",
-    type: "radio",
-    displayName: "Select Plan",
-    select: [
-        {
-        text: "Free",
-        value: "free",
-      }, {
-        text: "Pro",
-        value: "pro",
-      },
-    ],
-});

@@ -134,18 +134,21 @@ change(e) {
       Meteor.setTimeout(function(){ 
         self.setState({ uploading: false, processing: false });
 
+        /*
              function testSrc(src) {
       if (src === "undefined") {
         return './defaultAvatar.jpeg';
       }
        return src.replace('https://jahosh-meteor-files.s3-us-west-2', 'https://jahosh-meteor-files-resized.s3-us-west-1');
     }
-    reSizedsource = testSrc(source)
-      $("#photolink").append(reSizedsource);
-      $("#default-artwork").css("background-image", "url(" + reSizedsource + ")"); 
+    */
+     //testSrc(source)
+      $("#photolink").append(source);
+      $("#photolink").hide();
+      $("#default-artwork").css("background-image", "url(" + source + ")"); 
       $("#display-track").show("slow"); 
       
-     }, 4000);
+     }, 2000);
   
     });
 }

@@ -36,14 +36,21 @@ class ProfileContainer extends Component {
   render() {
     //<p>Member Since: <br />{ this.props.user[0].createdAt ? `${this.props.user[0].createdAt}` : '' }</p>
     const src = this.props.user[0] ? `${this.props.user[0].profile_img}` : 'not here';
-    const reSized = src.replace('https://jahosh-meteor-files.s3-us-west-2', 'https://jahosh-meteor-files-resized.s3-us-west-1');
+    function testImg(src){
+      if (src === "undefined") {
+        return './defaultAvatar.jpeg';
+      }
+      const reSized = src.replace('https://jahosh-meteor-files.s3-us-west-2', 'https://jahosh-meteor-files-resized.s3-us-west-1');
+      return reSized;
+    }
+    const avatar = testImg(src);
     return (
       <div className="row">
         { this.props.loading ? <Blaze template="spinner" /> :
         <div>
           <ProfileHeader
             user={this.props.user}
-            avatar={reSized}
+            avatar={avatar}
             params={this.props.params} />
           <div className="col s12 m12 l10 offset-l1">
             <TracksList

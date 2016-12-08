@@ -589,10 +589,10 @@ div.dz-preview.dz-file-preview.card {
 .user-avatar {
   height: 200px;
   width: 200px;
-  border-radius: 50%;
-  background:url(./defaultAvatar.jpeg) no-repeat 35%;
+  border-radius: 50%; 
+  background:url(./defaultAvatar.jpeg) no-repeat 50%;
   background-size: cover !important;
-  background-color: black;
+  
   display: block;
   margin-top: 30px;
 }
@@ -704,4 +704,11 @@ canvas {
 
   font-style: italic;
   bottom-margin: 40px;
+}
+
+
+/* Login Page */
+
+#at-btn {
+  background: #212121 !important;
 }

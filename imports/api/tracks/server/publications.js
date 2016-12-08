@@ -40,7 +40,7 @@ if (Meteor.isServer) {
         { owner: this.userId },
       ]}, { sort  : { createdAt: -1 }
     }),
-      Meteor.users.find({ "username": username  }, { fields: { "createdAt": 1, username: 1, profile_img: 1, bio: 1, twitter: 1 } })
+      Meteor.users.find({ "username": username  }, { fields: { "createdAt": 1, username: 1, profile_img: 1, bio: 1, twitter: 1, location: 1 } })
     ]
   });
   

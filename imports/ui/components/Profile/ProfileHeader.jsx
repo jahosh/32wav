@@ -4,7 +4,8 @@ export const ProfileHeader = (props) => (
   <div className="col l12  center-align mainProfile">
     <div className="col l10 offset-l1 s12" id="profile-header">
       <div className="col l2">
-        <span className="user-avatar profile-pic" style={{"background": 'url(' + props.avatar + ')'}}></span>
+        <span className="user-avatar profile-pic" style={{"backgroundImage": 'url(' + props.avatar + ')'}}></span>
+
         <br />
       </div>
       <div className="col l2 offset-l1" id="user-info">
@@ -23,14 +24,14 @@ export const ProfileHeader = (props) => (
     <table className="centered">
       <thead>
         <tr>
-          <th data-field="id">Orgin</th>
+          <th data-field="id">location</th>
           <th data-field="id">twitter</th>
           <th data-field="id">Member Since:</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Los Angeles, CA</td>
+          <td>{props.user[0].location ? `${props.user[0].location}` : ''}</td>
           <td>
             { props.user[0].twitter ? <a  target="_blank" href={`http://twitter.com/${props.user[0].twitter}`}>  
             <i className="fa fa-twitter" aria-hidden="true"></i>

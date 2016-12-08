@@ -44,15 +44,15 @@ export default class App extends Component {
               <div className="col s4 center-align">
                 <i className="large material-icons">queue_music</i>
                 <br />
-                <h5>get your tracks heard</h5>
+                <h5>high quality tracks</h5>
                 <br />
-                upload your tracks once to be streamed by everyone
+                find instrumentals from top talent
               </div>
 
               <div className="col s4 center-align">
                 <i className="large material-icons">shopping_cart</i>
                 <br />
-                <h5>sell your music</h5>
+                <h5>quick checkout</h5>
                 <br />
                 payments securely handled by paypal            
               </div>

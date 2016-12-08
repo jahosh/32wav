@@ -16,12 +16,13 @@ export const updateBio = new ValidatedMethod({
     bio: { type: String },
     twitter: { type: String },
     paypal: { type: String },
+    location: { type: String }
   }).validator(),
-  run( { bio, twitter, paypal } ) {
+  run( { bio, twitter, paypal, location } ) {
     const userId = Meteor.userId()
     user = Meteor.users.findOne(userId);
 
-    Meteor.users.update(user, { $set: { bio: bio, twitter: twitter, paypal: paypal } });
+    Meteor.users.update(user, { $set: { bio: bio, twitter: twitter, paypal: paypal, location: location } });
   }
 });
 
@@ -37,8 +38,26 @@ export const updateProfileImage = new ValidatedMethod({
     source: { type: String },
   }).validator(),
   run( { source } ) {
-    const userId = Meteor.userId()
+    const userId = Meteor.userId();
 
     Meteor.users.update(userId, { $set: { profile_img: source } });
   }
 });
+
+/*
+ *        Updates a users location 
+ * 
+ * @param {string} location - users self defined location
+ * 
+ */
+export const updateLocation = new ValidatedMethod({
+  name: "Users.methods.updateLocation",
+  validate: new SimpleSchema({
+    location: { type: String },
+  }).validator(),
+  run( { location } ) {
+    const userId = Meteor.userId();
+
+    Meteor.users.update(userId, { $set: { location: location } });
+  }
+})

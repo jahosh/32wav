@@ -72,7 +72,7 @@ export default class Account extends Component {
           icon: 'fa-user'
         });
         self.setState({ processing: true });
-        Meteor.setTimeout(function(){ self.setState({ uploading: false, processing: false }); self.hideUploadElements();   }, 7000);
+        Meteor.setTimeout(function(){ self.setState({ uploading: false, processing: false }); self.hideUploadElements();   }, 10000);
       });
     });
     let computation = Tracker.autorun(() => {
@@ -87,19 +87,22 @@ export default class Account extends Component {
    let payload         = {},
        bio             = $("#bio").val(),
        twitter         = $("#twitter-name").val(),
-       paypal          = $("#paypal-name").val();
+       paypal          = $("#paypal-name").val(),
+       location        = $("#location").val();
 
-    let bioDefault     = $("#bio").prop("defaultValue"),
-        twitterDefault = $("#twitter-name").prop("defaultValue"),
-        paypalDefault  = $("#paypal-name").prop("defaultValue");
+    let bioDefault      = $("#bio").prop("defaultValue"),
+        twitterDefault  = $("#twitter-name").prop("defaultValue"),
+        paypalDefault   = $("#paypal-name").prop("defaultValue"),
+        locationDefault = $("#location").prop("DefaultValue");
 
-    if (bio === bioDefault && twitter === twitterDefault && paypal === paypalDefault) {
+    if (bio === bioDefault && twitter === twitterDefault && paypal === paypalDefault && location === locationDefault) {
         alert('no change');
         return;
     }   
     payload.bio = bio;
     payload.twitter = twitter;
     payload.paypal = paypal;
+    payload.location = location;
 
    updateBio.call(payload, (err) => {
      if (err) {
