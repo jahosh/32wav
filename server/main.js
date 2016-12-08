@@ -16,6 +16,13 @@ import { Meteor } from 'meteor/meteor';
 import './accounts/validateUser.js';
 import './accounts/createUser.js';
 
+Accounts.onLogin(function(){ 
+
+  let userId = Meteor.userId();
+
+  Roles.addUsersToRoles( userId, ['user'] );
+  });
+
 
 /*
 Accounts.onCreateUser(function(options, user) {
@@ -55,14 +62,6 @@ Accounts.onCreateUser(function(options, user) {
 
 /*
 
-Accounts.onLogin(function(){ 
-  Meteor.call('sendVerificationLink', (err, response) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('sent');
-    }
-  })
 });
 
 */

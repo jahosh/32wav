@@ -1,4 +1,11 @@
+import { moment } from 'meteor/momentjs:moment';
+
+
 Accounts.onCreateUser((options, user) => {
+
+
+  let timeStamp = moment().format('MMMM Do YYYY');
+  user.createdAt = timeStamp
 
   if (user.services.twitter) {
     const { profile_image_url, screenName } = user.services.twitter;
@@ -12,7 +19,11 @@ Accounts.onCreateUser((options, user) => {
       },
     ]
   }
-  
+
+  if (!user.services.twitter) {
+    user.profile_img = "./defaultAvatar.jpg";
+  }
+
      Meteor.call('sendVerificationLink', user, (err) => {
     if (err) {
       console.log(err);

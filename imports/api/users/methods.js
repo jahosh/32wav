@@ -44,20 +44,3 @@ export const updateProfileImage = new ValidatedMethod({
   }
 });
 
-/*
- *        Updates a users location 
- * 
- * @param {string} location - users self defined location
- * 
- */
-export const updateLocation = new ValidatedMethod({
-  name: "Users.methods.updateLocation",
-  validate: new SimpleSchema({
-    location: { type: String },
-  }).validator(),
-  run( { location } ) {
-    const userId = Meteor.userId();
-
-    Meteor.users.update(userId, { $set: { location: location } });
-  }
-})
