@@ -7,5 +7,6 @@ Accounts.validateNewUser((user) => {
     throw new Meteor.Error(403, "Username must have at least 3 characters")
   }
 
+
   return true;
 })

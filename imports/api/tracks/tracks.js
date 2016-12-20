@@ -3,7 +3,6 @@ import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Factory } from 'meteor/dburles:factory';
 
-
 const Tracks = new Mongo.Collection('Tracks');
 export default Tracks;
 

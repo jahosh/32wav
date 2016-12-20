@@ -3,7 +3,6 @@ import { moment } from 'meteor/momentjs:moment';
 
 Accounts.onCreateUser((options, user) => {
 
-
   let timeStamp = moment().format('MMMM Do YYYY');
   user.createdAt = timeStamp
 

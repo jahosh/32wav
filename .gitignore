@@ -4,3 +4,6 @@ node_modules/
 *settings-development.json
 settings-production.json
 *kadira.js
+deployment
+*mup.json
+deploy

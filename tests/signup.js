@@ -9,7 +9,6 @@ describe('Sign Up', function() {
     });
   });
 
-
   it('should create a new user and login', function() {
     browser.url('http://localhost:3000/signin')
            .setValue('[name="at-field-username"]', 'Test')
@@ -17,7 +16,6 @@ describe('Sign Up', function() {
            .setValue('[name="at-field-password"]', 'password')
            .setValue('[name="at-field-password_again"]', 'password')
            .submitForm('form');
-
            expect(browser.getUrl()).to.equal('http://localhost:3000/signin');
   });
 });
