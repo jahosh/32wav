@@ -9,7 +9,6 @@ export default class AccountsUIWrapper extends Component {
       ReactDOM.findDOMNode(this.refs.container));
   }
   componentWillUnmount() {
-
     Blaze.remove(this.view);
   }
   render() {

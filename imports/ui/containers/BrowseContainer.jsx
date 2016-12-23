@@ -10,7 +10,6 @@ import Tracks from '../../api/tracks/tracks.js';
 import Charts from '../components/Charts.jsx';
 import TracksCategories from '../components/TracksCategories';
 
-
 /*      -- BrowseContainer --
  * Container responsible for the Browse view.
  * Grabs data for all children views.
@@ -44,6 +43,7 @@ class BrowseContainer extends Component {
     })
   }
   render() {
+    console.log('rendered');
     return (
       <div>
         {this.props.loading ? <Blaze template="spinner" /> :
@@ -77,13 +77,10 @@ BrowseContainer.propTypes = {
   loading: PropTypes.bool.isRequired,
 }
 export default createContainer( (props) => {
-  const subscription = Meteor.subscribe('Tracks.all');
-  //const search = Meteor.subscribe('Tracks.search');
+  const subscription = Meteor.subscribe('Tracks.all', 5);
   const loading = !subscription.ready();
-
-  //const j = Tracks.find({}).fetch();
   const tracks = Tracks.find({}, { sort: { createdAt: -1 } }).fetch();
-  const trackCount = Tracks.find({}).count();
+  const trackCount = Counts.get('total');;
   const currentUser = Meteor.user();
   return {
     tracks: tracks,

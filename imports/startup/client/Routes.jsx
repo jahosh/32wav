@@ -1,9 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Bert } from 'meteor/themeteorchef:bert';
 
 //containers
-import App from '../../ui/components/App.jsx';
+import { App } from '../../ui/components/Home/App.jsx';
 import AppContainer  from '../../ui/containers/AppContainer.jsx';
 import MyAccountContainer from '../../ui/containers/MyAccountContainer.jsx';
 import BrowseContainer from '../../ui/containers/BrowseContainer.jsx';
@@ -23,10 +24,17 @@ import { FileShare } from '../../ui/pages/FileShare.jsx';
 
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
+
     replace({
       pathname: '/signin',
       state: { nextPathName: nextState.location.pathname},
     });
+        Bert.alert({
+          type: 'signin',
+          style: 'fixed-top',
+          message: "Please sign-in to access that page",
+          icon: 'fa-user'
+        });
   }
 };
 

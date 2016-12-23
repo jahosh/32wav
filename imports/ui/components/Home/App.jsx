@@ -1,34 +1,23 @@
-import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-import Dropzone from 'react-dropzone';
 import { Link } from 'react-router';
 
 //react components
 import Header from './Header.jsx';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-  componentDidMount() {
-  
-  }
-  render() {
-    return (
+export const App = () => (
       <div className="row">
         <div>
           <Header />
           <div className="row" id="home-body">
             <div className="col s12 m12 l10 offset-l1 center-align home-content">
-              <p className="promo-caption flow-text" id="headline">32wav.io</p>
-              <p className="flow-text tagline">
-                audio instrumental marketplace
-              </p>
+              <p className="promo-caption flow-text tagline" id="headline">Instrumental Marketplace</p>
             </div>
             <div className="col s12 m12 l10 offset-l1 center-align" id="signup-heading">
-              <Link className="waves-effect waves-light btn-large grey darken-4" id="signup-btn" to="/signin">SIGN UP FOR FREE</Link>
+              <div className="col s6 l6 offset-l3 offset-s3">
+                <Link className="waves-effect waves-light btn-large grey darken-4" id="signup-btn" to="/signin">SIGN UP FOR FREE</Link>
+              </div>
             </div>
           </div>
           <div className="row">
@@ -48,7 +37,6 @@ export default class App extends Component {
                 <br />
                 find instrumentals from top talent
               </div>
-
               <div className="col s4 center-align">
                 <i className="large material-icons">shopping_cart</i>
                 <br />
@@ -62,6 +50,4 @@ export default class App extends Component {
         </div>        
       </div>
     );
-  }
-}
 

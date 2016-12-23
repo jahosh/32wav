@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 //react components
-import ContactForm from '../components/ContactForm.jsx';
+import ContactForm from '../components/Contact/ContactForm.jsx';
 
 
 export default class ContactContainer extends Component {

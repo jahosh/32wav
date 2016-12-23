@@ -3,9 +3,9 @@ import { createContainer } from 'meteor/react-meteor-data';
 import Account from '../components/Account/Account.jsx';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 
+/* Responsible for Fetching Data Related to "Account" View */
 class AccountContainer extends Component {
   render() {
-    console.log(this.props);
     return (
       <div className="row">
        <div className="col s12 m12 l10 offset-l1">

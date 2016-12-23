@@ -4,21 +4,21 @@ import ReactDOMServer from 'react-dom/server';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 import { Router, browserHistory } from 'react-router';
 import { default as swal } from 'sweetalert2';
-import '../../../node_modules/sweetalert2/dist/sweetalert2.min.css';
+import '../../../../node_modules/sweetalert2/dist/sweetalert2.min.css';
 
 //methods
-import { insertTrack } from '../../api/tracks/methods.js';
+import { insertTrack } from '../../../api/tracks/methods.js';
 
-import '../../../node_modules/dropzone/dist/min/dropzone.min.css';
-import '../../../node_modules/react-dropzone-component/styles/filepicker.css';
+import '../../../../node_modules/dropzone/dist/min/dropzone.min.css';
+import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
 
 //react components
 import Uploader from './Uploader.jsx';
-import { DropzoneUploader } from "./Upload/DropzoneUploader.jsx";
-import { UploadStatus } from "./Upload/UploadStatus.jsx";
+import { DropzoneUploader } from "./DropzoneUploader.jsx";
+import { UploadStatus } from "./UploadStatus.jsx";
 
 
-import { template } from './Upload/DropzoneTemplate.js';
+import { template } from './DropzoneTemplate.js';
 
 export default class FileUpload extends Component {
   constructor(props) {
@@ -50,6 +50,13 @@ componentDidMount() {
       let licenseType = $("#visablity").prop('checked');
       let privateStatus = $("#private").prop('checked');
   });
+
+/*
+// use this to check and make sure that file is uploaded before being sent to S3""
+  $("#track-photo").click(function(event){
+    event.preventDefault();
+});
+*/
 }
 initMaterialize() {
   $(document).ready(function() {
@@ -118,6 +125,12 @@ onDrop(file) {
 }
 change(e) {
   e.preventDefault();
+  // make sure track is uploaded before handling avatar;
+  if ($("#beatTitle").val() === '') {
+    alert('please add a song');
+    $("#track-photo").val(""); 
+    return;
+  }
   $("#photolink").empty();
   const file = $("#track-photo")[0].files[0];
   const self = this;

@@ -4,24 +4,33 @@ import Tracks from '../tracks';
 import { check } from 'meteor/check';
 import { Match } from 'meteor/check';
 
+const MAX_TRACKS = 5;
+
 if (Meteor.isServer) {
 
   /* Publication for Browse Page */
-  Meteor.publish('Tracks.all', function tracksPublication(){
-    return Tracks.find({
+  Meteor.publish('Tracks.all', function tracksPublication(limit){
+    new SimpleSchema({
+      limit: { type: Number }
+    }).validate({ limit });
+
+    Counts.publish(this, 'total', Tracks.find(), { noReady: true });
+
+    return  Tracks.find({
       $or: [
         { private: { $ne: true } },
         { owner: this.userId },
-      ]}, { sort  : { createdAt: -1 }
-    });
+      ]}, { sort  : { createdAt: -1 }, limit: Math.min(limit, MAX_TRACKS)
+    })
   });
 
-    /* Publication for Purchase Page */
-    Meteor.publish('Tracks.purchase', function tracksPublication(trackId){
-      //check trackId (later)
-      const user = Tracks.findOne(trackId);
-  
+  /* Publication for Purchase Page */
+  Meteor.publish('Tracks.purchase', function tracksPublication(trackId){
+    new SimpleSchema({
+      trackId: { type: String }
+    }).validate({ trackId });
 
+    const user = Tracks.findOne(trackId);
     return [ Tracks.find({_id: trackId,
       $or: [
         { private: { $ne: true } },

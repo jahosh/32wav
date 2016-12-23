@@ -46,8 +46,10 @@ export default class Track extends Component {
       pos: e.originalArgs[0]
     });
   }
-  handleLoading() {
+  handleLoading(ws) {
+    console.log(ws);
 
+    ws.originalArgs[1].onabort = true;
   }
   toggleChecked() {
  
@@ -65,6 +67,16 @@ export default class Track extends Component {
     })
   }
   handleReady(wavesurfer) {
+
+    const ws = wavesurfer.wavesurfer;
+
+
+
+    ws.on('load', function(percent, xhr) {
+      console.log(percent);
+      console.log(xhr);
+    })
+
     this.setState({
       loading: false,
       ready: true,
@@ -113,7 +125,7 @@ export default class Track extends Component {
         cursorColor: '#0000',
         progressColor: '#212121',
         barWidth: 2,
-
+        backend: "MediaElement",
         cursorWidth: 3,
         hideScrollbar: true
       }

@@ -47,15 +47,3 @@ export default class Navbar extends Component {
 Navbar.PropTypes = {
 
 }
-
-/* -- Old Nav - Search
-
- <form className="hide-on-small-only">
-              <div className="input-field ">
-                <input id="search" type="search" required />
-                <label htmlFor="search"><i className="material-icons">search</i></label>
-                <i className="material-icons">close</i>
-              </div>
-            </form>
-
-            */
