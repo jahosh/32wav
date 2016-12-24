@@ -4,7 +4,6 @@ import React, { Component, PropTypes } from 'react';
 import TracksContainer from '../containers/TracksContainer.jsx';
 export default class Charts extends Component {
   render() {
-    console.log('triggered container');
     return (
       <div>   
         <TracksContainer

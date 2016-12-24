@@ -9,6 +9,12 @@ import TracksCategories from '../components/TracksCategories';
 class TracksContainer extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      globalPlaying: false
+    }
+
+    this.globalPlayer = this.globalPlayer.bind(this);
   }
   renderTracks() {
     const allTracks      = this.props.tracks; 
@@ -19,8 +25,6 @@ class TracksContainer extends Component {
         
       return this.checkFilter(track, genreFilter, priceFilter);
       });
- 
-
     //filteredTracks = filteredTracks.filter(track => track.genre === this.props.genreFilter);
     return filteredTracks.map( (track) => {
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
@@ -34,13 +38,14 @@ class TracksContainer extends Component {
           source={source}
           showPrivateButton={showPrivateButton}
           currentUser={currentUser}
+          globalPlaying={this.globalPlayer.bind(this)}
+          globalState={this.state}
         />
       );
     });
   }
   checkFilter(track, genreFilter, priceFilter, licenseFilter) {
     let licenseType = this.props.genreFilter.license;
-
     if (track.genre === genreFilter || genreFilter === "all") {
       if (track.price <= priceFilter || priceFilter === 0) {
         if (licenseType === "all" || licenseType === track.licenseType ) {
@@ -48,6 +53,10 @@ class TracksContainer extends Component {
         }
       } 
     }        
+  }
+  globalPlayer(id) {
+    console.log(id);
+    this.setState({ globalPlaying: true,  track: id });
   }
   render() {
     return (
@@ -67,7 +76,6 @@ TracksContainer.PropTypes = {
 
 export default createContainer( () => {
   const currentUser = Meteor.user();
-
   return {
     currentUser: currentUser,
   };

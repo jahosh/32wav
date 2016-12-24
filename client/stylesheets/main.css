@@ -689,6 +689,10 @@ canvas {
   margin-bottom: 0px;
 }
 
+.wave-spaceholder {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
 
 /* Bert Alert Styling */
 .bert-alert.profile-updated {

@@ -80,7 +80,7 @@ export default createContainer( (props) => {
   const subscription = Meteor.subscribe('Tracks.all', 5);
   const loading = !subscription.ready();
   const tracks = Tracks.find({}, { sort: { createdAt: -1 } }).fetch();
-  const trackCount = Counts.get('total');;
+  const trackCount = 8;
   const currentUser = Meteor.user();
   return {
     tracks: tracks,

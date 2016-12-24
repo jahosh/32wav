@@ -14,13 +14,11 @@ if (Meteor.isServer) {
       limit: { type: Number }
     }).validate({ limit });
 
-    Counts.publish(this, 'total', Tracks.find(), { noReady: true });
-
     return  Tracks.find({
       $or: [
         { private: { $ne: true } },
         { owner: this.userId },
-      ]}, { sort  : { createdAt: -1 }, limit: Math.min(limit, MAX_TRACKS)
+      ]}, { sort  : { createdAt: -1 }, limit: limit
     })
   });
 

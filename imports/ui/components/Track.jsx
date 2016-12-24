@@ -7,6 +7,7 @@ import Wavesurfer from 'react-wavesurfer';
 import { Link } from 'react-router';
 import _ from 'lodash';
 import { default as swal } from 'sweetalert2';
+import { Spinner } from './Spinner.jsx';
 
 //collections
 import { Tracks } from '../../api/tracks/tracks.js';
@@ -21,38 +22,34 @@ export default class Track extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playing: false,
+      playing: true,
+      played: false,
       loading: true,
       pos: 0
     };
     this.handleTogglePlay = this.handleTogglePlay.bind(this);
     this.handlePosChange = this.handlePosChange.bind(this);
-    this.handleLoading = this.handleLoading.bind(this)
     this.handleReady = this.handleReady.bind(this);
+    this.handlePlay = this.handlePlay.bind(this);
   }
   componentDidMount() {
      $('.materialboxed').materialbox();
   }
-  handleTogglePlay() {
+  handleTogglePlay(ws) {
+
+ const self = this;
+
+ this.props.globalPlaying(this.props.song._id);
+ this.setState({ playing: !this.state.playing, played: true });
+
    if (!this.state.playing) {
    incrementTrackPlayCount.call({ trackId: this.props.song._id});
    }
-    this.setState({
-      playing: !this.state.playing
-    });
   }
   handlePosChange(e) {
     this.setState({
       pos: e.originalArgs[0]
     });
-  }
-  handleLoading(ws) {
-    console.log(ws);
-
-    ws.originalArgs[1].onabort = true;
-  }
-  toggleChecked() {
- 
   }
   likeSong() {
     let selectedBeat = this.props.song._id;
@@ -66,17 +63,8 @@ export default class Track extends Component {
       Materialize.toast('Beat Liked!', 4000) 
     })
   }
-  handleReady(wavesurfer) {
-
-    const ws = wavesurfer.wavesurfer;
-
-
-
-    ws.on('load', function(percent, xhr) {
-      console.log(percent);
-      console.log(xhr);
-    })
-
+  handleReady() {  
+    $(".spinner").hide();
     this.setState({
       loading: false,
       ready: true,
@@ -102,7 +90,6 @@ export default class Track extends Component {
           }
           swal("Deleted!", "The track has been deleted.", "success");
         });
-
       } else {
         swal("Cancelled", "Your imaginary file is safe :)", "error");
       }
@@ -119,13 +106,19 @@ export default class Track extends Component {
   generateTweet(track) {
     return "Listen to" + track.title + "by " + this.props.currentUser.username;
   }
+  handlePlay(ws) {
+    const self = this;
+    if (this.props.globalState.track != this.props.song._id) {
+      ws.wavesurfer.pause();
+      this.setState({ playing: !this.state.playing });
+    }
+  }
   render() {
       const options = {
         height: 80,
         cursorColor: '#0000',
         progressColor: '#212121',
         barWidth: 2,
-        backend: "MediaElement",
         cursorWidth: 3,
         hideScrollbar: true
       }
@@ -137,7 +130,7 @@ export default class Track extends Component {
     return (
      <div> 
        <li className="collection-item avatar track" key={this.props.song._id}>
-         { this.state.loading ? <Blaze template="spinner" /> : '' }
+
          <div className="row">
          <div className="col s12 l3" id="track-info">
             <span className="trackTitle"><Link className="trackLink" to={ this.props.song.username + '/' + this.props.song.title}><p id="username-link" className="flow-text">{this.props.song.title}</p></Link></span>
@@ -147,20 +140,30 @@ export default class Track extends Component {
           
          </div>
          <div className="col s12 l9" id="track-wave">
-          {this.state.playing ? 
+          {!this.state.playing ? 
             <img src="/assets/pause.svg" className="playPause" onClick={this.handleTogglePlay} height="60px" /> :
             <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="60px" /> 
           }      
-          
+       
+
+          {this.state.played ? 
+            <div>
+            <div className="spinner">
+              <Spinner />
+            </div>
           <Wavesurfer 
             audioFile={this.props.source}
             options={options}
+            onAudioprocess={this.handlePlay}
             pos={this.state.pos}
-            onLoading={this.handleLoading}
             onReady={this.handleReady}
             onPosChange={this.handlePosChange}
-            playing={this.state.playing}
+            playing={!this.state.playing}
           />
+          </div>
+          
+          : <div className="wave-spaceholder"></div> }
+          
          
           <div className="track-stats">
             <i className="tiny material-icons">play_arrow</i><span id="plays">{this.props.song.plays}</span> <br />
