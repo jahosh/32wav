@@ -57,7 +57,6 @@ class ProfileContainer extends Component {
       return reSized;
     }
     const avatar = testImg(src);
-    console.log(avatar);
     return (
       <div className="row">
         { this.props.loading ? <Blaze template="spinner" /> :

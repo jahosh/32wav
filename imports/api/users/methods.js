@@ -21,8 +21,7 @@ export const updateBio = new ValidatedMethod({
   run( { bio, twitter, paypal, location } ) {
     const userId = Meteor.userId()
     user = Meteor.users.findOne(userId);
-
-    Meteor.users.update(user, { $set: { bio: bio, twitter: twitter, paypal: paypal, location: location } });
+    Meteor.users.update(user._id, { $set: { bio: bio, twitter: twitter, paypal: paypal, location: location } });
   }
 });
 

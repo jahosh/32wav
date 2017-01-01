@@ -57,9 +57,7 @@ export default class Account extends Component {
      let profileImage = {
        source: source
      };
-     //Meteor.setTimeout(function(){ self.setState({ uploading: false });    }, 4000);
-     
-     console.log(self.state);
+    
       updateProfileImage.call(profileImage, (err) => {
         if (err) {
           console.log(err);
@@ -72,13 +70,12 @@ export default class Account extends Component {
           icon: 'fa-user'
         });
         self.setState({ processing: true });
-        Meteor.setTimeout(function(){ self.setState({ uploading: false, processing: false }); self.hideUploadElements();   }, 10000);
+        Meteor.setTimeout(function(){ self.setState({ uploading: false, processing: false }); self.hideUploadElements();   }, 4000);
       });
     });
     let computation = Tracker.autorun(() => {
       if (!isNaN(upload.progress())) {
         self.setState({ progress: upload.progress() * 100, uploading: true });
-        console.log(self.state);
       }
     }); 
   }
@@ -89,7 +86,6 @@ export default class Account extends Component {
        twitter         = $("#twitter-name").val(),
        paypal          = $("#paypal-name").val(),
        location        = $("#location").val();
-
     let bioDefault      = $("#bio").prop("defaultValue"),
         twitterDefault  = $("#twitter-name").prop("defaultValue"),
         paypalDefault   = $("#paypal-name").prop("defaultValue"),
@@ -106,7 +102,6 @@ export default class Account extends Component {
 
    updateBio.call(payload, (err) => {
      if (err) {
-       console.log(err);
         Bert.alert({
           type: 'profile-updated',
           style: 'growl-top-right',
