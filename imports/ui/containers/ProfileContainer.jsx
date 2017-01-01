@@ -23,7 +23,7 @@ class ProfileContainer extends Component {
   }
   componentDidMount() {
 
-
+    console.log(this.props);
   }
   globalPlayer(id) {
     this.setState({ globalPlaying: true,  track: id });
