@@ -5,6 +5,7 @@ Accounts.onCreateUser((options, user) => {
 
   let timeStamp = moment().format('MMMM Do YYYY');
   user.createdAt = timeStamp
+  user.verified  = false;
 
   if (user.services.twitter) {
     const { profile_image_url, screenName } = user.services.twitter;
@@ -20,7 +21,7 @@ Accounts.onCreateUser((options, user) => {
   }
 
   if (!user.services.twitter) {
-    user.profile_img = "./defaultAvatar.jpg";
+    user.profile_img = "./defaultAvatar.jpeg";
   }
 
      Meteor.call('sendVerificationLink', user, (err) => {

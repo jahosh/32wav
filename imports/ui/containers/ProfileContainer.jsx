@@ -23,7 +23,6 @@ class ProfileContainer extends Component {
   }
   componentDidMount() {
 
-    console.log(this.props);
   }
   globalPlayer(id) {
     this.setState({ globalPlaying: true,  track: id });
@@ -49,15 +48,16 @@ class ProfileContainer extends Component {
   }
   render() {
     //<p>Member Since: <br />{ this.props.user[0].createdAt ? `${this.props.user[0].createdAt}` : '' }</p>
-    const src = this.props.user[0] ? `${this.props.user[0].profile_img}` : 'not here';
+    const src = this.props.user[0] ? `${this.props.user[0].profile_img}` : undefined;
     function testImg(src){
-      if (src === "undefined") {
-        return './defaultAvatar.jpeg';
+      if (src === undefined) {
+        return 'defaultAvatar.jpeg';
       }
       const reSized = src.replace('https://jahosh-meteor-files.s3-us-west-2', 'https://jahosh-meteor-files-resized.s3-us-west-1');
       return reSized;
     }
     const avatar = testImg(src);
+    console.log(avatar);
     return (
       <div className="row">
         { this.props.loading ? <Blaze template="spinner" /> :

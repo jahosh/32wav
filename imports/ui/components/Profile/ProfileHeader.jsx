@@ -5,12 +5,11 @@ export const ProfileHeader = (props) => (
     <div className="col l10 offset-l1 s12" id="profile-header">
       <div className="col l2">
         <span className="user-avatar profile-pic" style={{"backgroundImage": 'url(' + props.avatar + ')'}}></span>
-
         <br />
       </div>
       <div className="col l2 offset-l1 s12" id="user-info">
-        <div className="" id="profile-name">
         { props.user[0].verified ? <i className="material-icons">verified_user</i> : '' }
+        <div className="" id="profile-name">
         <h3 className="center-align" id="user-name">
           {props.params.username}
         </h3>
