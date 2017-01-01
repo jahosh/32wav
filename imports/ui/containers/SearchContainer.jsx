@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 import { Link } from 'react-router';
-
 import TracksList from '../components/TracksList.jsx';
 
 // mongo collection
@@ -31,19 +30,17 @@ class SearchContainer extends Component {
     const users = this.props.users;
     const userId = Meteor.user() ? Meteor.user()._id : '';
     const foundUsers = users.filter( (user) => {
-      if (user._id === userId) {
-        return
-      }
+    
       return user;
     });
     return foundUsers.map( (user) => {
       return (
-        <div>
-          <li className="collection-item avatar track" key={user._id}>
+          <li className="collection-item avatar" key={user._id}>
+          <div className="float-right">
             <img src={user.profile_img} alt="" className="circle" />
+          </div>
             <Link to={user.username}><span className="title">{user.username}</span></Link>
           </li>
-        </div>
       );
     });
   }

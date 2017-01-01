@@ -14,6 +14,7 @@ import ProfileContainer from '../../ui/containers/ProfileContainer.jsx';
 import TrackContainer from '../../ui/containers/TrackContainer.jsx';
 import PurchaseContainer from '../../ui/containers/PurchaseContainer.jsx';
 import SearchContainer from '../../ui/containers/SearchContainer.jsx';
+import MessagesContainer from '../../ui/containers/MessagesContainer.jsx';
 
 //pages
 import { NotFound } from '../../ui/pages/NotFound.jsx';
@@ -21,6 +22,7 @@ import { FAQ } from '../../ui/pages/FAQ.jsx';
 import { SignIn } from '../../ui/pages/SignIn.jsx';
 import { VerifyEmail } from '../../ui/pages/VerifyEmail.jsx';
 import { FileShare } from '../../ui/pages/FileShare.jsx';
+
 
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
@@ -50,13 +52,14 @@ export const renderRoutes = () => (
       <Route path="/faq" component={FAQ} />
       <Route path="/contact" component={ContactContainer} />
       <Route path="/send" component={FileShare} />
+      <Route path="/messages/:userId" component={MessagesContainer} />
       <Route path="/purchase/:trackId" component={PurchaseContainer} />
       <Route path="/verify-email/:token" component={VerifyEmail} />
       <Route path="/search/:term" component={SearchContainer} />
       <Route path="/:username" component={ProfileContainer} />
       <Route path="/:username/:track" component={TrackContainer} /> 
     </Route>
-    <Route path="*" component={NotFound} />
+    <Route path="*" component={ NotFound } />
   </Router>
 );
 

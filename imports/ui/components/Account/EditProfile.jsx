@@ -22,6 +22,19 @@ export const EditProfile = (props) => {
         </div>
       </div>
       <div className="row">
+        <form onChange={props.handleAvatarUpload}>
+          <div className="file-field input-field">
+            <div className="btn">
+              <span>Profile Picture</span>
+              <input type="file" id="profile-pic-upload" />
+            </div>
+            <div className="file-path-wrapper">
+              <input className="file-path validate" type="text" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div className="row">
         <form className="col s12" onSubmit={props.handleFormSubmit}>
           <div className="row">
             <div className="input-field col s12">
@@ -59,18 +72,10 @@ export const EditProfile = (props) => {
               <label className="active" htmlFor="first_name2">Paypal:</label>
             </div>
           </div>
-        </form>
-      </div>
-      <div className="row">
-        <form onChange={props.handleAvatarUpload}>
-          <div className="file-field input-field">
-            <div className="btn">
-              <span>Profile Picture</span>
-              <input type="file" id="profile-pic-upload" />
-            </div>
-            <div className="file-path-wrapper">
-              <input className="file-path validate" type="text" />
-            </div>
+          <div className="center-align">
+           <button  className="btn waves-effect waves-light grey darken-4 center-align" type="submit" name="action">Submit
+              <i className="material-icons right">send</i>
+            </button>
           </div>
         </form>
       </div>

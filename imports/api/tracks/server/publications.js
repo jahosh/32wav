@@ -13,6 +13,7 @@ if (Meteor.isServer) {
     new SimpleSchema({
       limit: { type: Number }
     }).validate({ limit });
+    Counts.publish(this, 'total-tracks', Tracks.find(), { noReady: true, nonReactive: true });
 
     return  Tracks.find({
       $or: [

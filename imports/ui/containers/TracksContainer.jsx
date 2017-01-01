@@ -55,7 +55,6 @@ class TracksContainer extends Component {
     }        
   }
   globalPlayer(id) {
-    console.log(id);
     this.setState({ globalPlaying: true,  track: id });
   }
   render() {

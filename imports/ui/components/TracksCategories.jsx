@@ -27,8 +27,6 @@ export default class TracksCategories extends Component {
   handleSearch(e) {
     e.preventDefault();
     let term = $("#search").val()
-    console.log(term);
-
     browserHistory.push('/search/' + term);
   }
   render() {

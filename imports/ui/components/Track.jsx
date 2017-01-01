@@ -33,7 +33,8 @@ export default class Track extends Component {
     this.handlePlay = this.handlePlay.bind(this);
   }
   componentDidMount() {
-     $('.materialboxed').materialbox();
+    $('.materialboxed').materialbox();
+
   }
   handleTogglePlay(ws) {
 

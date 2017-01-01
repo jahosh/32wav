@@ -10,6 +10,18 @@ import Track from '../components/Track.jsx';
 import TracksList from '../components/TracksList.jsx';
 
 class TrackContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      globalPlaying: false
+    }
+
+    this.globalPlayer = this.globalPlayer.bind(this);
+  }
+  globalPlayer(id) {
+    this.setState({ globalPlaying: true,  track: id });
+  }
   renderSong() {
       const track       = this.props.userTracks[0];
       const currentUser = this.props.currentUser;
@@ -22,6 +34,8 @@ class TrackContainer extends Component {
           source={track.fileSource}
           showPrivateButton={showPrivateButton}
           currentUser={currentUser}
+          globalPlaying={this.globalPlayer.bind(this)}
+          globalState={this.state}
         />
      );
   }
@@ -41,15 +55,17 @@ TrackContainer.PropTypes = {
  userTracks: PropTypes.array.isRequired,
 }
 export default createContainer( (props) => {
-  const subscription = Meteor.subscribe('Tracks.all');
+  const subscription = Meteor.subscribe('Tracks.all', 5);
   const loading = !subscription.ready();
   const username = props.params.username;
   const track = props.params.track
   const userTracks = Tracks.find({username: username, title: track }).fetch();
+  const currentUser = Meteor.user();
 
   return {
    userTracks: userTracks,
    track: track,
    loading: loading,
+   currentUser: currentUser,
   };
 }, TrackContainer);

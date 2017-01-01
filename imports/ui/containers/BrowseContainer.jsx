@@ -43,7 +43,6 @@ class BrowseContainer extends Component {
     })
   }
   render() {
-    console.log('rendered');
     return (
       <div>
         {this.props.loading ? <Blaze template="spinner" /> :
@@ -80,7 +79,7 @@ export default createContainer( (props) => {
   const subscription = Meteor.subscribe('Tracks.all', 5);
   const loading = !subscription.ready();
   const tracks = Tracks.find({}, { sort: { createdAt: -1 } }).fetch();
-  const trackCount = 8;
+  const trackCount = Counts.get('total-tracks')
   const currentUser = Meteor.user();
   return {
     tracks: tracks,

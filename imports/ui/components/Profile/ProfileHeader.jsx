@@ -8,7 +8,7 @@ export const ProfileHeader = (props) => (
 
         <br />
       </div>
-      <div className="col l2 offset-l1" id="user-info">
+      <div className="col l2 offset-l1 s12" id="user-info">
         <div className="" id="profile-name">
         <i className="material-icons">verified_user</i>
         <h3 className="center-align" id="user-name">
@@ -25,21 +25,21 @@ export const ProfileHeader = (props) => (
       <thead>
         <tr>
           <th data-field="id">location</th>
+          <th data-field="id">joined</th>
+          <th data-field="id">contact</th>
           <th data-field="id">twitter</th>
-          <th data-field="id">Member Since:</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>{props.user[0].location ? `${props.user[0].location}` : ''}</td>
+          <td> { props.user[0].createdAt ? `${props.user[0].createdAt}` : '' } </td>
+          <td><i className="material-icons tiny">email</i></td>
           <td>
             { props.user[0].twitter ? <a  target="_blank" href={`http://twitter.com/${props.user[0].twitter}`}>  
             <i className="fa fa-twitter" aria-hidden="true"></i>
             </a>
             : '' }
-          </td>
-          <td>
-            { props.user[0].createdAt ? `${props.user[0].createdAt}` : '' }
           </td>
         </tr>
       </tbody>

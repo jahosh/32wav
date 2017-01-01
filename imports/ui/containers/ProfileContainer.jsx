@@ -12,9 +12,21 @@ import { ProfileHeader } from '../components/Profile/ProfileHeader.jsx';
 
 
 class ProfileContainer extends Component {
-  componentDidMount() {
-  console.log(this.props);
+   constructor(props) {
+    super(props);
 
+    this.state = {
+      globalPlaying: false
+    }
+
+    this.globalPlayer = this.globalPlayer.bind(this);
+  }
+  componentDidMount() {
+
+
+  }
+  globalPlayer(id) {
+    this.setState({ globalPlaying: true,  track: id });
   }
   renderSong() {
       const tracks      = this.props.userTracks;
@@ -29,6 +41,8 @@ class ProfileContainer extends Component {
             source={track.fileSource}
             showPrivateButton={showPrivateButton}
             currentUser={currentUser}
+            globalPlaying={this.globalPlayer.bind(this)}
+            globalState={this.state}
           />
         );
      });

@@ -54,7 +54,7 @@ Slingshot.createDirective("avatarToAmazonS3", Slingshot.S3Storage, {
 /* Track Avatar Uploads to S3 */
 Slingshot.fileRestrictions("trackAvatarToAmazonS3", {
   allowedFileTypes: ["image/png", "image/jpeg", "image/jpg"],
-  maxSize: 10 * 1024 * 1024,
+  maxSize: 2 * 1024 * 1024,
 });
 
 Slingshot.createDirective("trackAvatarToAmazonS3", Slingshot.S3Storage, {
