@@ -140,9 +140,9 @@ export default class Account extends Component {
         </div>
           <div className="collection" id="account-links">
             <Link to={'/' + this.props.user[0].username} className="collection-item">My Profile</Link>
-            <Link to={"/messages/" + this.props.user[0]._id} className="collection-item">Messages<span className="badge">1</span></Link>
             <Link onClick={this.editProfile} className="collection-item">Edit My Profile</Link>   
-            <Link className="collection-item">Edit Tracks</Link>         
+            <Link className="collection-item">Edit Instrumentals</Link>  
+            <Link to={"/messages/" + this.props.user[0]._id} className="collection-item">Messages<span className="badge">1</span></Link>       
             <a href="#!" className="collection-item">Reset Password</a>
           </div>
           <EditProfile

@@ -180,6 +180,11 @@ saveTrack(source, fileKey) {
     alert('please enter a title');
   return;
   }
+  if (price === '') {
+    alert('must enter price');
+    return;
+  }
+  
   let track = {
     title: title,
     price: parseInt(price),

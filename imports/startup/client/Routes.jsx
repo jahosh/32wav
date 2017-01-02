@@ -4,7 +4,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 //containers
-import { App } from '../../ui/components/Home/App.jsx';
+import  App  from '../../ui/components/Home/App.jsx';
 import AppContainer  from '../../ui/containers/AppContainer.jsx';
 import MyAccountContainer from '../../ui/containers/MyAccountContainer.jsx';
 import BrowseContainer from '../../ui/containers/BrowseContainer.jsx';

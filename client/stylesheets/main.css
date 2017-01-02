@@ -52,7 +52,8 @@ html {
 }
 
 #home-info {
-  margin-top: 100px;
+  margin-top: 50px;
+  font-size: 12px;
 }
 
 
@@ -61,14 +62,14 @@ html {
   margin-top: 0px;
 }
 #signup-btn {
-  margin-top: 50px;
+  margin-top: 15px;
   border-radius: 5px;
   font-size: 16px;
 
 }
 
 #headline {
-  font-size: 35px;
+  font-size: 20px;
 }
 
 
@@ -249,9 +250,7 @@ nav .nav-wrapper form, nav .nav-wrapper form .input-field{
 height: 100%;
 }
 
-input[type="search"] {
-  height: 64px !important; /* or height of nav */
-}
+
 
 #search {
   margin-top: 40px;
@@ -262,7 +261,7 @@ input[type="search"] {
   background:url(./mainhd.jpg)#222 no-repeat   35%;
   border-radius: 5px;
   height: 200px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 #faq-header {
@@ -547,8 +546,8 @@ div.dz-preview.dz-file-preview.card {
 }
 #username-link {
   color:black;
-  font-size: 20px;
-  line-height: 10px;
+  font-size: 15px;
+  line-height: 20px;
  font-weight: bold;
 }
 
@@ -715,6 +714,16 @@ canvas {
 
   font-style: italic;
   bottom-margin: 40px;
+}
+
+
+#main-search {
+  border: 5px solid black;
+  border-radius: 95px;
+}
+
+.material-icons.active {
+  display: none;
 }
 
 
