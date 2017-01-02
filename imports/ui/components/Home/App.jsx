@@ -51,7 +51,7 @@ export default class App extends Component {
                 <br />
                 <h5>Stream</h5>
                 <br />
-                <p>effortlessly stream instrumentals</p>            
+                <p>Find and stream high quality instrumentals</p>            
               </div>
                  <div className="col s4 center-align">
                 <i className="large material-icons">system_update_alt</i>

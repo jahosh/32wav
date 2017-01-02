@@ -42,6 +42,10 @@ class SearchContainer extends Component {
     const users = this.props.users;
     const userId = Meteor.user() ? Meteor.user()._id : '';
     const foundUsers = users.filter( (user) => {
+
+      if (user._id === userId) {
+        return;
+      }
     
       return user;
     });
@@ -49,9 +53,9 @@ class SearchContainer extends Component {
       return (
           <li className="collection-item avatar" key={user._id}>
           <div className="float-right">
-            <img src={user.profile_img} alt="" className="circle" />
+            <img src={user.profile_img} id="small-avatar" alt="" className="circle" />
           </div>
-            <Link to={user.username}><span className="title">{user.username}</span></Link>
+            <Link to={user.username} className="track-link"><p className="songTitle">{user.username}</p></Link>
           </li>
       );
     });

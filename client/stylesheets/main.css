@@ -251,6 +251,10 @@ height: 100%;
 }
 
 
+#small-avatar {
+  margin-top: 25px;
+}
+
 
 #search {
   margin-top: 40px;
