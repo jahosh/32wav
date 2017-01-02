@@ -9,11 +9,16 @@ import Header from './Header.jsx';
 
 export default class App extends Component {
   componentDidMount() {
+    document.title = "Top instrumentals | 32wav ";
     this.searchInput.focus();
   }
   handleSearch(e) {
     e.preventDefault();
     let term = $("#main-search").val()
+    if (term === '') {
+      alert("please enter a title");
+      return;
+    }
     browserHistory.push('/search/' + term);
   }
   render() {
@@ -34,7 +39,7 @@ export default class App extends Component {
             
             <div className="col s12 m12 l10 offset-l1 center-align" id="signup-heading">
               <div className="col s6 l6 offset-l3 offset-s3">
-                <Link className="waves-effect waves-light btn-large grey darken-4" id="signup-btn" to="/signin">SEARCH</Link>
+                <Link className="waves-effect waves-light btn-large grey darken-4" id="signup-btn" onClick={this.handleSearch}>SEARCH</Link>
               </div>
             </div>
           </div>

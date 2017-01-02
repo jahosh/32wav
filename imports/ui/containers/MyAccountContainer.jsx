@@ -5,6 +5,9 @@ import Blaze from 'meteor/gadicc:blaze-react-component';
 
 /* Responsible for Fetching Data Related to "Account" View */
 class AccountContainer extends Component {
+  componentDidMount() {
+    document.title = "Account | 32wav ";
+  }
   render() {
     return (
       <div className="row">

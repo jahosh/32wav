@@ -40,6 +40,10 @@ const requireAuth = (nextState, replace) => {
   }
 };
 
+const faqTitle = () => {
+  document.title = "F.A.Q | 32wav ";
+}
+
 export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Route path="/" component={AppContainer}>
@@ -49,7 +53,7 @@ export const renderRoutes = () => (
       <Route path="/myaccount" component={MyAccountContainer} onEnter={requireAuth} />
       <Route path="/browse" component={BrowseContainer} />
       <Route path="/browse/:limit" component={BrowseContainer} />
-      <Route path="/faq" component={FAQ} />
+      <Route path="/faq" component={FAQ} title={faqTitle} />
       <Route path="/contact" component={ContactContainer} />
       <Route path="/send" component={FileShare} />
       <Route path="/messages/:userId" component={MessagesContainer} />

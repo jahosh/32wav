@@ -3,8 +3,10 @@ import React, { Component, PropTypes } from 'react';
 //react components
 import ContactForm from '../components/Contact/ContactForm.jsx';
 
-
 export default class ContactContainer extends Component {
+  componentDidMount() {
+    document.title = "Contact | 32wav ";
+  }
   render() {
     return (
       <div className="row">

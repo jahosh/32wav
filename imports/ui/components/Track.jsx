@@ -43,7 +43,8 @@ export default class Track extends Component {
  this.props.globalPlaying(this.props.song._id);
  this.setState({ playing: !this.state.playing, played: true });
 
-   if (!this.state.playing) {
+  // if the track is playing, and has never been played, incre playcount.
+   if (this.state.playing && this.state.played === false) {
    incrementTrackPlayCount.call({ trackId: this.props.song._id});
    }
   }
@@ -176,7 +177,13 @@ export default class Track extends Component {
         <div className="row">
           <div className="col s12" id="track-misc">       
           <div className="beatActions">
+            
+
+            
+            {/* - old purchase functionality - price-tags
             <Link to={ "/purchase/" + this.props.song._id }><span className="secondary-content">${this.props.song.price}</span></Link>
+            */}
+  
             {/* 
               <a href="#!" onClick={this.likeSong.bind(this)} className="secondary-content"><i className="em em-pray"></i></a>   
               <div>

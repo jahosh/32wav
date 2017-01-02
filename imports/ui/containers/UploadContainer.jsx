@@ -8,6 +8,9 @@ import Blaze from 'meteor/gadicc:blaze-react-component';
 import FileUpload from '../components/Upload/FileUpload.jsx';
 
 class UploadContainer extends Component {
+  componentDidMount() {
+    document.title = "Upload | 32wav ";
+  }
   render() {
     return (
       <div className="row">     

@@ -71,7 +71,7 @@ export default class TracksCategories extends Component {
         </div>
          <form className="hide-on-small-only" onSubmit={this.handleSearch}>
               <div className="input-field ">
-                <input id="search" type="search" placeholder="search..." required />
+                <input id="search" type="search" required />
                 <label htmlFor="search"><i className="material-icons">search</i></label>
                 <i className="material-icons">close</i>
               </div>

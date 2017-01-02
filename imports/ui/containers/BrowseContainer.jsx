@@ -25,6 +25,7 @@ class BrowseContainer extends Component {
     }
   }
   componentDidMount() {
+    document.title = "Browse | 32wav ";
     this.handleFilterChange();
   }
   handleFilterChange() {
