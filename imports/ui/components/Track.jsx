@@ -202,9 +202,9 @@ export default class Track extends Component {
             </a>
             </div>
             : ''}
-            <Link to={"/purchase/" + this.props.song._id }  className="btn-flat btn-small disabled" id="payment-tag">
-              Purchase
-            </Link>
+            <a href={this.props.source} download="file.mp3"  className="btn-flat btn-small disabled" id="payment-tag">
+              Download
+            </a>
              <Link className="btn-flat btn-small disabled twitter-share-button" href="#" id="share-tag">
               Share
             </Link>
