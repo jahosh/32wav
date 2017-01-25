@@ -63,7 +63,7 @@ class SearchContainer extends Component {
   render() {
     return (
       <div className="row">
-       <div className="col l10 offset-l1">
+       <div className="col l10 offset-l1 s10 offset-s1">
         { this.props.loading ? <Blaze template="spinner" /> :
           <div>
             <div className="center-align">

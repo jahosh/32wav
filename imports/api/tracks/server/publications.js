@@ -23,20 +23,20 @@ if (Meteor.isServer) {
     })
   });
 
-  /* Publication for Purchase Page */
-  Meteor.publish('Tracks.purchase', function tracksPublication(trackId){
+  /* Publication for Edit Page */
+  Meteor.publish('Tracks.edit', function tracksPublication(trackId){
     new SimpleSchema({
       trackId: { type: String }
     }).validate({ trackId });
+
 
     const user = Tracks.findOne(trackId);
     return [ Tracks.find({_id: trackId,
       $or: [
         { private: { $ne: true } },
         { owner: this.userId },
-      ]}, { fields: { title: 1, price: 1, owner: 1 },
-    }),
-      Meteor.users.find({ _id: user.owner }, { fields: { paypal: 1 } })
+      ]}, { fields: { title: 1, private: 1, genre: 1, trackImage: 1, _id: 1, owner: 1 },
+    })
     ]
   });
 
@@ -52,7 +52,7 @@ if (Meteor.isServer) {
     ]
   });
   
-
+  /* Publication for Search */
   Meteor.publish('Tracks.search', function(search) {
     check(search, Match.OneOf( String, null, undefined) );
 

@@ -9,7 +9,7 @@ export default class Charts extends Component {
         <TracksContainer
           tracks={this.props.tracks}
           currentUser={this.props.currentUser}
-          genreFilter={this.props.filters}
+          filters={this.props.filters}
         />
       </div>  
     );

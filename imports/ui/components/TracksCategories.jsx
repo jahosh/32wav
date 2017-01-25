@@ -34,32 +34,21 @@ export default class TracksCategories extends Component {
       <div className="row">
       <header>
       <h5> Filters </h5>
-        <div className="input-field col  s12 l4" id="genre">
+        <div className="input-field col  s12 l6" id="genre">
           <select>
             <option value="all" defaultValue>All</option>
-            <option value="hiphop">Hip-Hop</option>
-            <option value="electronic">Electric</option>
-            <option value="indie">Indie</option>
+            <option value="rap">Rap</option>
+            <option value="rnb">R&B</option>
           </select>
           <label>Genre</label>
         </div>
-        <div className="input-field col s12 l4" id="license">
+        <div className="input-field col s12 l6" id="type">
           <select>
             <option value="all" defaultValue>All</option>
-            <option value="lease">Lease</option>
-            <option value="exclusive">Exclusive</option>
+            <option value="lease">Official</option>
+            <option value="exclusive">Remake</option>
           </select>
-          <label>License Type</label>
-        </div>
-        <div className="input-field col s12 l4" id="price">
-          <select>
-            <option value="0" defaultValue>All</option>
-            <option value="50">  $50 </option>
-            <option value="250"> $250 </option>
-            <option value="500"> $500</option>
-            <option value="1000"> $1000</option>
-          </select>
-          <label>Price</label>
+          <label>Type</label>
         </div>
         </header>
          <div className="stats">

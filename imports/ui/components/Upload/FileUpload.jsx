@@ -242,8 +242,7 @@ render() {
     <div className="uploadUI">
           <form className="new-task col s12" id="track-data" onSubmit={this.handleSubmit}>
             <div className="row">
-              <div className="input-field col s6">
-               
+              <div className="input-field col s6">   
                 <input 
                   type="text"
                   id="beatTitle"
@@ -251,8 +250,7 @@ render() {
                 />
                 <label htmlFor="beatname">Title</label>
               </div>
-              <div className="input-field col s6">
-               
+              <div className="input-field col s6">      
                 <input 
                   type="number"
                   id="beatPrice"
@@ -265,18 +263,17 @@ render() {
             <div className="row">
               <div className="input-field col s6" id="license">
                 <select id="track-license">
-                  <option defaultValue="">Select a license</option>
-                  <option value="lease">Lease</option>
-                  <option value="exclusive">Exclusive</option>
+                  <option defaultValue="">Select a type</option>
+                  <option value="official">Official Instrumental</option>
+                  <option value="remake">Remake</option>
                 </select>
-                <label>License</label>
+                <label>Type</label>
               </div>
               <div className="input-field col s6">
                 <select id="beat-genre">
                   <option defaultValue="">Select a genre</option>
-                  <option value="hiphop">Hip-Hop</option>
-                  <option value="electronic">Electronic</option>
-                  <option value="indie">Indie</option>
+                  <option value="rap">Rap</option>
+                  <option value="rnb">R&B</option>
                 </select>
                 <label>Genre</label>
               </div>

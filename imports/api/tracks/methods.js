@@ -74,6 +74,30 @@ export const removeTrack = new ValidatedMethod({
 });
 
 /*
+ * Updates a track's metadata
+ * @param {string} trackId - the id of the track to be updated
+ * @param {object} payload - containing all of the new track metadata
+ * 
+ */
+
+export const updateTrack = new ValidatedMethod({
+  name: "Tracks.methods.update",
+  validate: new SimpleSchema({
+    trackId: { type: String },
+    trackName: { type: String },
+  }).validator(),
+  run( {trackId, trackName }) {
+    const track = Tracks.findOne(trackId);
+    console.log(track);
+    if (track.owner !== this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Tracks.update(trackId, { $set: { title:trackName } });
+  }
+});
+
+/*
  * Adds a user to the likedBy array, increases like count
  * @param {string} trackId - the id of the track to add user like to
  * 

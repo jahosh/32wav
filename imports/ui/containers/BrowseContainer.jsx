@@ -20,8 +20,7 @@ class BrowseContainer extends Component {
     super(props)
     this.state = {
       genre: 'all',
-      license: 'all',
-      price: 0,
+      type: 'all',
     }
   }
   componentDidMount() {
@@ -34,14 +33,10 @@ class BrowseContainer extends Component {
       let value = $(this).val()
       self.setState({ genre: value });
     });
-    $('#license').on('change', 'select', function(e) {
+    $('#type').on('change', 'select', function(e) {
       let value = $(this).val()
-      self.setState({ license: value });
+      self.setState({ type: value });
     });
-    $('#price').on('change', 'select', function(e) {
-      let value = $(this).val()
-      self.setState({ price: parseInt(value) });
-    })
   }
   render() {
     return (
@@ -54,8 +49,7 @@ class BrowseContainer extends Component {
                 </header>
               <TracksCategories
                 genre={this.state.genre}
-                license={this.state.license}
-                price={this.state.price}
+                type={this.state.type}
                 trackCount={this.props.trackCount}
                 onFilterChange={this.handleFilterChange.bind(this)}
               />

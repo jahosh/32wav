@@ -58,7 +58,7 @@ export default class App extends Component {
                 <br />
                 <h5>Download</h5>
                 <br />
-                <p>download your favorite instrumentals</p>
+                <p>download official instrumentals to popular songs</p>
               </div>
               <div className="col s4 center-align">
                 <i className="large material-icons">visibility</i>

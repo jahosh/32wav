@@ -19,18 +19,17 @@ class TracksContainer extends Component {
   renderTracks() {
     const allTracks      = this.props.tracks; 
     const filteredTracks = allTracks.filter( (track) => {
-      let genreFilter    = this.props.genreFilter.genre,
-          priceFilter    = this.props.genreFilter.price,
-          licenseFilter  = this.props.genreFilter.license;
+      let genreFilter    = this.props.filters.genre,
+          typeFilter  = this.props.filters.type;
         
-      return this.checkFilter(track, genreFilter, priceFilter);
+      return this.checkFilter(track, genreFilter, typeFilter);
       });
     //filteredTracks = filteredTracks.filter(track => track.genre === this.props.genreFilter);
     return filteredTracks.map( (track) => {
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
       const showPrivateButton = track.owner === currentUserId;
       const currentUser = Meteor.user();
-      const source = track.fileSource;    
+      const source = track.fileSource;   
       return (
         <Track 
           key={track._id} 
@@ -44,14 +43,14 @@ class TracksContainer extends Component {
       );
     });
   }
-  checkFilter(track, genreFilter, priceFilter, licenseFilter) {
-    let licenseType = this.props.genreFilter.license;
+  /**
+   * Function to perform filtering of home track list -
+   */
+  checkFilter(track, genreFilter, typeFilter) {
     if (track.genre === genreFilter || genreFilter === "all") {
-      if (track.price <= priceFilter || priceFilter === 0) {
-        if (licenseType === "all" || licenseType === track.licenseType ) {
-            return track;
-        }
-      } 
+      if (typeFilter === "all" || typeFilter === track.licenseType ) {
+        return track;
+      }
     }        
   }
   globalPlayer(id) {

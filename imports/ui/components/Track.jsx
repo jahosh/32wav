@@ -115,6 +115,9 @@ export default class Track extends Component {
       this.setState({ playing: !this.state.playing });
     }
   }
+  cantDownload() {
+    alert('please login to download');
+  }
   render() {
       const options = {
         height: 80,
@@ -138,7 +141,7 @@ export default class Track extends Component {
             <span className="trackTitle"><Link className="trackLink" to={ this.props.song.username + '/' + this.props.song.title}><p id="username-link" className="flow-text">{this.props.song.title}</p></Link></span>
             <Link className="track-link" to={this.props.song.username}><p className="songTitle">{this.props.song.username}</p></Link>
             <p>{this.props.song.fileName}</p>
-            <span className="track-photo materialboxed" style={{"background": 'url(' + this.props.song.trackImage + ')'}} ></span>
+            <span className="track-photo" style={{"background": 'url(' + this.props.song.trackImage + ')'}} ></span>
           
          </div>
          <div className="col s12 l9" id="track-wave">
@@ -147,7 +150,6 @@ export default class Track extends Component {
             <img src="/assets/play.svg" className="playPause" onClick={this.handleTogglePlay} height="60px" /> 
           }      
        
-
           {this.state.played ? 
             <div>
             <div className="spinner">
@@ -165,8 +167,7 @@ export default class Track extends Component {
           </div>
           
           : <div className="wave-spaceholder"></div> }
-          
-         
+        
           <div className="track-stats">
             <i className="tiny material-icons">play_arrow</i><span id="plays">{this.props.song.plays}</span> <br />
             <i className="tiny material-icons">star</i><span id="likes">{this.props.song.likedBy.length}</span> <br />
@@ -177,8 +178,6 @@ export default class Track extends Component {
         <div className="row">
           <div className="col s12" id="track-misc">       
           <div className="beatActions">
-            
-
             
             {/* - old purchase functionality - price-tags
             <Link to={ "/purchase/" + this.props.song._id }><span className="secondary-content">${this.props.song.price}</span></Link>
@@ -194,17 +193,26 @@ export default class Track extends Component {
             */}
             { this.props.song.owner === userId ? 
               <div>
-            <a className="btn-flat btn-small disabled float-right" onClick={this.deleteSong.bind(this)}>
-              Delete 
-            </a>
-            <a className="btn-flat btn-small disabled float-right songPrivacy" onClick={this.togglePrivate.bind(this)}>
-              {this.props.song.private ? 'Private' : 'Public'}
-            </a>
-            </div>
+                <Link to={ "edit/" + this.props.song._id } id="track-buttons" className="btn-flat btn-small disabled float-right">
+                  Edit
+                </Link>
+                <a className="btn-flat btn-small disabled float-right" id="track-buttons" onClick={this.deleteSong.bind(this)}>
+                  Delete 
+                </a>
+                <a className="btn-flat btn-small disabled float-right songPrivacy" id="track-buttons" onClick={this.togglePrivate.bind(this)}>
+                  {this.props.song.private ? 'Private' : 'Public'}
+                </a>
+              </div>
             : ''}
+            { Meteor.user() !== null ?  
             <a href={this.props.source} download="file.mp3"  className="btn-flat btn-small disabled" id="payment-tag">
               Download
             </a>
+            : <a className="btn-flat btn-small disabled" onClick={this.cantDownload} id="payment-tag">
+            Download
+            </a>
+      
+            }
              <Link className="btn-flat btn-small disabled twitter-share-button" href="#" id="share-tag">
               Share
             </Link>

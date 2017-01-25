@@ -739,3 +739,8 @@ canvas {
 #at-btn {
   background: #212121 !important;
 }
+
+
+#track-buttons {
+  cursor: pointer;
+}

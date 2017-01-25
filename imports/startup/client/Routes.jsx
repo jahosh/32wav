@@ -15,6 +15,7 @@ import TrackContainer from '../../ui/containers/TrackContainer.jsx';
 import PurchaseContainer from '../../ui/containers/PurchaseContainer.jsx';
 import SearchContainer from '../../ui/containers/SearchContainer.jsx';
 import MessagesContainer from '../../ui/containers/MessagesContainer.jsx';
+import EditTrackContainer from '../../ui/containers/EditTrackContainer.jsx';
 
 //pages
 import { NotFound } from '../../ui/pages/NotFound.jsx';
@@ -53,6 +54,7 @@ export const renderRoutes = () => (
       <Route path="/myaccount" component={MyAccountContainer} onEnter={requireAuth} />
       <Route path="/browse" component={BrowseContainer} />
       <Route path="/browse/:limit" component={BrowseContainer} />
+      <Route path="edit/:trackId" component={EditTrackContainer} />
       <Route path="/faq" component={FAQ} title={faqTitle} />
       <Route path="/contact" component={ContactContainer} />
       <Route path="/send" component={FileShare} />
