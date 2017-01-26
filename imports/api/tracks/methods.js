@@ -16,25 +16,25 @@ export const insertTrack = new ValidatedMethod({
   name: "Tracks.methods.insert",
   validate: new SimpleSchema({
     title: { type: String },
-    price: { type: Number },
+    artist: { type: String },
     genre: { type: String },
-    licenseType: { type: String },
     fileSource: { type: String },
     fileKey: { type: String },
     setPrivate: { type: Boolean },
     trackImage: { type: String },
+    download: { type: Boolean }
   }).validator(),
   run(track) {
-    let timeStamp = moment().format('X');
-    const userName = Meteor.user().username != null ? Meteor.user().username : Meteor.user().profile.name
+    let timeStamp = moment().format('X'),
+        userName  = Meteor.user().username != null ? Meteor.user().username : Meteor.user().profile.name;
+
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
     Tracks.insert({ 
       title: track.title,
       genre: track.genre,
-      price: track.price,
-      licenseType: track.licenseType,
+      artistName: track.artistName,
       fileSource: track.fileSource,
       fileKey: track.fileKey,
       createdAt: timeStamp,
@@ -42,6 +42,7 @@ export const insertTrack = new ValidatedMethod({
       username: userName,
       setPrivate: track.setPrivate,
       trackImage: track.trackImage,
+      download: track.download,
       likedBy: [],
       plays: 0
     });

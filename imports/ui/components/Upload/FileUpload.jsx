@@ -138,7 +138,7 @@ change(e) {
   const upload = new Slingshot.Upload("trackAvatarToAmazonS3");
     upload.send(file, function(err, source) {
       if (err) {
-        this.setState({ progress: 0 });
+        self.setState({ progress: 0 });
         console.error(err);
         alert(err);
         return;
@@ -167,37 +167,36 @@ change(e) {
 }
 saveTrack(source, fileKey) {
   let title             = $("#beatTitle").val(),
-      price             = $("#beatPrice").val(),
+      artist            = $("#artistName").val(),
       genre             = $("#beat-genre option:selected").val(),
-      description       = $("#track-desc").val(),
-      privateSelect     = $("#private").prop("checked"),
       publicSelect      = $("#public").prop("checked"),
-      visability        = privateSelect ? true : false,
-      licenseType       = $("#track-license option:selected").val(),
       trackImage        = $("#photolink").text();
 
   if (title === '') {
     alert('please enter a title');
   return;
   }
-  if (price === '') {
-    alert('must enter price');
-    return;
+
+  if (trackImage === "") {
+    trackImage = "./32wav.jpg";
   }
-  
+
+  let downloadable = publicSelect ? true : false;
+  console.log(downloadable);
   let track = {
     title: title,
-    price: parseInt(price),
+    artist: artist,
     genre: genre,
-    licenseType: licenseType,
     fileSource: source,
     fileKey: fileKey,
-    setPrivate: visability,
-    trackImage: trackImage
+    setPrivate: false,
+    trackImage: trackImage,
+    download: downloadable
   }
   insertTrack.call(track, (err) => {
     if (err) {
-      alert (err.reason);
+      alert (err);
+      return;
     }
       this.displayFileUploaded();
   });
@@ -252,12 +251,11 @@ render() {
               </div>
               <div className="input-field col s6">      
                 <input 
-                  type="number"
-                  id="beatPrice"
-                  ref="beatPrice"
-                  min="1"
+                  type="text"
+                  id="artistName"
+                  ref="artistName"
                 />
-                <label htmlFor="beatprice">Price (USD)</label>
+                <label htmlFor="artistName">Artist (optional) </label>
               </div>
             </div>
             <div className="row">
@@ -294,14 +292,14 @@ render() {
             </div>
             <div className="row">
             <div className="radio col s6" id="visability">
-            <b>Track visability</b>
+            <b>Downloadble</b>
                 <p>
-                  <input name="public-private" type="radio" value="public" id="public" />
-                  <label htmlFor="public">Public</label>
+                  <input name="public-private" type="radio" value="downloadable-yes" id="public" />
+                  <label htmlFor="public">Yes</label>
                 </p>
                 <p>
-                  <input name="public-private" type="radio" value="private" id="private" />
-                  <label htmlFor="private">Private</label>
+                  <input name="public-private" type="radio" value="downloadable-no" id="private" />
+                  <label htmlFor="private">No</label>
                 </p>
               </div>
               

@@ -26,6 +26,7 @@ class EditTrackContainer extends Component {
             <div> 
               <header className="">
                 <div className="center-align">
+                  <p className="flow-text"> Currently editing: </p>
                   <h1 className="center-align">{ this.props.track.title } </h1>
                 </div>
               </header>
