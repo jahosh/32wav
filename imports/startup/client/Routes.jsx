@@ -16,6 +16,7 @@ import PurchaseContainer from '../../ui/containers/PurchaseContainer.jsx';
 import SearchContainer from '../../ui/containers/SearchContainer.jsx';
 import MessagesContainer from '../../ui/containers/MessagesContainer.jsx';
 import EditTrackContainer from '../../ui/containers/EditTrackContainer.jsx';
+import EditTracksContainer from '../../ui/containers/EditTracksContainer.jsx';
 
 //pages
 import { NotFound } from '../../ui/pages/NotFound.jsx';
@@ -55,6 +56,7 @@ export const renderRoutes = () => (
       <Route path="/browse" component={BrowseContainer} />
       <Route path="/browse/:limit" component={BrowseContainer} />
       <Route path="edit/:trackId" component={EditTrackContainer} />
+      <Route path="alluploads/:username" component={EditTracksContainer} />
       <Route path="/faq" component={FAQ} title={faqTitle} />
       <Route path="/contact" component={ContactContainer} />
       <Route path="/send" component={FileShare} />

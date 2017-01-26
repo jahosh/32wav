@@ -153,6 +153,21 @@ export const setTrackPrivate = new ValidatedMethod({
   }
 });
 
+export const toggleTrackDownloadStatus = new ValidatedMethod({
+  name: "Tracks.methods.toggleTrackDownloadStatus",
+  validate: new SimpleSchema({
+    trackId: { type: String },
+    downloadState: { type: Boolean },
+  }).validator(),
+  run( { trackId, downloadState } ) {
+    const track = Tracks.findOne(trackId);
+    if (track.owner !== this.userId) {
+      throw new Meteor.Error("not-authorized, you don't own this track");
+    }
+    Tracks.update(trackId, { $set: { download: downloadState }});
+  }
+});
+
 
 export const updateTrackImage = new ValidatedMethod({
   name: "Tracks.methods.updateTrackImage",

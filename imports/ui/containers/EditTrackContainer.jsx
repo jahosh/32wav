@@ -33,6 +33,7 @@ class EditTrackContainer extends Component {
               <EditTrack
               track={this.props.track}
               trackId={this.props.trackId}
+              downloadable={this.props.track.download}
               />
             </div>
           }

@@ -33,7 +33,6 @@ export default class Track extends Component {
     this.handlePlay = this.handlePlay.bind(this);
   }
   componentDidMount() {
-    $('.materialboxed').materialbox();
 
   }
   handleTogglePlay(ws) {
@@ -116,7 +115,7 @@ export default class Track extends Component {
     }
   }
   cantDownload() {
-    alert('please login to download');
+    alert('downloads are disabled for this track');
   }
   render() {
       const options = {
@@ -204,7 +203,9 @@ export default class Track extends Component {
                 </a>
               </div>
             : ''}
-            { Meteor.user() !== null ?  
+
+          
+            { Meteor.user() !== null && this.props.song.download ?  
             <a href={this.props.source} download="file.mp3"  className="btn-flat btn-small disabled" id="payment-tag">
               Download
             </a>

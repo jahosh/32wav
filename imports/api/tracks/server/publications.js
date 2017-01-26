@@ -35,7 +35,7 @@ if (Meteor.isServer) {
       $or: [
         { private: { $ne: true } },
         { owner: this.userId },
-      ]}, { fields: { title: 1, private: 1, genre: 1, trackImage: 1, _id: 1, owner: 1 },
+      ]}, { fields: { title: 1, private: 1, genre: 1, trackImage: 1, _id: 1, owner: 1, download: 1 },
     })
     ]
   });
@@ -49,6 +49,22 @@ if (Meteor.isServer) {
       ]}, { sort  : { createdAt: -1 }
     }),
       Meteor.users.find({ "username": username  }, { fields: { "createdAt": 1, username: 1, profile_img: 1, bio: 1, twitter: 1, location: 1 } })
+    ]
+  });
+
+    /* Publication for All Tracks Edit Page */
+  Meteor.publish('Tracks.all.edit', function tracksPublication(){
+
+
+    const currentUser = this.userId;
+
+    return [ Tracks.find({ owner: currentUser,
+      $or: [
+        { private: { $ne: true } },
+        { owner: this.userId },
+      ]}, { sort  : { createdAt: -1 }
+    }),
+      Meteor.users.find({ "_id": currentUser  }, { fields: { "createdAt": 1, username: 1} })
     ]
   });
   

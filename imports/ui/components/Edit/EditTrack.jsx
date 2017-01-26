@@ -2,13 +2,36 @@ import React, { Component } from 'react';
 
 
 import { updateTrack } from '../../../api/tracks/methods.js';
+import { toggleTrackDownloadStatus } from '../../../api/tracks/methods.js';
 
 export default class EditTrack extends Component {
   constructor(props) {
     super(props);
+
   }
   componentDidMount() {
     console.log(this.props);
+    console.log($("#download-switch").is(":checked"));
+    if (this.props.downloadable) {
+      $("#download-switch").prop("checked", true);
+    }
+
+  }
+  changeDownloadStatus() {
+    console.log(this.props);
+
+    let payload = {
+      trackId: this.props.trackId,
+      downloadState: !this.props.downloadable
+    };
+
+     toggleTrackDownloadStatus.call(payload, (err) => {
+       if (err) {
+         console.log(err);
+       }
+     });
+
+    console.log($("#download-switch").is(":checked"));
   }
   handleEditSubmit(e) {
     e.preventDefault();
@@ -30,28 +53,22 @@ export default class EditTrack extends Component {
   render() { 
     return (
       <div className="row">
+        <div className="center-align">
+          <span className="track-photo" style={{"background": 'url(' + this.props.track.trackImage + ')'}} ></span>
+        </div>
         <form className="col s12" onSubmit={this.handleEditSubmit.bind(this)}>
-            <div className="center-align">
-              <img  height="200" width="200" src={this.props.track.trackImage} />
-            </div>
           <div className="input-field col s12">
-          <div>
-          </div>
             <input defaultValue={this.props.track.title} id="track-title" type="text" maxLength="30" className="validate" />
             <label className="active" htmlFor="track_title">Title:</label>
           </div>
         </form>
-
-
-            <div className="switch">
-              <label>
-                Download enabled
-              <input type="checkbox" />
-              <span className="lever"></span>
-                    On
-              </label>
-              </div>
-      </div>
+        <form>
+          <p>
+            <input type="checkbox" id="download-switch" onClick={this.changeDownloadStatus.bind(this)} />
+            <label htmlFor="download-switch">Downloadable</label>
+          </p>
+        </form>
+        </div>
     );
   }
 }

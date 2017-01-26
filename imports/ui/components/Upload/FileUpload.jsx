@@ -255,7 +255,7 @@ render() {
                   id="artistName"
                   ref="artistName"
                 />
-                <label htmlFor="artistName">Artist (optional) </label>
+                <label htmlFor="artistName">Artist</label>
               </div>
             </div>
             <div className="row">
@@ -292,7 +292,7 @@ render() {
             </div>
             <div className="row">
             <div className="radio col s6" id="visability">
-            <b>Downloadble</b>
+            <b>Downloadable</b>
                 <p>
                   <input name="public-private" type="radio" value="downloadable-yes" id="public" />
                   <label htmlFor="public">Yes</label>
