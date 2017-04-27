@@ -4,18 +4,10 @@ import { Accounts } from 'meteor/accounts-base';
 
 const initialUsers = [
   {
-    email: 'admin@32wav.com',
-    password: 'admin123',
+    email: "admin@32wav.com",
+    password: Meteor.settings.adminPassword,
     roles: ['admin'],
   },
-  {
-    email: 'mistahhick@gmail.com',
-    password: 'password',
-    profile: {
-      name: { first: 'Test', last: 'User' },
-    },
-    roles: ['user'],
-  }
 ];
 
 initialUsers.forEach(({ email, password, roles }) => {

@@ -22,13 +22,6 @@ AccountsTemplates.addFields([
   },
   pwd
 ]);
-
-/*
-Accounts.ui.config({
-  passwordSignupFields: 'USERNAME_AND_EMAIL'
-});
-*/
-
 Accounts.config({
   forbidClientAccountCreation: false
 });
@@ -58,51 +51,37 @@ AccountsTemplates.configure({
     focusFirstInput: true,
     sendVerificationEmail: true,
     showForgotPasswordLink: true,
-  // enforceEmailVerification: true,
-  //confirmPassword: true,
-  //continuousValidation: false,
-  //displayFormLabels: true,
-  //forbidClientAccountCreation: true,
-  //formValidationFeedback: true,
-  //homeRoutePath: '/',
-  //showAddRemoveServices: false,
-  //showPlaceholders: true,
+    showAddRemoveServices: false,
+    showLabels:true,
+    showPlaceholders: true,
 
-  //appearance
-  showAddRemoveServices: false,
-  showLabels:true,
-  showPlaceholders: true,
-
-  // Client-side Validation
-  continuousValidation: false,
-  negativeFeedback: false,
-  negativeValidation: true,
-  positiveValidation: true,
-  positiveFeedback: true,
-  showValidating: true,
-
-  privacyUrl: 'privacy',
-
-  negativeValidation: true,
-  positiveValidation: true,
-  negativeFeedback: false,
-  positiveFeedback: true,
-  homeRoutePath: '/',
-  redirectTimeout: 2000,
-  onSubmitHook: mySubmitFunc,
-
-  texts: {
-    sep: "OR",
-      button: {
-          signUp: "Sign Up",
-          enrollAccount: "Create Account",
+    // Client-side Validation
+    continuousValidation: false,
+    negativeFeedback: false,
+    negativeValidation: true,
+    positiveValidation: true,
+    positiveFeedback: true,
+    showValidating: true,
+    privacyUrl: 'privacy',
+    negativeValidation: true,
+    positiveValidation: true,
+    negativeFeedback: false,
+    positiveFeedback: true,
+    homeRoutePath: '/',
+    redirectTimeout: 2000,
+    onSubmitHook: mySubmitFunc,
+    texts: {
+      sep: "OR",
+        button: {
+            signUp: "Sign Up",
+            enrollAccount: "Create Account",
+        },
+        socialSignUp: "Register",
+        socialIcons: {
+            "meteor-developer": "fa fa-rocket"
+        },
+        title: {
+            forgotPwd: "Recover Your Password",
+        },
       },
-      socialSignUp: "Register",
-      socialIcons: {
-          "meteor-developer": "fa fa-rocket"
-      },
-      title: {
-          forgotPwd: "Recover Your Password",
-      },
-    },
 });
