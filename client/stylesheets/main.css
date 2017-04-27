@@ -1,0 +1,746 @@
+/* CSS declarations go here */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,400'); 
+
+body {
+ margin-top: 30px;
+  font-family: sans-serif;
+  background-color: #F9F9F9;
+  background-attachment: fixed;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+html {
+  overflow: -moz-scrollbars-vertical; 
+  overflow-y: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.mainNav {
+  border: 1px solid black;
+  height: 125px;
+}
+
+.secondary-content {
+  color: black;
+  background: white;
+  font-size: 14px;
+  border-radius: 95px;
+  font-weight: bold;
+}
+
+.topNav {
+  margin-bottom: 32px !important;
+}
+
+#home-background {
+  height: 1000px;
+  color: white;
+  background:url(./cover.jpg)#222 no-repeat   35%;
+  background-size: cover !important;
+  background-color: #222;
+}
+
+#home-info {
+  margin-top: 50px;
+  font-size: 14px;
+}
+
+
+.tagline {
+  font-size: 16px;
+  margin-top: 0px;
+}
+#signup-btn {
+  margin-top: 15px;
+  border-radius: 5px;
+  font-size: 16px;
+
+}
+
+#headline {
+  font-size: 20px;
+}
+
+
+.flow-text.tagline {
+  margin-bottom: 0px !important;
+}
+
+.sideNav {
+  border: 2px solid black;
+  margin-top: 10px;
+  height: 600px;
+  background-color: white;
+ }
+
+ .hide-completed {
+  float: right;
+  margin-bottom: 30px;
+  border: 1px solid red;
+}
+
+.mainBody {
+  margin-top: 10px;
+ 
+  border: 2px solid black;
+}
+
+.delete {
+  float: right;
+  font-weight: bold;
+  background: none;
+  font-size: 2em;
+  border: none;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.collection .collection-item.avatar {
+  padding-left: 10px !important;
+}
+
+.recentlyUploaded {
+  color: grey;
+}
+
+.songPrivacy {
+
+  cursor: pointer !important;
+  padding: 10px;
+}
+
+.btn-small {
+    height: 24px;
+    line-height: 24px;
+    padding: 0 0.5rem;
+}
+
+.uploader {
+  height: 100px;
+  width: 100%;
+  border: 3px solid black;
+  margin: 10px;
+}
+
+.previewPlayer {
+  margin-left: 8px;
+  font-size: 1.5em;
+}
+
+
+.playPause {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.playPause:hover {
+ opacity: 1.0;
+}
+
+.beatList {
+  background-color: white;
+  border: 4px solid #202932;
+}
+
+hr {
+  border: 1px solid black;
+}
+
+.beatActions {
+  margin-bottom: 5px;
+}
+
+.collection .row {
+  margin-bottom: 0px !important;
+}
+
+.links {
+  font-size: 15px;
+}
+
+ul.dropdown-content.select-dropdown li span {
+    color: #000; /* no need for !important :) */
+}
+
+@media only screen and (max-width : 992px ) {
+  #app {
+    padding-left: 0;
+  }
+}
+
+.categories {
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+.trackTitle {
+  font-size: 5em;
+}
+.trackLink:hover {
+  color:grey;
+}
+
+.userName {
+  font-size: 1.2em;
+  font-style: bold;
+  margin-top: 15px;
+}
+
+.tos {
+ margin-top: 50px;
+}
+
+.uploadBtn {
+  margin-top: 30px;
+  color: black !important;
+}
+
+.songTitle {
+  font-size: 2em;
+}
+
+.avatar {
+  padding: 10px;
+}
+
+.stats {
+  margin-top:5px;
+  margin-right: 5px;
+
+
+}
+
+.track-stats {
+  margin-top:5px;
+  margin-right: 5px;
+
+}
+
+.collection {
+  border-radius: 5px;
+  margin-top: 0px !important;
+
+}
+
+hr {
+
+  text-align:center;
+  margin: 0 auto;
+}
+
+.margin5px {
+  margin: 0px !important;
+
+}
+#currentPhoto  {
+  font-size: 20px;
+  margin: 0 !important;
+}
+nav .nav-wrapper form, nav .nav-wrapper form .input-field{
+height: 100%;
+}
+
+
+#small-avatar {
+  margin-top: 25px;
+}
+
+
+#search {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  border: 4px solid black;
+  border-radius: 95px;
+}
+
+#welcome-header {
+  background-size: cover !important;
+  background:url(./mainhd.jpg)#222 no-repeat   35%;
+  border-radius: 5px;
+  height: 200px;
+  margin-bottom: 25px;
+}
+
+#faq-header {
+  background-size: cover !important;
+  background:url(./mic.jpg)#222 no-repeat   35%;
+  height: 200px;
+}
+
+#contact-header {
+  background-size: cover !important;
+  background:url(./faders.jpg)#222 no-repeat   35%;
+  height: 200px;
+}
+
+#upload-header {
+  background-size: cover !important;
+  background:url(./cdj.jpg) #222 no-repeat 50% 0%;
+  height: 200px;
+}
+
+#account-header {
+  background-size: cover !important;
+  background:url(./mixer2.jpg) #222 no-repeat 50% 0%;
+  height: 200px;
+}
+
+#charts-header {
+  background-size: cover !important;
+  background:url(./cover.jpg) #222 no-repeat 0%;
+  height: 200px;
+}
+
+.background-header h1 {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 20px;
+  bottom: 10;
+  position: absolute;
+  margin: 20px;
+  background: white;
+
+}
+
+#logo h1 {
+  font-size: 30px;
+}
+
+#payment-tag {
+  cursor: pointer;
+}
+
+.buttons {
+  width: 100px;
+  height: 250px;
+}
+
+#loginForm {
+  border: 1px solid black;
+  padding: 15px;
+}
+
+.collection-item.avatar .collapsible-header {
+ height: auto;
+ line-height: inherit;
+ padding: 0;
+ background-color: transparent;
+ border-bottom: none;
+}
+
+.collection-item.avatar .circle {
+ 
+
+}
+
+ul {
+  padding: 0;
+}
+
+.promo-caption {
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+
+#main-heading {
+  font-size: 30px;
+  margin-bottom: 50px;
+  box-shadow: none;
+}
+
+#signup-heading {
+  margin-top: 10px;
+}
+
+.mrg-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.mrg-top-30 {
+  margin-top: 30px;
+}
+
+#logo {
+  box-shadow: none;
+}
+
+.uploadOuter {
+  margin-top: 25px;
+ 
+}
+
+
+#beatPic {
+  height: 100px;
+  width: 100px;
+  padding: 15px 15px 10px 150px;
+  border: 1px solid red;
+}
+
+.track {
+  margin-bottom: 20px;
+  border-radius: 5px;
+
+  padding: 50px;
+}
+
+.margin-left-15 {
+  margin-left: 15px;
+}
+
+
+body {
+  font-size: 11px;
+}
+
+li.collection-item avatar {
+bottom-border: 1px solid black;
+}
+
+#uploadSubmit {
+
+width: 0 auto;
+height: 100%;
+text-align: center;
+
+}
+
+.uploadUI {
+
+
+}
+
+/* Materialize Forms */
+ /* label focus color */
+.input-field input[type=text]:focus + label {
+  color: #546E7A;
+}
+
+.input-field input[type=text] + label {
+  color: #546E7A;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #546E7A;
+  box-shadow: 0 1px 0 0 #546E7A;
+}
+
+.input-field input[type=number]:focus + label {
+  color: #546E7A;
+}
+
+.input-field input[type=number] + label {
+  color: #546E7A;
+}
+
+.input-field input[type=number]:focus {
+  border-bottom: 1px solid #546E7A;
+  box-shadow: 0 1px 0 0 #546E7A;
+}
+
+
+
+.material-icons.prefix:active {
+  color: #546E7A;
+}
+
+.input-field .prefix.active {
+  color: #546E7A;
+}
+
+[type="radio"]:checked + label:after, [type="radio"]
+.with-gap:checked + label:after {
+    width: 16px;
+    height: 16px;
+    -webkit-appearance: none;
+    background-color: #546E7A !important;
+    border: 2px solid #546E7A !important;
+}
+
+
+/* Custom Dropzone css */
+
+div.filepicker {
+  border: none !important;
+  margin-top: 25px;
+  margin-bottom: 10px !important;
+  background-color: #222 !important;
+  color: white !important;
+  font-size: 16px !important;
+  font-weight: bold;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 3px 5px 6px #ccc;
+  
+}
+
+/* Keeps font black after upload */
+div.dz-preview.dz-file-preview.card {
+  color: black !important;
+}
+
+.account-username {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+.progress {
+  background-color: #546E7A !important;
+}
+
+.dropzone {
+  color: black;
+}
+
+.dz-preview .dz-file-preview .card {
+  border-radius: 90%;
+  opacity: 0.3 !important;
+  padding: 50px !important;
+}
+
+.dz-filename {
+  font-size: 14px;
+  font-style: italic;
+  padding: 10px;
+  
+}
+
+.dz-size {
+  font-weight: bold;
+}
+
+.dz-message {
+    background: none;
+}
+
+.dz-message span {
+    display: block;
+}
+   
+
+.file-field input[type=file] {
+  background-color: #546E7A !important;
+}
+
+.btn, .btn-large {
+  background-color: #546E7A
+}
+
+.track-link {
+  color: black;
+  font-size: 6px;
+
+}
+.track-link:hover {
+  color: darkgrey;
+}
+#username-link {
+  color:black;
+  font-size: 15px;
+  line-height: 20px;
+ font-weight: bold;
+}
+
+#username-link:hover {
+  color: darkgrey;
+}
+
+
+
+
+#at-btn {
+  margin-top: 20px;
+}
+
+.follow-jahosh {
+  margin-top: 50px;
+}
+
+.user-email {
+  color: white;
+  font-size: 12px;
+  opacity: 50%;
+}
+
+.user-email:hover {
+  color: lightgrey;
+}
+
+
+.mainProfile {
+  height: 80px;
+  margin-bottom: 300px;
+}
+
+.userPic { 
+  border-radius: 50%;
+  margin-top: 15px;
+}
+
+.user-avatar {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%; 
+  background:url(./defaultAvatar.jpeg) no-repeat 50%;
+  background-size: cover !important;
+  
+  display: block;
+  margin-top: 30px;
+}
+.profie-pic {
+  border: 5px solid white !important;
+}
+
+.profileContact {
+  margin: 5px;
+  cursor: pointer !important;
+}
+
+#profile-name {
+  margin: none !important;
+  font-size: 22px;
+}
+
+#profile-header {
+  border: 1px solid black;
+  background: #212121;
+  height: 260px;
+  color: white;
+  border-radius: 5px;
+}
+#user-info {
+  
+  margin-top: 50px;
+  font-size: 12px;
+}
+
+#user-name {
+  margin-bottom:0px;
+  color: #F9F9F9
+}
+#user-tagline {
+  margin-top: 0px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+#account-links {
+  cursor: pointer !important;
+
+}
+#account-links a {
+  height: 45px;
+  font-size: 15px;
+  color: black;
+}
+
+.track-photo {
+  border: 3px solid black;
+  height: 200px;
+  width: 200px;
+  background-size: cover !important;
+  display: block;
+
+
+}
+
+.materialboxed.initialized.active {
+
+}
+#track-info {
+  padding: 5px;
+}
+
+#track-wave {
+  padding: 10px;
+  padding-top: 20px;
+}
+
+#default-artwork {
+  background-color: #212121;
+  background-size: cover !important;
+  height: 200px;
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+canvas {
+  cursor: pointer !important;
+}
+
+.float-right {
+  float: right;
+}
+
+#browse-header .row {
+  margin-bottom: 0px;
+}
+
+.wave-spaceholder {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+/* Bert Alert Styling */
+.bert-alert.profile-updated {
+  margin-top: 300px;
+  background: black;
+  color: #fff;
+}
+
+.bert-alert.signin {
+  background: #202932;
+  color: #fff;
+}
+
+.pic-load {
+  margin-top: 500px;
+}
+
+#file-types {
+  font-size: 12px;
+
+  font-style: italic;
+  bottom-margin: 40px;
+}
+
+
+#main-search {
+  border: 5px solid black;
+  border-radius: 95px;
+}
+
+.material-icons.active {
+  display: none;
+}
+
+
+/* Login Page */
+
+#at-btn {
+  background: #212121 !important;
+}
+
+
+#track-buttons {
+  cursor: pointer;
+}
