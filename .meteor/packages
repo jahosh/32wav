@@ -45,10 +45,7 @@ dburles:factory
 reywood:publish-composite
 service-configuration@1.0.11
 alanning:roles
-kadira:debug
-meteorhacks:kadira
 meteorhacks:meteorx
-meteorhacks:kadira-profiler
 johanbrook:publication-collector
 okgrow:analytics
 tmeasday:publish-counts
