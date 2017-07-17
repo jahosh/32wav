@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Link } from 'react-router';
-import Blaze from 'meteor/gadicc:blaze-react-component';
+import container from '../../modules/container.js';
 
 // mongo collection
-import Tracks from '../../api/tracks/tracks.js';
+import Tracks from '../../api/tracks/tracks';
 
 //react components
 import Charts from '../components/Charts.jsx';
@@ -15,71 +15,65 @@ import TracksCategories from '../components/TracksCategories';
  * Grabs data for all children views.
  * Handles filtering state
 */
-class BrowseContainer extends Component {
+export default class BrowseContainer extends Component {
   constructor(props){
     super(props)
-    this.state = {
-      genre: 'all',
-      type: 'all',
-    }
+
+    this.pagination = new Meteor.Pagination(Tracks, {
+      name: 'tracks.paginatedList',
+      filters: {},
+      sort: {
+        createdAt: -1
+      },
+      perPage: 5,
+      reactive: true,
+      debug: true
+    });
   }
   componentDidMount() {
     document.title = "Browse | 32wav ";
-    this.handleFilterChange();
-  }
-  handleFilterChange() {
-    const self = this;
-    $('#genre').on('change', 'select', function(e){ 
-      let value = $(this).val()
-      self.setState({ genre: value });
-    });
-    $('#type').on('change', 'select', function(e) {
-      let value = $(this).val()
-      self.setState({ type: value });
-    });
   }
   render() {
+    const { pagination } = this;
     return (
       <div>
-        {this.props.loading ? <Blaze template="spinner" /> :
+        { this.props.loading ? <Blaze template="spinner" /> :
           <div className="row">
               <div className="col s12 m12 l10 offset-l1" id="browse-header">
                 <header className="background-header text-center" id="charts-header">
                   <h1 className="center">Browse</h1>
                 </header>
-              <TracksCategories
-                genre={this.state.genre}
-                type={this.state.type}
-                trackCount={this.props.trackCount}
-                onFilterChange={this.handleFilterChange.bind(this)}
-              />
+                <Charts
+                  pagination={pagination}
+                />
               </div> 
-              <Charts
-                tracks={this.props.tracks}
-                currentUser={this.props.currentUser}
-                filters={this.state}
-              />
           </div>
         }
       </div>
     );
   }
 }
-BrowseContainer.propTypes = {
-  tracks: PropTypes.array.isRequired,
-  currentUser: PropTypes.object,
-  loading: PropTypes.bool.isRequired,
-}
-export default createContainer( (props) => {
-  const subscription = Meteor.subscribe('Tracks.all', 10);
-  const loading = !subscription.ready();
-  const tracks = Tracks.find({}, { sort: { createdAt: -1 } }).fetch();
-  const trackCount = Counts.get('total-tracks')
-  const currentUser = Meteor.user();
-  return {
-    tracks: tracks,
-    currentUser: currentUser,
-    loading: loading,
-    trackCount: trackCount,
-  };
-}, BrowseContainer);
+// BrowseContainer.propTypes = {
+//   tracks: PropTypes.array.isRequired,
+//   currentUser: PropTypes.object,
+//   loading: PropTypes.bool.isRequired,
+// }
+
+
+
+// export default createContainer( (props) => {
+//   // const subscription = Meteor.subscribe('tracks.paginatedList');
+  
+//   // const loading = !subscription.ready();
+//   const loading = false;
+//   // const tracks = Tracks.find({}, { sort: { createdAt: -1 } }).fetch();
+//   const tracks = [];
+//   const trackCount = 0;
+//   const currentUser = Meteor.user();
+//   return {
+//     tracks: tracks,
+//     currentUser: currentUser,
+//     loading: loading,
+//     trackCount: trackCount,
+//   };
+// }, BrowseContainer);

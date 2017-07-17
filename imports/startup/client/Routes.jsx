@@ -18,12 +18,14 @@ import MessagesContainer from '../../ui/containers/MessagesContainer.jsx';
 import EditTrackContainer from '../../ui/containers/EditTrackContainer.jsx';
 import EditTracksContainer from '../../ui/containers/EditTracksContainer.jsx';
 
+
 //pages
 import { NotFound } from '../../ui/pages/NotFound.jsx';
 import { FAQ } from '../../ui/pages/FAQ.jsx';
 import { SignIn } from '../../ui/pages/SignIn.jsx';
 import { VerifyEmail } from '../../ui/pages/VerifyEmail.jsx';
 import { FileShare } from '../../ui/pages/FileShare.jsx';
+import { ResetPassword } from '../../ui/pages/ResetPassword';
 
 
 const requireAuth = (nextState, replace) => {
@@ -63,6 +65,7 @@ export const renderRoutes = () => (
       <Route path="/messages/:userId" component={MessagesContainer} />
       <Route path="/purchase/:trackId" component={PurchaseContainer} />
       <Route path="/verify-email/:token" component={VerifyEmail} />
+      <Route path="/reset-password/:token" component={ResetPassword} />
       <Route path="/search/:term" component={SearchContainer} />
       <Route path="/:username" component={ProfileContainer} />
       <Route path="/:username/:track" component={TrackContainer} /> 

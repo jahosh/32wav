@@ -3,17 +3,20 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import Tracks from '../tracks';
 import { check } from 'meteor/check';
 import { Match } from 'meteor/check';
+import { publishPagination } from 'meteor/kurounin:pagination';
 
 const MAX_TRACKS = 5;
 
-if (Meteor.isServer) {
+new Meteor.Pagination(Tracks, {
+  name: 'tracks.paginatedList'
+});
 
   /* Publication for Browse Page */
   Meteor.publish('Tracks.all', function tracksPublication(limit){
     new SimpleSchema({
       limit: { type: Number }
     }).validate({ limit });
-    Counts.publish(this, 'total-tracks', Tracks.find(), { noReady: true, nonReactive: true });
+    // Counts.publish(this, 'total-tracks', Tracks.find(), { noReady: true, nonReactive: true });
 
     return  Tracks.find({
       $or: [
@@ -121,5 +124,4 @@ if (Meteor.isServer) {
     }
   });
   */
-}
 

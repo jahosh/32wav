@@ -1,1 +1,1 @@
-process.env.MAIL_URL = "smtp://postmaster%40sandbox1009e73d8a44487794f75dfffdef605b.mailgun.org:d57b62035aa884133831fa03eea58791@smtp.mailgun.org:587"
+process.env.MAIL_URL = "smtp://postmaster@mail.32wav.io:04ac899712eccd253ac43ece70ae3c01@smtp.mailgun.org:587"

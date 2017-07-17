@@ -85,3 +85,11 @@ AccountsTemplates.configure({
         },
       },
 });
+
+
+Template.forgotpassword.events({
+  'at-btn submit'(e) {
+    console.log('submitted');
+    console.log(e);
+  }
+});

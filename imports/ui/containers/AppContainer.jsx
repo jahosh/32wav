@@ -25,7 +25,7 @@ class AppContainer extends Component {
           <Navbar
             currentUser={this.props.currentUser} />
             {this.props.children}
-          </div>        
+          </div> 
       </div>
     );
   }

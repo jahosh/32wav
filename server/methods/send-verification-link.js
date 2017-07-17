@@ -3,8 +3,7 @@ Meteor.methods({
     this.unblock();
     
     let userId = Meteor.userId();
-    if ( userId ) {
-  
+    if (userId) {
         return Accounts.sendVerificationEmail(userId);
     }
   }

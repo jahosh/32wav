@@ -16,6 +16,7 @@ import './accounts/validateUser.js';
 import './accounts/createUser.js';
 
 Accounts.onLogin(function(){ 
+  console.log('logged in!');
   const userId = Meteor.userId();
   Roles.addUsersToRoles( userId, ['user'] );
 });

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
+import BootstrapPaginator from 'react-bootstrap-pagination';
 
 //Components
 import TracksList from '../components/TracksList.jsx';
@@ -18,14 +19,14 @@ class TracksContainer extends Component {
   }
   renderTracks() {
     const allTracks      = this.props.tracks; 
-    const filteredTracks = allTracks.filter( (track) => {
-      let genreFilter    = this.props.filters.genre,
-          typeFilter  = this.props.filters.type;
+    // const filteredTracks = allTracks.filter( (track) => {
+    //   let genreFilter    = this.props.filters.genre,
+    //       typeFilter  = this.props.filters.type;
         
-      return this.checkFilter(track, genreFilter, typeFilter);
-      });
+    //   return this.checkFilter(track, genreFilter, typeFilter);
+    //   });
     //filteredTracks = filteredTracks.filter(track => track.genre === this.props.genreFilter);
-    return filteredTracks.map( (track) => {
+    return allTracks.map( (track) => {
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
       const showPrivateButton = track.owner === currentUserId;
       const currentUser = Meteor.user();
@@ -57,11 +58,20 @@ class TracksContainer extends Component {
     this.setState({ globalPlaying: true,  track: id });
   }
   render() {
+    const { pagination } = this.props;
     return (
-      <div className="col s12 m12 l10 offset-l1">
-       <TracksList
+      <div className="col s12 m12 l12 ">
+        <div className="center-align">
+          page
+          <BootstrapPaginator pagination={pagination} limit={2} />
+        </div>
+        <TracksList
           handleRenderTracks={this.renderTracks.bind(this)}
+          pagination={pagination}
         />
+        <div className="center-align">
+          <BootstrapPaginator pagination={pagination} limit={2} />
+        </div>
       </div>
     )
   }

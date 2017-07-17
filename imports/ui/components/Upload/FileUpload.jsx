@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 import Blaze from 'meteor/gadicc:blaze-react-component';
-import { Router, browserHistory } from 'react-router';
+import { Router, browserHistory, Link } from 'react-router';
 import { default as swal } from 'sweetalert2';
 import '../../../../node_modules/sweetalert2/dist/sweetalert2.min.css';
 
@@ -204,6 +204,15 @@ saveTrack(source, fileKey) {
 handleSubmit(e) {
   e.preventDefault();
 }
+resendVeri() {
+  Meteor.call('sendVerificationLink', (err, resp) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('sent');
+    }
+  });
+}
 render() {
   const self = this;
   const eventHandlers = {
@@ -217,13 +226,21 @@ render() {
   const uploadStyle = {
     width: Math.round(this.state.progress) + '%'
   } 
+  const { currentUser } = this.props;
   return (
     <div className="row">  
-      <DropzoneUploader
-        config={this.config}
-        eventHandlers={eventHandlers}
-        djsConfig={this.djsConfig}
-      />
+
+      {this.props.currentUser.emails[0].verified ?
+        <DropzoneUploader
+          config={this.config}
+          eventHandlers={eventHandlers}
+          djsConfig={this.djsConfig}
+        /> : 
+        <div>
+          please verify email
+          <Link onClick={this.resendVeri}>resend email</Link>
+        </div>
+      }
 
     <div className="col s12" id="display-track"> 
       <div className="center-align">

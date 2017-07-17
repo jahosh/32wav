@@ -40,11 +40,13 @@ class TrackContainer extends Component {
      );
   }
   render() {
+    const { pagination } = this.props;
     return (
       <div>
         { this.props.loading ? <Blaze template="spinner" /> : 
           <TracksList
             handleRenderTracks={this.renderSong.bind(this)}
+            showPagination={false}
           /> 
         }
       </div>

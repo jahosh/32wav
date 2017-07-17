@@ -31,6 +31,7 @@ export const insertTrack = new ValidatedMethod({
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
+    
     Tracks.insert({ 
       title: track.title,
       genre: track.genre,

@@ -5,10 +5,11 @@ import { browserHistory } from 'react-router';
 export default class TracksCategories extends Component {
    constructor(props){
     super(props)
+
+    this.handleSearch = this.handleSearch.bind(this);
   }
   componentDidMount() {
     this.initMaterialize();
-    this.props.onFilterChange();
   }
   initMaterialize() {
     $('.dropdown-button').dropdown({
@@ -26,42 +27,42 @@ export default class TracksCategories extends Component {
   }
   handleSearch(e) {
     e.preventDefault();
-    let term = $("#search").val()
-    browserHistory.push('/search/' + term);
+
+    const { pagination } = this.props;
+
+    let term = this.search.value.trim();
+    
+    pagination.filters( 
+        {
+        $or: [
+          { title: { $regex: term, $options: 'i' } },
+          { username: { $regex: term, $options: 'i' } },
+        ],
+      }
+    );
+
+    pagination.currentPage(1);
+
   }
   render() {
     return (
       <div className="row">
       <header>
-      <h5> Filters </h5>
-        <div className="input-field col  s12 l6" id="genre">
-          <select>
-            <option value="all" defaultValue>All</option>
-            <option value="rap">Rap</option>
-            <option value="rnb">R&B</option>
-          </select>
-          <label>Genre</label>
-        </div>
-        <div className="input-field col s12 l6" id="type">
-          <select>
-            <option value="all" defaultValue>All</option>
-            <option value="lease">Official</option>
-            <option value="exclusive">Remake</option>
-          </select>
-          <label>Type</label>
-        </div>
         </header>
          <div className="stats">
-          <h5 className="stats">Stats</h5>
+          <h5 id="total-tracks">Total tracks: {this.props.pagination.totalItems()}</h5>
+          <h5 className="stats">Search</h5>
           <div id="divider"></div>
-          <p>
-            Total tracks: {this.props.trackCount}
-          </p>
         </div>
          <form className="hide-on-small-only" onSubmit={this.handleSearch}>
               <div className="input-field ">
-                <input id="search" type="search" required />
-                <label htmlFor="search"><i className="material-icons">search</i></label>
+                <input 
+                  id="search" 
+                  ref={ s => (this.search = s )}
+                  onChange={this.handleSearch}
+                  type="search" 
+                  required 
+                />
                 <i className="material-icons">close</i>
               </div>
             </form>
@@ -69,3 +70,22 @@ export default class TracksCategories extends Component {
     );
   }
 }
+
+
+{/*<h5> Filters </h5>
+  <div className="input-field col  s12 l6" id="genre">
+    <select>
+      <option value="all" defaultValue>All</option>
+      <option value="rap">Rap</option>
+      <option value="rnb">R&B</option>
+    </select>
+    <label>Genre</label>
+  </div>
+  <div className="input-field col s12 l6" id="type">
+    <select>
+      <option value="all" defaultValue>All</option>
+      <option value="lease">Official</option>
+      <option value="exclusive">Remake</option>
+    </select>
+    <label>Type</label>
+  </div>*/}

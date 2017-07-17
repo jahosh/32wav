@@ -6,9 +6,9 @@ import { Factory } from 'meteor/dburles:factory';
 const Tracks = new Mongo.Collection('Tracks');
 export default Tracks;
 
-if (Meteor.isServer) {
-  Tracks._ensureIndex( { title: 1, username: 1 } ); 
-}
+// if (Meteor.isServer) {
+//   Tracks._ensureIndex( { title: 1, username: 1 } ); 
+// }
 
 Tracks.allow({
   insert: () => false,

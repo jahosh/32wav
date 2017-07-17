@@ -418,6 +418,12 @@ text-align: center;
 
 }
 
+.centerButton {
+  width: 0 auto;
+  height: 100%;
+  text-align: center;
+}
+
 .uploadUI {
 
 
@@ -743,4 +749,18 @@ canvas {
 
 #track-buttons {
   cursor: pointer;
+}
+
+.input-field #search {
+  margin-top: 0rem;
+}
+
+#total-tracks {
+  margin-top: 5px;
+  font-size: 18px;
+  float: right;
+}
+
+.pagination li.active {
+  background-color: black;
 }

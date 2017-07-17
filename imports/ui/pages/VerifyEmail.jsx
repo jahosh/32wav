@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base'
 import { Bert } from 'meteor/themeteorchef:bert';
-
-/*
-export const VerifyEmail = (props) => (
-  <div>
-  { console.log(props) }
-    <h3 className="center-align">Verify Email</h3>
-    <p className="flow-text center-align">Coming Soon...</p>
-  </div>
-)
-
-*/
 
 export class VerifyEmail extends Component {
   componentDidMount() {
@@ -20,6 +10,7 @@ export class VerifyEmail extends Component {
       if (err) {
         Bert.alert(err.reason, 'danger');
       } else {
+        browserHistory.push('/');
         Bert.alert('Email verified, Thank-you', 'successs');
       }
     });

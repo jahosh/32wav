@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BootstrapPaginator from 'react-bootstrap-pagination';
 
 //react components
 import TracksCategories from './TracksCategories';

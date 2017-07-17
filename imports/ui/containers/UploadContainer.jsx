@@ -21,13 +21,16 @@ class UploadContainer extends Component {
                 </header>
               </div>
           { Meteor.user() !== null ? 
-            <div>
-            <div className="col s12 m10 offset-m1 l8 offset-l2 uploadOuter">
-            
-            <FileUpload
-              currentUser={this.props.currentUser}
-            /> 
-            </div>
+
+            <div>  
+            { this.props.currentUser ? 
+
+              <div className="col s12 m10 offset-m1 l8 offset-l2 uploadOuter">
+                <FileUpload
+                  currentUser={this.props.currentUser}
+                /> 
+              </div> : ''
+            }
             </div> : <div className="col s12 l12"><br /> <p className="flow-text center"> Please log in to upload</p></div>           
           }
         </div>
