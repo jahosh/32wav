@@ -161,17 +161,16 @@ export default class Track extends Component {
             <div className="spinner">
               <Spinner />
             </div>
-          <Wavesurfer 
-            audioFile={this.props.source}
-            options={options}
-            onAudioprocess={this.handlePlay}
-            pos={this.state.pos}
-            onReady={this.handleReady}
-            onPosChange={this.handlePosChange}
-            playing={!this.state.playing}
-          />
+            <Wavesurfer
+              audioFile={this.props.source}
+              options={options}
+              onAudioprocess={this.handlePlay}
+              pos={this.state.pos}
+              onReady={this.handleReady}
+              onPosChange={this.handlePosChange}
+              playing={!this.state.playing}
+              />
           </div>
-          
           : <div className="wave-spaceholder"></div> }
         
           <div className="track-stats">
@@ -241,3 +240,15 @@ Track.propTypes = {
   song: PropTypes.object.isRequired,
   showPrivateButton: React.PropTypes.bool.isRequired,
 };
+
+
+
+// <Wavesurfer
+//   audioFile={this.props.source}
+//   options={options}
+//   onAudioprocess={this.handlePlay}
+//   pos={this.state.pos}
+//   onReady={this.handleReady}
+//   onPosChange={this.handlePosChange}
+//   playing={!this.state.playing}
+// />

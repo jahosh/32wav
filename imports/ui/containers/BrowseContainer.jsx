@@ -27,7 +27,7 @@ export default class BrowseContainer extends Component {
       },
       perPage: 5,
       reactive: true,
-      debug: true
+      debug: false
     });
   }
   componentDidMount() {
