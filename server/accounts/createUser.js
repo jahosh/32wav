@@ -40,6 +40,6 @@ Accounts.onCreateUser((options, user) => {
     userToCreate.username = username;
   }
   userToCreate.profile_img = profile_img;
-
+  userToCreate.socials = {};
   return userToCreate;
 });
