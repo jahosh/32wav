@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 import { Bert } from 'meteor/themeteorchef:bert';
 
-//methods
-import { updateBio } from '../../../api/users/methods.js';
-import { updateProfileImage } from '../../../api/users/methods.js';
+// //methods
+// import { updateBio } from '../../../api/users/methods.js';
+// import { updateProfileImage } from '../../../api/users/methods.js';
 
 //components
 import { EditProfile } from './EditProfile.jsx';
@@ -58,7 +58,7 @@ export default class Account extends Component {
        source: source
      };
     
-      updateProfileImage.call(profileImage, (err) => {
+      Meteor.call('users.updateProfileImage', source, (err) => {
         if (err) {
           console.log(err);
         }
@@ -100,8 +100,9 @@ export default class Account extends Component {
     payload.paypal = paypal;
     payload.location = location;
 
-   updateBio.call(payload, (err) => {
+   Meteor.call('users.editProfile', payload, (err) => {
      if (err) {
+       console.log(err);
         Bert.alert({
           type: 'profile-updated',
           style: 'growl-top-right',

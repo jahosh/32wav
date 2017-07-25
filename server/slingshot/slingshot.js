@@ -8,8 +8,8 @@ Slingshot.fileRestrictions("uploadToAmazonS3", {
 });
 
 Slingshot.createDirective("uploadToAmazonS3", Slingshot.S3Storage, {
-  AWSAccessKeyId: Meteor.settings.s3AccessId,
-  AWSSecretAccessKey: Meteor.settings.s3AccessKey,
+  AWSAccessKeyId: Meteor.settings.private.s3AccessId,
+  AWSSecretAccessKey: Meteor.settings.private.s3AccessKey,
   bucket: "jahosh-meteor-files",
   acl: "public-read",
   region: "us-west-2",
@@ -33,8 +33,8 @@ Slingshot.fileRestrictions("avatarToAmazonS3", {
 });
 
 Slingshot.createDirective("avatarToAmazonS3", Slingshot.S3Storage, {
-  AWSAccessKeyId: Meteor.settings.s3AccessId,
-  AWSSecretAccessKey: Meteor.settings.s3AccessKey,
+  AWSAccessKeyId: Meteor.settings.private.s3AccessId,
+  AWSSecretAccessKey: Meteor.settings.private.s3AccessKey,
   bucket: "jahosh-meteor-files",
   acl: "public-read",
   region: "us-west-2",
@@ -58,8 +58,8 @@ Slingshot.fileRestrictions("trackAvatarToAmazonS3", {
 });
 
 Slingshot.createDirective("trackAvatarToAmazonS3", Slingshot.S3Storage, {
-  AWSAccessKeyId: Meteor.settings.s3AccessId,
-  AWSSecretAccessKey: Meteor.settings.s3AccessKey,
+  AWSAccessKeyId: Meteor.settings.private.s3AccessId,
+  AWSSecretAccessKey: Meteor.settings.private.s3AccessKey,
   bucket: "jahosh-meteor-files",
   acl: "public-read",
   region: "us-west-2",

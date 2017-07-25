@@ -2,10 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 import { Link } from 'react-router';
+import { browserHistory } from 'react-router';
 import TracksList from '../components/TracksList.jsx';
 
 // mongo collection
-import Tracks from '../../api/tracks/tracks.js';
+import Tracks from '../../api/Tracks/Tracks';
 import Track from '../components/Track.jsx';
 
 class SearchContainer extends Component {
@@ -15,9 +16,16 @@ class SearchContainer extends Component {
       globalPlaying: false
     }
     this.globalPlayer = this.globalPlayer.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
   globalPlayer(id) {
     this.setState({ globalPlaying: true,  track: id });
+  }
+  componentDidMount() {
+
+    const term = this.props.params.term;
+    // browserHistory.push(`${term}`);
+    // console.log(this.props);
   }
   renderSongs() {
       const tracks      = this.props.tracks;
@@ -60,6 +68,11 @@ class SearchContainer extends Component {
       );
     });
   }
+  handleSearch(e) {
+    e.preventDefault();
+    let term = this.search.value.trim();
+    browserHistory.push(`search/${term}`);
+  }
   render() {
     return (
       <div className="row">
@@ -67,13 +80,22 @@ class SearchContainer extends Component {
         { this.props.loading ? <Blaze template="spinner" /> :
           <div>
             <div className="center-align">
+              <h1 className="no-margin-top">Search</h1>
               search results found: { this.props.tracks.length } <br />
               users found: {this.props.users.length - 1 }  
             </div> 
-            <ul className="collection">
-              { this.renderUsers() }
-            </ul>
-          
+         
+            <form className="hide-on-small-only" onSubmit={this.handleSearch}>
+              <div className="input-field ">
+                <input
+                  id="search"
+                  ref={s => (this.search = s)}
+                  type="search"
+                  required
+                />
+                <i className="material-icons">close</i>
+              </div>
+            </form>
             <TracksList
               handleRenderTracks={this.renderSongs.bind(this)}
             />
@@ -97,3 +119,8 @@ export default createContainer( (props) => {
    users: users,
   };
 }, SearchContainer);
+
+
+   // <ul className="collection">
+            //   { this.renderUsers() }
+            // </ul>

@@ -5,9 +5,6 @@ import { Meteor } from 'meteor/meteor';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 import Dropzone from 'react-dropzone';
 
-// mongo collection
-import { Tracks} from '../../api/tracks/tracks.js';
-
 //react components
 import Navbar from '../components/Navbar.jsx';
 

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Bert } from 'meteor/themeteorchef:bert';
+import { HTTP } from 'meteor/http';
+// import { sendTrack } from '../../../imports/api/tracks/methods.js';
 
 export class FileShare extends Component {
   componentDidMount() {
@@ -7,38 +9,16 @@ export class FileShare extends Component {
   }
   send(e) {
     e.preventDefault();
-    console.log('send here');
-    const self = this;
     const file = $("#profile-pic-upload")[0].files[0];
 
-    console.log(file);
-    let data = file;
-
-
-/*
-    fetch("https://file.io", {
-      method: "POST",
-      body: new FormData({"file": file})
-    })
-    */
-
-     
-    $.ajax({
-      url: "https://file.io",
-      type: "POST",
-      processData: false,
-      dataType: 'json',
-      data: data,
-      success: function(res) {
-        console.log(JSON.parse(res));
-      },
-      error: function(xhr, status) {
-        console.log(xhr);
+    Meteor.call('tracks.sendTrack', 'test', (err) => {
+      if (err) {
+        console.log(err);
+        return;
       }
-    });
-    
-    
 
+      alert('sent successfully');
+    });
   }
   render() {
     return (
@@ -47,7 +27,7 @@ export class FileShare extends Component {
           <button onClick={this.send} className="btn waves-effect waves-light" type="submit" name="action">Submit
             <i className="material-icons right">send</i>
           </button>
-           <form onChange={this.send}>
+           <form>
               <div className="file-field input-field">
                 <div className="btn">
                   <span>File</span>

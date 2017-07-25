@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import container from '../../modules/container.js';
 
 // mongo collection
-import Tracks from '../../api/tracks/tracks';
+import Tracks from '../../api/Tracks/Tracks';
 
 //react components
 import Charts from '../components/Charts.jsx';

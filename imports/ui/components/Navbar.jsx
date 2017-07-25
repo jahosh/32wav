@@ -16,7 +16,7 @@ export default class Navbar extends Component {
       <nav className="grey darken-4 topNav">
         <div className="nav-wrapper">  
           <ul className="right">
-            <li><Link to="/signin" activeClassName="active">{ this.props.currentUser ? <div className="user-email"> {this.props.currentUser.username } </div> : 'login' }</Link></li>
+            <li><Link to="/login" activeClassName="active">{ this.props.currentUser ? <div className="user-email"> {this.props.currentUser.username } </div> : 'login' }</Link></li>
           </ul>
           <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
           <ul id="nav-mobile" className="left hide-on-med-and-down">

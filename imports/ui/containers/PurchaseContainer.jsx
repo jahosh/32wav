@@ -5,7 +5,7 @@ import Blaze from 'meteor/gadicc:blaze-react-component';
 import { Purchase } from '../pages/Purchase.jsx';
 
 // mongo collection
-import Tracks from '../../api/tracks/tracks.js';
+import Tracks from '../../api/Tracks/Tracks';
 
 class PurchaseContainer extends Component {
   render() {

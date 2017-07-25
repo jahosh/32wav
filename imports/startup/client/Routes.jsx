@@ -26,13 +26,16 @@ import { SignIn } from '../../ui/pages/SignIn.jsx';
 import { VerifyEmail } from '../../ui/pages/VerifyEmail.jsx';
 import { FileShare } from '../../ui/pages/FileShare.jsx';
 import { ResetPassword } from '../../ui/pages/ResetPassword';
+import Login from '../../ui/pages/Login';
+import Signup from '../../ui/pages/Signup/Signup';
+import RecoverPassword from '../../ui/pages/RecoverPassword/RecoverPassword';
 
 
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
 
     replace({
-      pathname: '/signin',
+      pathname: '/signup',
       state: { nextPathName: nextState.location.pathname},
     });
         Bert.alert({
@@ -53,8 +56,10 @@ export const renderRoutes = () => (
     <Route path="/" component={AppContainer}>
       <IndexRoute component={App}  />
       <Route path="/upload" component={UploadContainer}  />
-      <Route path="/signin" component={SignIn} />
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={Signup} />
       <Route path="/myaccount" component={MyAccountContainer} onEnter={requireAuth} />
+      <Route path="/recover-password" component={RecoverPassword} />
       <Route path="/browse" component={BrowseContainer} />
       <Route path="/browse/:limit" component={BrowseContainer} />
       <Route path="edit/:trackId" component={EditTrackContainer} />

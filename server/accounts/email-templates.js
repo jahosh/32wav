@@ -36,4 +36,14 @@ emailTemplates.verifyEmail = {
 
         return emailBody;
   }
-};
+}
+
+  emailTemplates.sendTrack = {
+    subject() {
+      return "[32wav] You've been sent a Track";
+    },
+    text(user, url) {
+
+
+    }
+  }

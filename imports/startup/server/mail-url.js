@@ -1,1 +1,1 @@
-process.env.MAIL_URL = "smtp://postmaster@mail.32wav.io:04ac899712eccd253ac43ece70ae3c01@smtp.mailgun.org:587"
+process.env.MAIL_URL = Meteor.settings.private.MAIL_URL;

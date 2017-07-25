@@ -48,7 +48,7 @@ export const EditProfile = (props) => {
         <form className="col s12" onSubmit={props.handleFormSubmit}>
           <div className="row">
             <div className="input-field col s12">
-              <input defaultValue={props.user[0].twitter} id="twitter-name" type="text" maxLength="30" className="validate" />
+              <input defaultValue={props.user[0].socials.twitter} id="twitter-name" type="text" maxLength="30" className="validate" />
               <label className="active" htmlFor="first_name2">Twitter:</label>
             </div>
           </div>

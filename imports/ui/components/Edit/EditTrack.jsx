@@ -1,37 +1,29 @@
 import React, { Component } from 'react';
+import { Bert } from 'meteor/themeteorchef:bert';
 
 
-import { updateTrack } from '../../../api/tracks/methods.js';
-import { toggleTrackDownloadStatus } from '../../../api/tracks/methods.js';
+// import { updateTrack } from '../../../api/tracks/methods.js';
+// import { toggleTrackDownloadStatus } from '../../../api/tracks/methods.js';
 
 export default class EditTrack extends Component {
-  constructor(props) {
-    super(props);
-
-  }
   componentDidMount() {
-    console.log(this.props);
-    console.log($("#download-switch").is(":checked"));
     if (this.props.downloadable) {
       $("#download-switch").prop("checked", true);
     }
 
   }
   changeDownloadStatus() {
-    console.log(this.props);
-
-    let payload = {
+    const track = {
       trackId: this.props.trackId,
       downloadState: !this.props.downloadable
     };
 
-     toggleTrackDownloadStatus.call(payload, (err) => {
+     Meteor.call('tracks.toggleTrackDownload', track, (err) => {
        if (err) {
          console.log(err);
        }
-     });
 
-    console.log($("#download-switch").is(":checked"));
+     });
   }
   handleEditSubmit(e) {
     e.preventDefault();
@@ -39,22 +31,30 @@ export default class EditTrack extends Component {
         trackName       = $("#track-title").val();
         trackId = this.props.trackId;
 
-        payload.trackName = trackName;
+        payload.trackname = trackName;
         payload.trackId = trackId;
 
 
-        updateTrack.call(payload, (err) => {
+        Meteor.call('tracks.update', payload, (err) => {
           if(err) {
             console.log(err);
           }
+          
+          Bert.alert({
+            type: 'profile-updated',
+            style: 'growl-top-right',
+            title: 'track updated',
+            message: '',
+            icon: 'fa-user'
+          });
         });
-    
   }
   render() { 
+    const BASE_URL = this.props.track.trackImage === './32wav.jpg' ? 'http://localhost:3000/' : '';
     return (
       <div className="row">
         <div className="center-align">
-          <span className="track-photo" style={{"background": 'url(' + this.props.track.trackImage + ')'}} ></span>
+          <span className="track-photo" style={{ "background": 'url(' + BASE_URL + this.props.track.trackImage + ')'}} ></span>
         </div>
         <form className="col s12" onSubmit={this.handleEditSubmit.bind(this)}>
           <div className="input-field col s12">

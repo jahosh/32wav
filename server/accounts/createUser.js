@@ -1,37 +1,45 @@
 import { moment } from 'meteor/momentjs:moment';
+import { Random } from 'meteor/random';
 
 
 Accounts.onCreateUser((options, user) => {
+  console.log('this user', user);
 
-  let timeStamp = moment().format('MMMM Do YYYY');
-  user.createdAt = timeStamp
-  user.verified  = false;
+  let email;
+  let username;
+  let verified = false;
+  let randomnizer = Random.id(6);
+  let profile_img = "./defaultAvatar.jpeg";
 
-  if (user.services.twitter) {
-    const { profile_image_url, screenName } = user.services.twitter;
-    //grab photo link from twitter
-    user.profile_img = profile_image_url.replace(/(_normal)/i, '');
-    user.username = screenName;
-    user.emails = [
-      {
-        "address": "test1234@test.com",
-        "verified": false
-      },
-    ]
+
+  const userToCreate = user;
+
+  if (user.services.facebook) {
+    email = user.services.facebook.email;
+    username = `${user.services.facebook.name}_${randomnizer}`;
   }
 
-  if (!user.services.twitter) {
-    user.profile_img = "./defaultAvatar.jpeg";
-  }
+  if (user.services.google) {
+    email = user.services.google.email;
+    username = `${user.services.google.name}_${randomnizer}`;
 
-     Meteor.call('sendVerificationLink', user, (err) => {
-    if (err) {
-      console.log(err);
-      return;
-    } else {
-      console.log('sent');
+    if (user.services.google.picture) {
+      profile_img = user.services.google.picture;
+
     }
-  });
-  
-  return user;
+
+    if (user.services.google.verified_email) {
+      verified = true;
+    }
+  }
+
+  if (options.profile) userToCreate.profile = options.profile;
+
+  if (!user.services.password) {
+    userToCreate.emails = [ {address: email, verified: verified }];
+    userToCreate.username = username;
+  }
+  userToCreate.profile_img = profile_img;
+
+  return userToCreate;
 });

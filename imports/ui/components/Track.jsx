@@ -10,13 +10,13 @@ import { default as swal } from 'sweetalert2';
 import { Spinner } from './Spinner.jsx';
 
 //collections
-import { Tracks } from '../../api/tracks/tracks.js';
+import { Tracks } from '../../api/Tracks/Tracks';
 
 //methods
-import { removeTrack } from '../../api/tracks/methods.js';
-import { likeTrack } from '../../api/tracks/methods.js'; 
-import { incrementTrackPlayCount } from '../../api/tracks/methods.js';
-import { setTrackPrivate } from '../../api/tracks/methods.js';
+// import { removeTrack } from '../../api/tracks/methods.js';
+// import { likeTrack } from '../../api/tracks/methods.js'; 
+// import { incrementTrackPlayCount } from '../../api/tracks/methods.js';
+// import { setTrackPrivate } from '../../api/tracks/methods.js';
 
 export default class Track extends Component {
   constructor(props) {
@@ -35,17 +35,20 @@ export default class Track extends Component {
   componentDidMount() {
 
   }
-  handleTogglePlay(ws) {
+  handleTogglePlay() {
+    this.props.globalPlaying(this.props.song._id);
+    this.setState({ playing: !this.state.playing, played: true });
 
- const self = this;
-
- this.props.globalPlaying(this.props.song._id);
- this.setState({ playing: !this.state.playing, played: true });
-
-  // if the track is playing, and has never been played, incre playcount.
-   if (this.state.playing && this.state.played === false) {
-   incrementTrackPlayCount.call({ trackId: this.props.song._id});
-   }
+    // if the track is playing, and has never been played, incre playcount.
+    if (this.state.playing && this.state.played === false) {
+    Meteor.call('tracks.incrementPlayCount', { trackId: this.props.song._id}, (err) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log('success!');
+    });
+  }
   }
   handlePosChange(e) {
     this.setState({
@@ -55,14 +58,19 @@ export default class Track extends Component {
   likeSong() {
     let selectedBeat = this.props.song._id;
 
-    likeTrack.call({ trackId: selectedBeat }, (err) => {
+    if (!Meteor.userId()) {
+      alert('must be logged in to like tracks');
+      return;
+    }
+
+    Meteor.call('tracks.like', { trackId: selectedBeat }, (err) => {
       if (err) {
-        console.log(err);
+
         Bert.timer = 5;
         Bert.alert(err.reason, 'danger', 'fixed-top');
       }
       Materialize.toast('Beat Liked!', 4000) 
-    })
+    });
   }
   handleReady() {  
     $(".spinner").hide();
@@ -72,7 +80,7 @@ export default class Track extends Component {
     });
   }
   deleteSong() {
-    let trackId = this.props.song._id;
+    const trackId = this.props.song._id;
     swal({
       title: "Are you want to delete this track?",
       text: "You will not be able to recover this file",
@@ -83,7 +91,7 @@ export default class Track extends Component {
       cancelButtonText: "No, cancel",
   }).then(function(isConfirm) {
       if (isConfirm) {
-        removeTrack.call({ trackId: trackId }, (err) => {
+        Meteor.call('tracks.remove', { trackId: trackId }, (err) => {
           if (err) {
             console.log(err);
             Bert.timer = 5;
@@ -97,12 +105,12 @@ export default class Track extends Component {
     });
   }
   togglePrivate() {
-    setTrackPrivate.call({ trackId: this.props.song._id, setPrivate: !this.props.song.private }), (err) => {
+    Meteor.call('tracks.setPrivate', { trackId: this.props.song._id, setPrivate: !this.props.song.setPrivate }, (err) => {
       if (err) {
         Materialize.toast('Unauthorized', 4000) 
       }
       Materialize.toast('Privacy Toggled', 4000) 
-    }
+    });
   }
   generateTweet(track) {
     return "Listen to" + track.title + "by " + this.props.currentUser.username;
@@ -127,9 +135,8 @@ export default class Track extends Component {
         hideScrollbar: true
       }
       const cdnSource = {
-        beatUrl: 'https://d2hbl0lksauo4z.cloudfront.net/05 Choosing Sides.mp3'
+        beatUrl: 'https://s3-us-west-1.amazonaws.com/jahosh-meteor-files-resized/images/XFmorHpADjjtpw69Mia.jpg'
       }
-
       const userId = Meteor.user() ? Meteor.user()._id : '';
     return (
      <div> 
@@ -169,7 +176,7 @@ export default class Track extends Component {
         
           <div className="track-stats">
             <i className="tiny material-icons">play_arrow</i><span id="plays">{this.props.song.plays}</span> <br />
-            <i className="tiny material-icons">star</i><span id="likes">{this.props.song.likedBy.length}</span> <br />
+            <i className="tiny material-icons">star</i><span id="likes">{this.props.song.likes}</span> <br />
             <i className="tiny material-icons">playlist_add</i> <span className="" data-livestamp={this.props.song.createdAt}></span>
           </div>
            </div>
@@ -199,7 +206,7 @@ export default class Track extends Component {
                   Delete 
                 </a>
                 <a className="btn-flat btn-small disabled float-right songPrivacy" id="track-buttons" onClick={this.togglePrivate.bind(this)}>
-                  {this.props.song.private ? 'Private' : 'Public'}
+                  {this.props.song.setPrivate ? 'Private' : 'Public'}
                 </a>
               </div>
             : ''}

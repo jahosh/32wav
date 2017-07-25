@@ -1,13 +1,13 @@
 import { Meteor } from 'meteor/meteor';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import Tracks from '../tracks';
+import SimpleSchema from 'simpl-schema';
+import Tracks from '../Tracks';
 import { check } from 'meteor/check';
 import { Match } from 'meteor/check';
 import { publishPagination } from 'meteor/kurounin:pagination';
 
 const MAX_TRACKS = 5;
 
-new Meteor.Pagination(Tracks, {
+publishPagination(Tracks, {
   name: 'tracks.paginatedList'
 });
 
@@ -51,7 +51,7 @@ new Meteor.Pagination(Tracks, {
         { owner: this.userId },
       ]}, { sort  : { createdAt: -1 }
     }),
-      Meteor.users.find({ "username": username  }, { fields: { "createdAt": 1, username: 1, profile_img: 1, bio: 1, twitter: 1, location: 1 } })
+      Meteor.users.find({ "username": username  }, { fields: { "createdAt": 1, username: 1, profile_img: 1, bio: 1, socials: 1, location: 1 } })
     ]
   });
 

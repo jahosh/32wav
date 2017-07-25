@@ -5,7 +5,7 @@ import Blaze from 'meteor/gadicc:blaze-react-component';
 import { Messages } from '../pages/Messages.jsx';
 
 // mongo collection
-import Tracks from '../../api/tracks/tracks.js';
+import Tracks from '../../api/Tracks/Tracks';
 
 class MessagesContainer extends Component {
   render() {

@@ -3,7 +3,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import Blaze from 'meteor/gadicc:blaze-react-component';
 
 // mongo collection
-import Tracks from '../../api/tracks/tracks.js';
+import Tracks from '../../api/Tracks/Tracks';
 
 //components
 import EditTrack  from '../components/Edit/EditTrack.jsx';
