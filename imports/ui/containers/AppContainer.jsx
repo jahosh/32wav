@@ -7,6 +7,7 @@ import Dropzone from 'react-dropzone';
 
 //react components
 import Navbar from '../components/Navbar.jsx';
+window.prerenderReady = false;
 
 class AppContainer extends Component {
   constructor(props) {
