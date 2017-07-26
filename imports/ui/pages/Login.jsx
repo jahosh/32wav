@@ -3,14 +3,20 @@ import { Link, browserHistory } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
 import validate from '../../modules/validate';
+import Blaze from 'meteor/gadicc:blaze-react-component';
 
 import OAuthLoginButtons from './components/OAuthLoginButtons/OAuthLoginButtons.js';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      loading: false
+    }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.toggleLoading = this.toggleLoading.bind(this);
   }
 
   componentDidMount() {
@@ -51,12 +57,20 @@ class Login extends React.Component {
   }
 
   handleLogout() {
+    this.toggleLoading();
     Meteor.logout((error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
       } else {
-        browserHistory.push('/');
+        Bert.alert('successfully logged out', 'success');
+        this.toggleLoading();
       }
+    });
+  }
+
+  toggleLoading() {
+    this.setState({
+      loading: !this.state.loading
     });
   }
 
@@ -68,12 +82,11 @@ class Login extends React.Component {
           <h2>Login</h2>
         </span>
         <div className="row">
-          { Meteor.user() === null ? 
-
-            <div className="col s12 m6 l10 offset-m3 offset-l1">
-              <div className="LoginBorder">
-
+          <div className="col s12 m6 l10 offset-m3 offset-l1">
+            <div className="LoginBorder">
+            { this.state.loading ? <Blaze template="spinner" /> : ''}
                 <OAuthLoginButtons
+                  onLoading={this.toggleLoading}
                   services={['facebook', 'google']}
                   emailMessage={{
                     text: 'Log In with an OAuth provider',
@@ -103,25 +116,23 @@ class Login extends React.Component {
                     <label className="active" htmlFor="first_name2">Password:</label>
                   </div>
                   <div className="center-align">
+                  { Meteor.user() === null ? 
                     <button className="btn waves-effect waves-light grey darken-4 center-align" type="submit" name="action">Login
                       <i className="material-icons right">send</i>
                     </button>
+                    :
+                    <button
+                      className="btn waves-effect waves-light grey darken-4 center-align"
+                      name="action"
+                      onClick={this.handleLogout}>
+                      Logout
+                <i className="material-icons right">send</i>
+                    </button> 
+                  }
                   </div>
                 </form>
               </div>
             </div>
-
-            : 
-            <div className="center-align">
-              <button 
-              className="btn waves-effect waves-light grey darken-4 center-align" 
-              name="action"
-              onClick={this.handleLogout}>
-                Logout
-                <i className="material-icons right">send</i>
-              </button> 
-            </div>
-            }
         </div>
       </div>
     );

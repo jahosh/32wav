@@ -30,6 +30,29 @@ class ProfileContainer extends Component {
   renderSong() {
       const tracks      = this.props.userTracks;
       const currentUser = this.props.currentUser;
+      // the case when the user hasn't uploaded anything
+      if (!tracks.length) {
+        if (!Meteor.user()) {
+          return (
+            <div className="center-align">
+              <h4>Looks like {this.props.user[0].username} hasn't uploaded any tracks</h4>;
+            </div>
+          )
+        }
+        if (Meteor.user()._id === Meteor.userId()) {
+          return (
+            <div className="center-align">
+              <h4>Looks like you have't uploaded any tracks</h4>;
+            </div>
+          )
+        } else {
+          return (
+            <div className="center-align">
+              <h4>Looks like {this.props.user[0].username} hasn't uploaded any tracks</h4>;
+            </div>
+          )
+        }
+      }
      return tracks.map( (track) => {
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
       const showPrivateButton = track.owner === currentUserId;

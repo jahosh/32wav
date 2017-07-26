@@ -5,8 +5,11 @@ import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon';
 import { browserHistory } from 'react-router';
 
-
-const handleLogin = (service, callback) => {
+const handleLogin = (service, callback, onLoading) => {
+  if (Meteor.user()) {
+    return alert('Already logged in');
+    return;
+  }
   const options = {
     facebook: {
       requestPermissions: ['email'],
@@ -21,8 +24,23 @@ const handleLogin = (service, callback) => {
   return {
     facebook: Meteor.loginWithFacebook,
     google: Meteor.loginWithGoogle,
-    soundcloud: Meteor.loginWithSoundcloud
-  }[service](options, callback);
+  }[service](options, (error) => {
+    onLoading();
+      Meteor.setTimeout(() => {
+        if (error) {
+          if (error.message === "No matching login attempt found") {
+            onLoading();
+            return;
+          }
+          Bert.alert(error.message, 'danger');
+          onLoading();
+          return;
+        }
+        Meteor.setTimeout(() => {
+          browserHistory.push('/myaccount');
+        }, 200);
+      }, 100);
+    });
 };
 
 const serviceLabel = {
@@ -31,15 +49,13 @@ const serviceLabel = {
 };
 
 
-const OAuthLoginButton = ({ service, callback }) => (
-  // <button
-  //   // className={`OAuthLoginButton OAuthLoginButton-${service}`}
-  //   type="button"
-  //   onClick={() => handleLogin(service, callback)}
-  // >
-  //   {serviceLabel[service]}
-  // </button>
-  <a className={`waves-effect waves-light btn social ${service}`} onClick={() => handleLogin(service, callback)}>
+const OAuthLoginButton = ({ service, callback, onLoading }) => (
+  <a 
+    className={`waves-effect waves-light btn social ${service}`} 
+    onClick={ () =>{ 
+      handleLogin(service, callback, onLoading);
+    }}
+  >
     <i className={`fa fa-${service}`}></i> {`Sign in with ${service}`} 
   </a>
 );
@@ -51,10 +67,9 @@ OAuthLoginButton.defaultProps = {
       if (error.message === "No matching login attempt found") {
         return;
       }
-      console.log(error);
       Bert.alert(error.message, 'danger');
+      return;
     }
-
     // handle successfully OAuth login
     browserHistory.push('/myaccount');
   },

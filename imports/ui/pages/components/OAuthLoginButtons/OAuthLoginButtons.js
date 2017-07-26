@@ -5,9 +5,9 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { ReactiveVar } from 'meteor/reactive-var';
 import OAuthLoginButton from '../OAuthLoginButton/OAuthLoginButton';
 
-const OAuthLoginButtons = ({ services, emailMessage }) => (services.length ? (
+const OAuthLoginButtons = ({ services, emailMessage, onLoading }) => (services.length ? (
   <div className={`OAuthLoginButtons ${emailMessage ? 'WithEmailMessage' : ''}`}>
-    {services.map(service => <OAuthLoginButton key={service} service={service} />)}
+    {services.map(service => <OAuthLoginButton key={service} onLoading={onLoading} service={service} />)}
     {emailMessage ? <p className="EmailMessage" style={{ marginLeft: `-${emailMessage.offset}px` }}>
       {emailMessage.text}
     </p> : ''}
@@ -22,7 +22,7 @@ OAuthLoginButtons.propTypes = {
 const verificationComplete = new ReactiveVar(false);
 const verifiedServices = new ReactiveVar([]);
 
-export default createContainer(({ services }) => {
+export default createContainer(({ services  }) => {
   if (!verificationComplete.get()) {
     Meteor.call('oauth.verifyConfiguration', services, (error, response) => {
       if (error) {

@@ -34,7 +34,7 @@ export const ProfileHeader = (props) => (
           <td> { props.user[0].createdAt ? `${props.user[0].createdAt}` : '' } </td>
           
           <td>
-            { props.user[0].socials ? <a  target="_blank" href={`http://twitter.com/${props.user[0].socials.twitter}`}>  
+            { props.user[0].socials && props.user[0].socials.twitter ? <a  target="_blank" href={`http://twitter.com/${props.user[0].socials.twitter}`}>  
             <i className="fa fa-twitter" aria-hidden="true"></i>
             </a>
             : '' }

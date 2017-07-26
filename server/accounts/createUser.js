@@ -3,8 +3,8 @@ import { Random } from 'meteor/random';
 
 
 Accounts.onCreateUser((options, user) => {
-  console.log('this user', user);
 
+  const timeStamp = moment().format('MMMM Do YYYY');
   let email;
   let username;
   let verified = false;
@@ -41,5 +41,6 @@ Accounts.onCreateUser((options, user) => {
   }
   userToCreate.profile_img = profile_img;
   userToCreate.socials = {};
+  userToCreate.createdAt = timeStamp;
   return userToCreate;
 });
