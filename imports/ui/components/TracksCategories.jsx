@@ -9,8 +9,7 @@ export default class TracksCategories extends Component {
   }
   componentDidMount() {
     // this.initMaterialize();
-    $(".previous-page").parent().addClass('float-left');
-    $(".next-page").parent().addClass('float-right');
+
   }
   initMaterialize() {
     // $('.dropdown-button').dropdown({

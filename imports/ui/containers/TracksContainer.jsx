@@ -58,8 +58,6 @@ class TracksContainer extends Component {
     this.setState({ globalPlaying: true,  track: id });
   }
   render() {
-    $(".previous-page").parent().addClass('float-left');
-    $(".next-page").parent().addClass('float-right');
     const { pagination } = this.props;
     return (
       <div className="col s12 m12 l12 ">

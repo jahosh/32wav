@@ -31,6 +31,15 @@ Meteor.methods({
 
     const timestamp = moment().format('X');
     const username = Meteor.user().username;
+    let imgSrc = '';
+
+    // console.log('this is track image', track.trackImage);
+
+    if (track.trackImage !== "./32wav.jpg") {
+      imgSrc = "https://s3-us-west-1.amazonaws.com/jahosh-meteor-files-resized/images" + track.trackImage.slice(61);
+    } else {
+      imgSrc = track.trackImage;
+    }
     try {
       const c = Tracks.insert({
         title: track.title,
@@ -43,7 +52,7 @@ Meteor.methods({
         owner: Meteor.userId(),
         username: username,
         setPrivate: track.setPrivate,
-        trackImage: track.trackImage,
+        trackImage: imgSrc,
         likes: 0,
         plays: 0,
         download: track.download,

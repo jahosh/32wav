@@ -775,12 +775,12 @@ canvas {
 
 .previous-page {
   transform: scale(3);
-  float:left;
+  cursor: pointer;
 }
 
 .next-page {
   transform: scale(3);
-  float:left;
+  cursor: pointer;
 }
 
 .float-left {

@@ -11,7 +11,13 @@ import OAuthLoginButtons from '../components/OAuthLoginButtons/OAuthLoginButtons
 class Signup extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      loading: false
+    }
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+    this.toggleLoading = this.toggleLoading.bind(this);
   }
 
   componentDidMount() {
@@ -40,11 +46,11 @@ class Signup extends React.Component {
           required: 'Please enter a unique username',
         },
         emailAddress: {
-          required: 'Need an email address here.',
+          required: 'Required.',
           email: 'Is this email address correct?',
         },
         password: {
-          required: 'Need a password here.',
+          required: 'Required.',
           minlength: 'Please use at least six characters.',
         },
         repeatPassword: {
@@ -72,6 +78,24 @@ class Signup extends React.Component {
     });
   }
 
+  handleLogout() {
+    this.toggleLoading();
+    Meteor.logout((error) => {
+      if (error) {
+        Bert.alert(error.reason, 'danger');
+      } else {
+        Bert.alert('successfully logged out', 'success');
+        this.toggleLoading();
+      }
+    });
+  }
+
+  toggleLoading() {
+    this.setState({
+      loading: !this.state.loading
+    });
+  }
+
   render() {
     return (
       <div className="Signup">
@@ -83,6 +107,7 @@ class Signup extends React.Component {
               <div className="LoginBorder">
 
                 <OAuthLoginButtons
+                  onLoading={this.toggleLoading}
                   services={['facebook', 'google']}
                   emailMessage={{
                     text: 'Log In with an OAuth provider',
@@ -128,9 +153,19 @@ class Signup extends React.Component {
                     <label className="active" htmlFor="repeatpassword">Repeat Password:</label>
                   </div>
                   <div className="center-align">
-                    <button className="btn waves-effect waves-light grey darken-4 center-align" type="submit" name="action">Signup
+                    {Meteor.user() === null ?
+                        <button className="btn waves-effect waves-light grey darken-4 center-align" type="submit" name="action">Signup
                       <i className="material-icons right">send</i>
-                    </button>
+                        </button>
+                        :
+                        <button
+                          className="btn waves-effect waves-light grey darken-4 center-align"
+                          name="action"
+                          onClick={this.handleLogout}>
+                          Logout
+                          <i className="material-icons right">send</i>
+                        </button>
+                      }
                   </div>
                 </form>
               </div>
