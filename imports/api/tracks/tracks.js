@@ -5,8 +5,33 @@ import SimpleSchema from 'simpl-schema';
 
 const Tracks = new Mongo.Collection('Tracks');
 
+Tracks.friendlySlugs([
+  {
+    slugFrom: 'title',
+    slugField: 'slug',
+    distinct: true,
+    updateSlug: true
+  },
+  {
+    slugFrom: 'username',
+    slugField: 'userSlug'
+  }
+]);
+
 if (Meteor.isServer) {
   Tracks._ensureIndex( { title: 1, username: 1 } ); 
+
+  Meteor.startup(() => {
+    const traks = Tracks.find({ userSlug: { $exists: false } }, { limit: 50 });
+    let count = 0;
+
+    traks.forEach((t) => {
+      Tracks.update({ _id: t._id }, { $set: { fake: '' } });
+      count += 1;
+    });
+
+    console.log(`Updated slugs for ${count} Tracks`);
+  });
 }
 
 Tracks.allow({

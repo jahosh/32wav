@@ -11,7 +11,7 @@ export const ProfileHeader = (props) => (
         { props.user[0].verified ? <i className="material-icons">verified_user</i> : '' }
         <div className="" id="profile-name">
         <h3 className="center-align" id="user-name">
-          {props.params.username}
+          {props.user[0].username}
         </h3>
         <p className="flow-text" id="user-tagline">{props.user[0].bio ? `${props.user[0].bio}` : ''} </p>
       </div>           

@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { check, Match } from 'meteor/check';
 import editProfile from './edit-profile';
 
+import Users from './Users';
 
 Meteor.methods({
   'users.editProfile': function usersEditProfile(profile) {

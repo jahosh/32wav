@@ -26,6 +26,7 @@ class TrackContainer extends Component {
       const track       = this.props.userTracks[0];
       const currentUser = this.props.currentUser;
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
+      console.log('this is track', track);
       const showPrivateButton = track.owner === currentUserId;
      return (
        <Track 
@@ -61,7 +62,8 @@ export default createContainer( (props) => {
   const loading = !subscription.ready();
   const username = props.params.username;
   const track = props.params.track
-  const userTracks = Tracks.find({username: username, title: track }).fetch();
+  const userTracks = Tracks.find({userSlug: username, slug: track }).fetch();
+  console.log(userTracks);
   const currentUser = Meteor.user();
 
   return {

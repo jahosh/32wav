@@ -51,7 +51,7 @@ publishPagination(Tracks, {
         { owner: this.userId },
       ]}, { sort  : { createdAt: -1 }
     }),
-      Meteor.users.find({ "username": username  }, { fields: { "createdAt": 1, username: 1, profile_img: 1, bio: 1, socials: 1, location: 1 } })
+      Meteor.users.find({ "slug": username  }, { fields: { "createdAt": 1, username: 1, slug: 1, profile_img: 1, bio: 1, socials: 1, location: 1 } })
     ]
   });
 

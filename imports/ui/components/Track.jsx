@@ -144,8 +144,8 @@ export default class Track extends Component {
 
          <div className="row">
          <div className="col s12 l3" id="track-info">
-            <span className="trackTitle"><Link className="trackLink" to={ this.props.song.username + '/' + this.props.song.title}><p id="username-link" className="flow-text">{this.props.song.title}</p></Link></span>
-            <Link className="track-link" to={this.props.song.username}><p className="songTitle">{this.props.song.username}</p></Link>
+            <span className="trackTitle"><Link className="trackLink" to={ this.props.song.userSlug + '/' + this.props.song.slug}><p id="track-link" className="flow-text">{this.props.song.title}</p></Link></span>
+            <Link className="track-link" to={this.props.song.userSlug}><p id="username-link">{this.props.song.username}</p></Link>
             <p>{this.props.song.fileName}</p>
             <span className="track-photo" style={{"background": 'url(' + this.props.song.trackImage + ')'}} ></span>
           
@@ -174,14 +174,15 @@ export default class Track extends Component {
           : <div className="wave-spaceholder"></div> }
         
           <div className="track-stats">
-            <i className="tiny material-icons">play_arrow</i><span id="plays">{this.props.song.plays}</span> <br />
-            <i className="tiny material-icons">star</i><span id="likes">{this.props.song.likes}</span> <br />
-            <i className="tiny material-icons">playlist_add</i> <span className="" data-livestamp={this.props.song.createdAt}></span>
+            <i className="small material-icons">play_arrow</i><span id="plays">{this.props.song.plays}</span> <br />
+            <i className="small material-icons">star</i><span id="likes">{this.props.song.likes}</span> <br />
+            <i className="small material-icons">playlist_add</i> <span id="time" data-livestamp={this.props.song.createdAt}></span>
           </div>
            </div>
         </div>
         <div className="row">
-          <div className="col s12" id="track-misc">       
+          <div className="col s12" id="track-misc">  
+          <hr id="track-misc-line" />     
           <div className="beatActions">
             
             {/* - old purchase functionality - price-tags
@@ -240,15 +241,3 @@ Track.propTypes = {
   song: PropTypes.object.isRequired,
   showPrivateButton: React.PropTypes.bool.isRequired,
 };
-
-
-
-// <Wavesurfer
-//   audioFile={this.props.source}
-//   options={options}
-//   onAudioprocess={this.handlePlay}
-//   pos={this.state.pos}
-//   onReady={this.handleReady}
-//   onPosChange={this.handlePosChange}
-//   playing={!this.state.playing}
-// />

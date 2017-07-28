@@ -157,7 +157,14 @@ hr {
 }
 
 .beatActions {
+  font-size: 12px;
   margin-bottom: 5px;
+  clear: left;
+}
+
+.beatActions a:hover {
+  color: black;
+  cursor: pointer;
 }
 
 .collection .row {
@@ -184,7 +191,7 @@ ul.dropdown-content.select-dropdown li span {
 }
 
 .trackTitle {
-  font-size: 5em;
+  font-size: 20px;
 }
 .trackLink:hover {
   color:grey;
@@ -205,9 +212,7 @@ ul.dropdown-content.select-dropdown li span {
   color: black !important;
 }
 
-.songTitle {
-  font-size: 2em;
-}
+
 
 .avatar {
   padding: 10px;
@@ -558,10 +563,14 @@ div.dz-preview.dz-file-preview.card {
   color: darkgrey;
 }
 #username-link {
+  font-size: 14px;
+}
+
+#track-link {
   color:black;
-  font-size: 15px;
+  font-size: 20px;
   line-height: 20px;
- font-weight: bold;
+  font-weight: bold;
 }
 
 #username-link:hover {
@@ -670,13 +679,13 @@ div.dz-preview.dz-file-preview.card {
 .materialboxed.initialized.active {
 
 }
+
 #track-info {
-  padding: 5px;
+
 }
 
 #track-wave {
-  padding: 10px;
-  padding-top: 20px;
+
 }
 
 #default-artwork {
@@ -1071,4 +1080,26 @@ canvas {
 }
 .yahoo:hover {
   background-color: #9412cd !important;
+}
+
+
+
+/* Track Stats Styling */
+#plays {
+  font-size: 16px;
+}
+
+#likes {
+  font-size: 16px;
+}
+
+#time {
+  font-size: 16px;
+}
+
+#track-misc-line {
+  margin-top: 0px;
+  border: 1px dashed grey;
+  width: 18%;
+  float: left;
 }

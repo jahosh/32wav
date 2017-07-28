@@ -108,8 +108,8 @@ export default createContainer( (props) => {
   const username = props.params.username;
   const subscription = Meteor.subscribe('users.info', username);
   const loading = !subscription.ready();
-  const userTracks = Tracks.find({username: username }, { sort: { createdAt: -1 } }).fetch();
-  const user = Meteor.users.find({username: username }).fetch()
+  const userTracks = Tracks.find({userSlug: username }, { sort: { createdAt: -1 } }).fetch();
+  const user = Meteor.users.find({slug: username }).fetch()
   return {
    userTracks: userTracks,
    username: username,
