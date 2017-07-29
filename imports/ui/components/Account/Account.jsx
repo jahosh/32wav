@@ -140,7 +140,7 @@ export default class Account extends Component {
         <span className="account-username center-align">{ this.props.user[0].username }</span>
         </div>
           <div className="collection" id="account-links">
-            <Link to={'/' + this.props.user[0].username} className="collection-item">My Profile</Link>
+            <Link to={'/' + this.props.user[0].slug} className="collection-item">My Profile</Link>
             <Link onClick={this.editProfile} className="collection-item">Edit My Profile</Link>   
             <Link to={'/alluploads/' + this.props.user[0].username} className="collection-item">Edit Instrumentals</Link>         
           </div>

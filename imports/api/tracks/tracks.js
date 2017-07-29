@@ -14,7 +14,9 @@ Tracks.friendlySlugs([
   },
   {
     slugFrom: 'username',
-    slugField: 'userSlug'
+    slugField: 'userSlug',
+    distinct: false,
+    updateSlug: true
   }
 ]);
 
@@ -24,6 +26,10 @@ if (Meteor.isServer) {
   Meteor.startup(() => {
     const traks = Tracks.find({ userSlug: { $exists: false } }, { limit: 50 });
     let count = 0;
+
+    // traks.forEach((t) => {
+    //   Tracks.update({_id: t._id}, { $unset: { "friendlySlugs.userSlug": "", userSlug: "" }});
+    // })
 
     traks.forEach((t) => {
       Tracks.update({ _id: t._id }, { $set: { fake: '' } });
