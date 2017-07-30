@@ -29,7 +29,7 @@ export default class App extends Component {
           <div className="row" id="home-body">
             <div className="col s12 m12 l10 offset-l1 center-align home-content">
               <p className=" flow-text tagline" id="headline"></p>
-                <form className="hide-on-small-only" onSubmit={this.handleSearch} >
+                <form className="" onSubmit={this.handleSearch} >
               <div className="input-field ">
                 <input id="main-search" type="search" required ref={ (input) => { this.searchInput = input; }} />
                 <i className="material-icons">close</i>

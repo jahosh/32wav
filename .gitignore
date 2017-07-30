@@ -1,6 +1,5 @@
 node_modules/
 .meteor/local
-*slingshot_config.js
 *settings-development.json
 settings-production.json
 *kadira.js

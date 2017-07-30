@@ -3,10 +3,6 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 import { Bert } from 'meteor/themeteorchef:bert';
 
-// //methods
-// import { updateBio } from '../../../api/users/methods.js';
-// import { updateProfileImage } from '../../../api/users/methods.js';
-
 //components
 import { EditProfile } from './EditProfile.jsx';
 
@@ -131,28 +127,38 @@ export default class Account extends Component {
       }
        return src.replace('https://jahosh-meteor-files.s3-us-west-2', 'https://jahosh-meteor-files-resized.s3-us-west-1');
     }
-    const source = testSrc(src)
+    const source = testSrc(src);
+    console.log(this.props);
    
     return (
       <div className="row">
         <div className="col l10 offset-l1">
-        <div className="center-align">
-        <span className="account-username center-align">{ this.props.user[0].username }</span>
-        </div>
+          <div className="center-align">
+            <span className="account-username center-align">{ this.props.user[0].username }</span>
+          </div>
+        <div className="col l6">
           <div className="collection" id="account-links">
             <Link to={'/' + this.props.user[0].slug} className="collection-item">My Profile</Link>
             <Link onClick={this.editProfile} className="collection-item">Edit My Profile</Link>   
             <Link to={'/alluploads/' + this.props.user[0].username} className="collection-item">Edit Instrumentals</Link>         
           </div>
-          <EditProfile
-            user={this.props.user}
-            uploading={this.state.uploading}
-            processing={this.state.processing}
-            pic={source}
-            progress={uploadStyle}
-            handleFormSubmit={this.onEditProfile.bind(this)}
-            handleAvatarUpload={this.onAvatarUpload.bind(this)}
-          />
+        </div>
+        <div className="col l6">
+            <div className="center-align">
+              <span className="user-avatar" style={{ "background": 'url(' + source + ')', "margin": "0 auto" }}></span>
+              <p className="margin-5px" id="currentPhoto">current profile picture</p>
+              <p className="flow-text" id="user-tagline">{this.props.user[0].bio}</p>
+            </div>
+        </div>
+        <EditProfile
+          user={this.props.user}
+          uploading={this.state.uploading}
+          processing={this.state.processing}
+          pic={source}
+          progress={uploadStyle}
+          handleFormSubmit={this.onEditProfile.bind(this)}
+          handleAvatarUpload={this.onAvatarUpload.bind(this)}
+        />
         </div>
       </div>  
     );
