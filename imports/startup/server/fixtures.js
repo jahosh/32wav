@@ -1,3 +1,9 @@
+/**
+ * Responsible for setting up dummy users in the database
+ */
+
+
+
 // import { Meteor } from 'meteor/meteor';
 // import { Roles } from 'meteor/alanning:roles';
 // import { Accounts } from 'meteor/accounts-base';

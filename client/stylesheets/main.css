@@ -507,7 +507,6 @@ div.dz-preview.dz-file-preview.card {
   font-size: 16px;
   font-weight: bold;
   display: block;
-  margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -547,12 +546,13 @@ div.dz-preview.dz-file-preview.card {
    
 
 .file-field input[type=file] {
-  background-color: #546E7A !important;
+  background-color: #212121 !important;
 }
 
 .btn, .btn-large {
-  background-color: #546E7A
+  background-color: #212121
 }
+
 
 .track-link {
   color: black;
@@ -651,9 +651,9 @@ div.dz-preview.dz-file-preview.card {
   color: #F9F9F9
 }
 #user-tagline {
-  margin-top: 0px;
-  font-size: 14px;
-  font-style: italic;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 18px;
 }
 
 #account-links {
@@ -728,7 +728,7 @@ canvas {
 }
 
 .pic-load {
-  margin-top: 500px;
+   margin-bottom: 100px; 
 }
 
 #file-types {
@@ -1102,4 +1102,32 @@ canvas {
   border: 1px dashed grey;
   width: 18%;
   float: left;
+}
+
+.margin-bottom-5 {
+  margin-bottom: 5px;
+  display: block;
+  border-radius: 5px;
+}
+
+.edit-profile-form-row {
+  margin-bottom: 0px;
+}
+
+#upload-form {
+  margin-bottom: 20px;
+}
+
+.button-aligner {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.account-main-div {
+
+}
+
+.edit-account-main-div {
+
 }

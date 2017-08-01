@@ -45,7 +45,7 @@ publishPagination(Tracks, {
 
   /* Publication for Account Page */
   Meteor.publish('users.info', function tracksPublication(username){
-    return [ Tracks.find({ username: username,
+    return [ Tracks.find({ userSlug: username,
       $or: [
         { private: { $ne: true } },
         { owner: this.userId },

@@ -11,11 +11,6 @@ class AccountContainer extends Component {
   render() {
     return (
       <div className="row">
-       <div className="col s12 m12 l10 offset-l1">
-          <header className="background-header text-center" id="account-header">
-            <h1 className="center">Account</h1>
-          </header>
-        </div>
         { this.props.loading ? <Blaze template="spinner" /> : 
         <div>
           <Account
@@ -37,3 +32,10 @@ export default createContainer( (props) => {
     user: user,
   }
 }, AccountContainer);
+
+
+   //  <div className="col s12 m12 l10 offset-l1">
+      //     <header className="background-header text-center" id="account-header">
+      //       <h1 className="center">Account</h1>
+      //     </header>
+      //   </div>

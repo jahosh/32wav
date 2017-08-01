@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 import { Bert } from 'meteor/themeteorchef:bert';
+import Blaze from 'meteor/gadicc:blaze-react-component';
 
 //components
 import { EditProfile } from './EditProfile.jsx';
@@ -19,6 +20,8 @@ export default class Account extends Component {
     this.hideUploadElements();
     $('.collapsible').collapsible();
     $("#editProfile").hide();
+    $(".progress").hide();
+    $("#processing-flag").hide();
   }
   hideUploadElements() {
     $(".progress").hide("slow");
@@ -31,9 +34,7 @@ export default class Account extends Component {
   }
   editProfile() {
     $("#editProfile").toggle("slow");
-    $('html, body').animate({
-    scrollTop: $("#bio").offset().top
-}, 1000);
+
   }
   onAvatarUpload(e) {
     e.preventDefault();
@@ -45,7 +46,7 @@ export default class Account extends Component {
     upload.send(file, function(err, source) {
       computation.stop();
       if (err) {
-        self.setState({ progress: 0, uploading: false });
+        self.setState({ progress: 0, uploading: true });
         console.error(err);
         alert(err);
         return;
@@ -66,6 +67,7 @@ export default class Account extends Component {
           icon: 'fa-user'
         });
         self.setState({ processing: true });
+        $("#processing-flag").fadeIn("slow");
         Meteor.setTimeout(function(){ self.setState({ uploading: false, processing: false }); self.hideUploadElements();   }, 4000);
       });
     });
@@ -128,37 +130,46 @@ export default class Account extends Component {
        return src.replace('https://jahosh-meteor-files.s3-us-west-2', 'https://jahosh-meteor-files-resized.s3-us-west-1');
     }
     const source = testSrc(src);
-    console.log(this.props);
-   
     return (
       <div className="row">
-        <div className="col l10 offset-l1">
+        <div className="col l10 offset-l1 s10 offset-s1 account-main-div">
           <div className="center-align">
             <span className="account-username center-align">{ this.props.user[0].username }</span>
           </div>
-        <div className="col l6">
-          <div className="collection" id="account-links">
-            <Link to={'/' + this.props.user[0].slug} className="collection-item">My Profile</Link>
-            <Link onClick={this.editProfile} className="collection-item">Edit My Profile</Link>   
-            <Link to={'/alluploads/' + this.props.user[0].username} className="collection-item">Edit Instrumentals</Link>         
-          </div>
-        </div>
-        <div className="col l6">
+          <div className="col s12 l12">
             <div className="center-align">
-              <span className="user-avatar" style={{ "background": 'url(' + source + ')', "margin": "0 auto" }}></span>
-              <p className="margin-5px" id="currentPhoto">current profile picture</p>
-              <p className="flow-text" id="user-tagline">{this.props.user[0].bio}</p>
+
+              {this.state.processing ? <div className="center-align"> <h4 id="processing-flag"> Processing File</h4><Blaze className="pic-load" template="spinner" /> </div> : '' }
+              { this.state.uploading ? <div className="col l12"> <Blaze className="pic-load" template="spinner" /> </div> :
+                <div>
+                  <span className="user-avatar" style={{ "background": 'url(' + source + ')', "margin": "0 auto" }}></span>
+                  <p className="flow-text" id="user-tagline">{this.props.user[0].bio}</p>
+                </div>
+              }
+
+              <div className="progress-status">
+                <p className="flow-text center-align">Progress: {uploadStyle.width}</p>
+              </div>
+              <div className="progress">
+                <div className="determinate" style={uploadStyle}></div>
+              </div>
+      
+              <div className="button-aligner">
+                <Link to={'/' + this.props.user[0].slug} className="waves-effect waves-light btn-large grey darken-4 margin-bottom-5">My Profile</Link>
+                <Link onClick={this.editProfile} className="waves-effect waves-light btn-large grey darken-4 margin-bottom-5">Edit My Profile</Link>
+                <Link to={'/alluploads/' + this.props.user[0].username} className="waves-effect waves-light btn-large grey darken-4 margin-bottom-5">Edit Instrumentals</Link>         
+              </div>
             </div>
-        </div>
-        <EditProfile
-          user={this.props.user}
-          uploading={this.state.uploading}
-          processing={this.state.processing}
-          pic={source}
-          progress={uploadStyle}
-          handleFormSubmit={this.onEditProfile.bind(this)}
-          handleAvatarUpload={this.onAvatarUpload.bind(this)}
-        />
+          <EditProfile
+            user={this.props.user}
+            uploading={this.state.uploading}
+            processing={this.state.processing}
+            pic={source}
+            progress={uploadStyle}
+            handleFormSubmit={this.onEditProfile.bind(this)}
+            handleAvatarUpload={this.onAvatarUpload.bind(this)}
+          />
+          </div>
         </div>
       </div>  
     );
@@ -166,3 +177,14 @@ export default class Account extends Component {
 }
 
 // <a href="#!" className="collection-item">Reset Password</a>
+
+
+{/* <div className="col l6">
+  <div className="center-align">
+    <span className="user-avatar" style={{ "background": 'url(' + source + ')', "margin": "0 auto" }}></span>
+    <p className="margin-5px" id="currentPhoto">current profile picture</p>
+    <p className="flow-text" id="user-tagline">{this.props.user[0].bio}</p>
+  </div>
+</div> */}
+
+

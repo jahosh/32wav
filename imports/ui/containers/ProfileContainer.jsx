@@ -112,6 +112,7 @@ export default createContainer( (props) => {
   const user = Meteor.users.find({slug: username }).fetch()
 
   console.log(username);
+  console.log(userTracks);
   return {
    userTracks: userTracks,
    username: username,
