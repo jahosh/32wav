@@ -80,5 +80,8 @@ export const renderRoutes = () => (
 );
 
 Meteor.startup( () => {
-  render(renderRoutes(), document.getElementById('app'));
+  // render(renderRoutes(), document.getElementById('app'));
+  ReactRouterSSR.Run(renderRoutes(), {
+    rootElement: "app"
+  });
 });
