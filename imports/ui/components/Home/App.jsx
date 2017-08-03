@@ -7,6 +7,9 @@ import { browserHistory } from 'react-router';
 //react components
 import Header from './Header.jsx';
 
+const meta = { name: 'viewport', content: "width-device-width, initial-scale=1" };
+DocHead.addMeta(meta);
+
 export default class App extends Component {
   componentDidMount() {
     document.title = "Top instrumentals | 32wav ";

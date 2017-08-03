@@ -47,3 +47,6 @@ http@1.2.10
 aldeed:collection2-core@2.0.1
 dferber:prerender
 todda00:friendly-slugs
+kadira:dochead
+gadicohen:sitemaps
+reactrouter:react-router-ssr
