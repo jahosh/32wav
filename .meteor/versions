@@ -63,7 +63,6 @@ localstorage@1.1.1
 logging@1.1.17
 matb33:collection-hooks@0.7.15
 materialize:materialize@0.97.6
-mdg:validated-method@1.1.0
 meteor@1.7.0
 meteor-base@1.0.4
 meteorhacks:meteorx@1.4.1

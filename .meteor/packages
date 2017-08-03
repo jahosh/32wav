@@ -31,7 +31,6 @@ materialize:materialize@=0.97.6
 sacha:spin
 email@1.1.18
 copleykj:livestamp
-mdg:validated-method
 peerlibrary:aws-sdk
 xolvio:cleaner
 dburles:factory

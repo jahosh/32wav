@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { moment } from 'meteor/momentjs:moment';
 import { HTTP } from 'meteor/http';
 import { Email } from 'meteor/email';
