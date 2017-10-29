@@ -21,3 +21,7 @@ Share your favorite audio instrumentals
 
 [UPLOAD]
 ![alt text](https://s3-us-west-2.amazonaws.com/jahosh-meteor-files/Screen+Shot+2017-10-29+at+1.42.34+PM.png)
+
+
+[ACCOUNT]
+![alt text](https://s3-us-west-2.amazonaws.com/jahosh-meteor-files/Screen+Shot+2017-10-29+at+1.41.53+PM.png)
